@@ -14,6 +14,7 @@ import { Testimonials } from './components/home/Testimonials';
 
 // Other Main Views
 import { ListingsView } from './components/listings/ListingsView';
+import { CitiesView } from './components/cities/CitiesView';
 import { PropertyDetailView } from './components/detail/PropertyDetailView';
 import { WishlistView } from './components/wishlist/WishlistView';
 import { AgentsView } from './components/agents/AgentsView';
@@ -29,28 +30,37 @@ function MainContent() {
   const { currentView } = useMarketplace();
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
-      {/* Top Navigation */}
+    <div className="h-screen flex flex-col overflow-hidden bg-slate-50">
+      {/* Top Navigation - Full width across screen, scrollbar does NOT enter navbar */}
       <Navbar />
 
-      {/* Main View Router */}
-      <main className="flex-1">
-        {currentView === 'home' && (
-          <>
-            <HeroSection />
-            <QuickCitySelector />
-            <FeaturedProperties />
-            <EmiCalculatorWidget />
-            <WhyChooseUs />
-            <Testimonials />
-          </>
-        )}
+      {/* Main Scrollable View Area - The scrollbar starts strictly below the navbar */}
+      <div 
+        id="main-scroll-container" 
+        className="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth flex flex-col"
+      >
+        <main className="flex-1">
+          {currentView === 'home' && (
+            <>
+              <HeroSection />
+              <QuickCitySelector />
+              <FeaturedProperties />
+              <EmiCalculatorWidget />
+              <WhyChooseUs />
+              <Testimonials />
+            </>
+          )}
 
-        {currentView === 'listings' && <ListingsView />}
-        {currentView === 'detail' && <PropertyDetailView />}
-        {currentView === 'wishlist' && <WishlistView />}
-        {currentView === 'agents' && <AgentsView />}
-      </main>
+          {currentView === 'cities' && <CitiesView />}
+          {currentView === 'listings' && <ListingsView />}
+          {currentView === 'detail' && <PropertyDetailView />}
+          {currentView === 'wishlist' && <WishlistView />}
+          {currentView === 'agents' && <AgentsView />}
+        </main>
+
+        {/* Global Footer */}
+        <Footer />
+      </div>
 
       {/* Modals & Popups */}
       <AuthModal />
@@ -59,9 +69,6 @@ function MainContent() {
       <ScheduleVisitModal />
       <ComparisonBar />
       <Toast />
-
-      {/* Global Footer */}
-      <Footer />
     </div>
   );
 }

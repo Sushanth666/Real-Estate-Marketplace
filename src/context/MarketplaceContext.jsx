@@ -160,11 +160,19 @@ export function MarketplaceProvider({ children }) {
 
   const isInCompare = (propertyId) => compareList.includes(propertyId);
 
-  // View Navigation
+  // View Navigation Helper
+  const scrollToTop = () => {
+    const scrollContainer = document.getElementById('main-scroll-container');
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const viewPropertyDetail = (propertyId) => {
     setSelectedPropertyId(propertyId);
     setCurrentView('detail');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTop();
   };
 
   const navigateTo = (view, extra = null) => {
@@ -175,7 +183,7 @@ export function MarketplaceProvider({ children }) {
     if (view === 'listings' && extra?.purpose) {
       updateFilter('purpose', extra.purpose);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTop();
   };
 
   // Add User-Submitted Property

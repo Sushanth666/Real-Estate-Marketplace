@@ -233,6 +233,8 @@ export function ListingsView() {
                   disabled={currentPage === 1}
                   onClick={() => {
                     setCurrentPage(p => Math.max(p - 1, 1));
+                    const sc = document.getElementById('main-scroll-container');
+                    if (sc) sc.scrollTo({ top: 0, behavior: 'smooth' });
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="p-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -245,6 +247,8 @@ export function ListingsView() {
                     key={i + 1}
                     onClick={() => {
                       setCurrentPage(i + 1);
+                      const sc = document.getElementById('main-scroll-container');
+                      if (sc) sc.scrollTo({ top: 0, behavior: 'smooth' });
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
                     className={`w-10 h-10 rounded-xl text-xs font-bold transition-all ${
@@ -261,6 +265,8 @@ export function ListingsView() {
                   disabled={currentPage === totalPages}
                   onClick={() => {
                     setCurrentPage(p => Math.min(p + 1, totalPages));
+                    const sc = document.getElementById('main-scroll-container');
+                    if (sc) sc.scrollTo({ top: 0, behavior: 'smooth' });
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="p-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"

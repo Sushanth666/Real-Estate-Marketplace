@@ -34,14 +34,14 @@ export function Navbar() {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all shrink-0">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div className="flex items-center justify-between h-20 gap-4">
           
           {/* Brand Logo */}
           <div 
             onClick={() => navigateTo('home')}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-md shadow-brand-600/20 group-hover:scale-105 transition-transform">
               <Building2 className="w-6 h-6" />
@@ -55,17 +55,17 @@ export function Navbar() {
                   🇮🇳
                 </span>
               </div>
-              <p className="text-[10px] uppercase font-bold text-slate-600 tracking-wider">
+              <p className="text-[10px] uppercase font-bold text-slate-600 tracking-wider whitespace-nowrap">
                 India's Verified PropTech
               </p>
             </div>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
             <button
               onClick={() => navigateTo('home')}
-              className={`px-3.5 py-2 text-sm font-medium rounded-xl transition-colors ${
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
                 currentView === 'home'
                   ? 'text-brand-700 bg-brand-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
@@ -79,7 +79,7 @@ export function Navbar() {
                 updateFilter('purpose', 'all');
                 navigateTo('listings');
               }}
-              className={`px-3.5 py-2 text-sm font-medium rounded-xl transition-colors ${
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
                 currentView === 'listings'
                   ? 'text-brand-700 bg-brand-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
@@ -89,8 +89,19 @@ export function Navbar() {
             </button>
 
             <button
+              onClick={() => navigateTo('cities')}
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+                currentView === 'cities'
+                  ? 'text-brand-700 bg-brand-50/80 font-semibold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
+            >
+              Top Cities
+            </button>
+
+            <button
               onClick={() => navigateTo('agents')}
-              className={`px-3.5 py-2 text-sm font-medium rounded-xl transition-colors ${
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
                 currentView === 'agents'
                   ? 'text-brand-700 bg-brand-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
@@ -108,7 +119,7 @@ export function Navbar() {
                   navigateTo('listings');
                 }
               }}
-              className="relative px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 rounded-xl transition-colors flex items-center gap-1.5"
+              className="whitespace-nowrap relative px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
             >
               <Scale className="w-4 h-4 text-slate-500" />
               <span>Compare</span>
@@ -122,7 +133,7 @@ export function Navbar() {
             {/* Wishlist Button */}
             <button
               onClick={() => navigateTo('wishlist')}
-              className={`relative px-3.5 py-2 text-sm font-medium rounded-xl transition-colors flex items-center gap-1.5 ${
+              className={`whitespace-nowrap relative px-3.5 py-2 text-sm font-medium rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
                 currentView === 'wishlist'
                   ? 'text-rose-600 bg-rose-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
@@ -139,13 +150,13 @@ export function Navbar() {
           </nav>
 
           {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
             {/* Post Property Free Button */}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setIsPostPropertyOpen(true)}
-              className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold tracking-wide uppercase shadow-sm flex items-center gap-2"
+              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold tracking-wide uppercase shadow-sm flex items-center gap-2 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Post Property FREE</span>
@@ -156,7 +167,7 @@ export function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-2xl border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-white transition-all text-left"
+                  className="whitespace-nowrap flex items-center gap-2.5 px-3 py-2 rounded-2xl border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-white transition-all text-left outline-none focus:outline-none"
                 >
                   <div className="w-8 h-8 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-xs shadow-xs">
                     {currentUser.name.charAt(0)}
@@ -169,7 +180,6 @@ export function Navbar() {
                       {currentUser.role || 'Buyer'}
                     </span>
                   </div>
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                 </button>
 
                 {/* Dropdown Menu */}
@@ -272,6 +282,15 @@ export function Navbar() {
                 className="text-left px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-50"
               >
                 Explore Properties
+              </button>
+              <button
+                onClick={() => {
+                  navigateTo('cities');
+                  setMobileMenuOpen(false);
+                }}
+                className="text-left px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-50"
+              >
+                Top Cities
               </button>
               <button
                 onClick={() => {
