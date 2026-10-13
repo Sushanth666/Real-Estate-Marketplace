@@ -85,16 +85,16 @@ export function PropertyCard({ property, layout = 'grid' }) {
         {/* Top Badges */}
         <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2 items-center z-10">
           {property.reraId && (
-            <Badge variant="rera" className="backdrop-blur-md bg-brand-950/80 text-brand-300 border-brand-500/30">
-              <ShieldCheck className="w-3.5 h-3.5 text-brand-400" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-slate-950/80 text-sky-300 border border-sky-400/30 shadow-md">
+              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
               <span>RERA Verified</span>
-            </Badge>
+            </span>
           )}
           {property.featured && (
-            <Badge variant="luxury" className="backdrop-blur-md bg-amber-950/80 text-amber-300 border-amber-500/30">
-              <Sparkles className="w-3 h-3 text-amber-400" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-slate-950/85 text-amber-300 border border-amber-400/40 shadow-md">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400 fill-amber-400/30" />
               <span>Signature</span>
-            </Badge>
+            </span>
           )}
         </div>
 

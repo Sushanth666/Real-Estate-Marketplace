@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { MarketplaceProvider, useMarketplace } from './context/MarketplaceContext';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
@@ -40,22 +41,32 @@ function MainContent() {
         className="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth flex flex-col"
       >
         <main className="flex-1">
-          {currentView === 'home' && (
-            <>
-              <HeroSection />
-              <QuickCitySelector />
-              <FeaturedProperties />
-              <EmiCalculatorWidget />
-              <WhyChooseUs />
-              <Testimonials />
-            </>
-          )}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentView}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+            >
+              {currentView === 'home' && (
+                <>
+                  <HeroSection />
+                  <QuickCitySelector />
+                  <FeaturedProperties />
+                  <EmiCalculatorWidget />
+                  <WhyChooseUs />
+                  <Testimonials />
+                </>
+              )}
 
-          {currentView === 'cities' && <CitiesView />}
-          {currentView === 'listings' && <ListingsView />}
-          {currentView === 'detail' && <PropertyDetailView />}
-          {currentView === 'wishlist' && <WishlistView />}
-          {currentView === 'agents' && <AgentsView />}
+              {currentView === 'cities' && <CitiesView />}
+              {currentView === 'listings' && <ListingsView />}
+              {currentView === 'detail' && <PropertyDetailView />}
+              {currentView === 'wishlist' && <WishlistView />}
+              {currentView === 'agents' && <AgentsView />}
+            </motion.div>
+          </AnimatePresence>
         </main>
 
         {/* Global Footer */}
