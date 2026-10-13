@@ -9,7 +9,7 @@ export function Toast() {
   if (!toastMessage) return null;
 
   const icons = {
-    success: <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />,
+    success: <CheckCircle2 className="w-5 h-5 text-brand-500 shrink-0" />,
     warning: <AlertCircle className="w-5 h-5 text-amber-500 shrink-0" />,
     info: <Info className="w-5 h-5 text-blue-500 shrink-0" />
   };

@@ -62,7 +62,7 @@ export function ScheduleVisitModal() {
 
         {isBooked ? (
           <div className="py-12 text-center space-y-3">
-            <CheckCircle2 className="w-14 h-14 text-emerald-500 mx-auto" />
+            <CheckCircle2 className="w-14 h-14 text-brand-500 mx-auto" />
             <h3 className="text-xl font-bold font-display text-slate-900">
               Visit Request Confirmed!
             </h3>
@@ -73,7 +73,7 @@ export function ScheduleVisitModal() {
         ) : (
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2 py-0.5 rounded">
                 Verified Site Visit
               </span>
               <span className="text-xs text-slate-400">• Zero Fees</span>

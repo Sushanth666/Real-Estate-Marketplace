@@ -186,7 +186,7 @@ export function ComparisonModal() {
                   {comparedProperties.map(p => {
                     const emi = calculateEMI(p.price * 0.8, 8.5, 20);
                     return (
-                      <td key={p.id} className="p-3 font-semibold text-emerald-700">
+                      <td key={p.id} className="p-3 font-semibold text-brand-700">
                         {formatIndianCurrency(emi)} / mo
                       </td>
                     );
@@ -259,7 +259,7 @@ export function ComparisonModal() {
                 <tr>
                   <td className="p-3 font-semibold text-slate-600 bg-slate-50/50">RERA Registration</td>
                   {comparedProperties.map(p => (
-                    <td key={p.id} className="p-3 text-[11px] font-mono text-emerald-800">
+                    <td key={p.id} className="p-3 text-[11px] font-mono text-brand-800">
                       {p.reraId}
                     </td>
                   ))}
@@ -274,7 +274,7 @@ export function ComparisonModal() {
                       return (
                         <td key={p.id} className="p-3">
                           {hasAmenity ? (
-                            <span className="inline-flex items-center gap-1 text-emerald-600 font-bold">
+                            <span className="inline-flex items-center gap-1 text-brand-600 font-bold">
                               <Check className="w-4 h-4" />
                               <span>Yes</span>
                             </span>

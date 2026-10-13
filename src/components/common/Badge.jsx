@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Badge({ children, variant = 'default', className = '' }) {
   const variants = {
-    rera: 'bg-emerald-50 text-emerald-700 border-emerald-200/80 font-medium',
+    rera: 'bg-brand-50 text-brand-700 border-brand-200/80 font-medium',
     luxury: 'bg-amber-50 text-amber-800 border-amber-200/80 font-medium',
     featured: 'bg-purple-50 text-purple-700 border-purple-200 font-medium',
     ready: 'bg-blue-50 text-blue-700 border-blue-200 font-medium',

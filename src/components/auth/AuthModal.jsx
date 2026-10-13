@@ -201,9 +201,9 @@ export function AuthModal() {
             </form>
           ) : (
             <form onSubmit={handleVerifyOtp} className="space-y-4">
-              <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs text-emerald-800">
+              <div className="bg-brand-50 border border-brand-200 p-3 rounded-xl text-xs text-brand-800">
                 <p className="font-semibold">OTP sent to +91 {phoneNumber}</p>
-                <p className="text-[11px] text-emerald-700 mt-0.5">Demo OTP: <strong className="font-mono">842100</strong> (auto-filled)</p>
+                <p className="text-[11px] text-brand-700 mt-0.5">Demo OTP: <strong className="font-mono">842100</strong> (auto-filled)</p>
               </div>
 
               <div>

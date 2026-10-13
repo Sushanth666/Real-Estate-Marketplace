@@ -34,7 +34,7 @@ export function EmiCalculatorWidget() {
         
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/30 mb-3">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 bg-brand-950/80 px-3 py-1 rounded-full border border-brand-500/30 mb-3">
             <Calculator className="w-3.5 h-3.5" />
             <span>Interactive Financial Planning</span>
           </div>
@@ -151,7 +151,7 @@ export function EmiCalculatorWidget() {
               <p className="text-xs uppercase font-bold text-slate-400 tracking-wider mb-1">
                 Your Monthly EMI
               </p>
-              <div className="text-3xl sm:text-4xl font-extrabold font-display text-emerald-400 mb-6">
+              <div className="text-3xl sm:text-4xl font-extrabold font-display text-sky-400 mb-6">
                 {formatIndianCurrency(monthlyEMI)}
                 <span className="text-xs text-slate-400 font-normal ml-1">/ month</span>
               </div>
@@ -194,7 +194,7 @@ export function EmiCalculatorWidget() {
                 </div>
                 <div className="flex justify-between font-bold border-t border-slate-800 pt-2">
                   <span className="text-slate-200">Total Amount (P + I)</span>
-                  <span className="text-emerald-400 font-display">{formatIndianCurrency(totalPayment)}</span>
+                  <span className="text-sky-400 font-display">{formatIndianCurrency(totalPayment)}</span>
                 </div>
               </div>
             </div>

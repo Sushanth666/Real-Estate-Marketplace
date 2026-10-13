@@ -108,7 +108,7 @@ export function PostPropertyModal() {
       >
         
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-amber-500/10 via-white to-emerald-500/10">
+        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-amber-500/10 via-white to-brand-500/10">
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-extrabold uppercase tracking-wider bg-amber-500 text-white px-2 py-0.5 rounded">
@@ -415,7 +415,7 @@ export function PostPropertyModal() {
 
               {/* Instant Mini Live Card Preview */}
               <div className="p-4 bg-slate-900 rounded-2xl text-white">
-                <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block mb-2">
+                <span className="text-[10px] uppercase font-bold text-sky-400 tracking-wider block mb-2">
                   Instant Live Marketplace Preview
                 </span>
                 <div className="flex gap-4 items-center">
@@ -431,7 +431,7 @@ export function PostPropertyModal() {
                     <p className="text-xs text-slate-300">
                       {formData.locality || formData.city} • {formData.bhk} BHK • {formData.builtUpArea} sqft
                     </p>
-                    <p className="text-sm font-bold text-emerald-400 font-display mt-0.5">
+                    <p className="text-sm font-bold text-sky-400 font-display mt-0.5">
                       {formatIndianCurrency(formData.price)}
                     </p>
                   </div>

@@ -216,7 +216,7 @@ export function FilterSidebar({ isMobile = false, onCloseMobile = () => {} }) {
       <div className="pt-2 border-t border-slate-100">
         <label className="flex items-center justify-between cursor-pointer group">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <ShieldCheck className="w-4 h-4 text-brand-600" />
             <span className="text-xs font-bold text-slate-800">
               RERA Verified Only
             </span>

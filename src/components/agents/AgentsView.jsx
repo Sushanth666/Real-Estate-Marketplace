@@ -44,8 +44,8 @@ export function AgentsView() {
         
         {/* Header */}
         <div className="max-w-3xl mb-10">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 mb-3">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-800 bg-brand-50 px-3 py-1 rounded-full border border-brand-200 mb-3">
+            <ShieldCheck className="w-3.5 h-3.5 text-brand-600" />
             <span>Accredited Channel Advisory Network</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
@@ -92,7 +92,7 @@ export function AgentsView() {
                       alt={agent.name}
                       className="w-16 h-16 rounded-2xl object-cover border-2 border-brand-500/30 shadow-xs"
                     />
-                    <div className="absolute -bottom-1.5 -right-1.5 bg-emerald-600 text-white p-1 rounded-full shadow-xs" title="RERA Certified">
+                    <div className="absolute -bottom-1.5 -right-1.5 bg-brand-600 text-white p-1 rounded-full shadow-xs" title="RERA Certified">
                       <ShieldCheck className="w-3.5 h-3.5" />
                     </div>
                   </div>
@@ -129,8 +129,8 @@ export function AgentsView() {
                 </div>
 
                 {/* RERA Badge */}
-                <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-xl px-3 py-1.5 text-xs text-emerald-800 font-medium mb-4 flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <div className="bg-brand-50/80 border border-brand-200/80 rounded-xl px-3 py-1.5 text-xs text-brand-800 font-medium mb-4 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-brand-600 shrink-0" />
                   <span className="truncate">RERA: {agent.reraRegNo}</span>
                 </div>
 
@@ -163,7 +163,7 @@ export function AgentsView() {
                   href={`https://wa.me/${agent.whatsapp?.replace(/[^0-9]/g, '') || '919820144521'}?text=Hi ${agent.name}, I would like to consult on properties listed on BharatNivas.`}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 transition-colors"
+                  className="p-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 transition-colors"
                   title="WhatsApp"
                 >
                   <MessageSquare className="w-4 h-4" />
@@ -227,7 +227,7 @@ export function AgentsView() {
 
               {inquirySent ? (
                 <div className="py-8 text-center">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
+                  <CheckCircle2 className="w-12 h-12 text-brand-500 mx-auto mb-3" />
                   <h4 className="text-base font-bold text-slate-900">Request Sent!</h4>
                   <p className="text-xs text-slate-500 mt-1">
                     {activeAdvisorModal.name} will reach out to you shortly.

@@ -68,8 +68,8 @@ export function PropertyCard({ property, layout = 'grid' }) {
         {/* Top Badges */}
         <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2 items-center z-10">
           {property.reraId && (
-            <Badge variant="rera" className="backdrop-blur-md bg-emerald-950/80 text-emerald-300 border-emerald-500/30">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <Badge variant="rera" className="backdrop-blur-md bg-brand-950/80 text-brand-300 border-brand-500/30">
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-400" />
               <span>RERA Verified</span>
             </Badge>
           )}
@@ -172,7 +172,7 @@ export function PropertyCard({ property, layout = 'grid' }) {
 
           {/* Estimated EMI */}
           {emiMonthly && (
-            <p className="text-xs text-emerald-700 font-medium mb-3 flex items-center gap-1">
+            <p className="text-xs text-brand-700 font-medium mb-3 flex items-center gap-1">
               <span>EMI from {formatIndianCurrency(emiMonthly)}/mo</span>
               <span className="text-slate-400 font-normal">• 8.5% p.a.</span>
             </p>

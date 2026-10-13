@@ -19,10 +19,10 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Newsletter & Assistance Banner */}
-        <div className="bg-gradient-to-r from-emerald-950/80 via-slate-900 to-amber-950/60 p-8 rounded-3xl border border-slate-800 mb-14 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="bg-gradient-to-r from-brand-950/80 via-slate-900 to-amber-950/60 p-8 rounded-3xl border border-slate-800 mb-14 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <ShieldCheck className="w-4 h-4 text-sky-400" />
               Verified Market Intelligence
             </span>
             <h3 className="text-2xl font-bold font-display text-white mb-2">
@@ -66,7 +66,7 @@ export function Footer() {
 
             <div className="space-y-2.5 text-xs text-slate-400">
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
+                <MapPin className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>Level 14, Tower 3, One World Center, Lower Parel, Mumbai 400013</span>
               </div>
               <div className="flex items-center gap-2">

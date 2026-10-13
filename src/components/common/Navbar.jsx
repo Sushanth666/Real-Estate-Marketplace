@@ -43,22 +43,12 @@ export function Navbar() {
             onClick={() => navigateTo('home')}
             className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-md shadow-brand-600/20 group-hover:scale-105 transition-transform">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-800 via-brand-600 to-sky-400 flex items-center justify-center text-white shadow-md shadow-brand-600/20 group-hover:scale-105 transition-transform">
               <Building2 className="w-6 h-6" />
             </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-display font-extrabold text-2xl tracking-tight text-slate-900 group-hover:text-brand-700 transition-colors">
-                  Bharat<span className="text-brand-600">Nivas</span>
-                </span>
-                <span className="text-xs bg-amber-100 text-amber-800 font-semibold px-1.5 py-0.5 rounded border border-amber-300">
-                  🇮🇳
-                </span>
-              </div>
-              <p className="text-[10px] uppercase font-bold text-slate-600 tracking-wider whitespace-nowrap">
-                India's Verified PropTech
-              </p>
-            </div>
+            <span className="font-display font-extrabold text-2xl tracking-tight text-slate-900 group-hover:text-brand-700 transition-colors">
+              Bharat<span className="text-brand-600">Nivas</span>
+            </span>
           </div>
 
           {/* Desktop Navigation Links */}

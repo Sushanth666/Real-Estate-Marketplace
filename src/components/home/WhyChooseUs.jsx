@@ -12,7 +12,7 @@ import {
 export function WhyChooseUs() {
   const features = [
     {
-      icon: <ShieldCheck className="w-6 h-6 text-emerald-600" />,
+      icon: <ShieldCheck className="w-6 h-6 text-brand-600" />,
       title: '100% RERA Diligence',
       description: 'Every project is cross-referenced with State RERA databases. Zero unregistered listings or disputed land parcels.'
     },

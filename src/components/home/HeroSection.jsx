@@ -71,9 +71,9 @@ export function HeroSection() {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-semibold backdrop-blur-md mb-6 shadow-lg"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-950/80 border border-brand-500/40 text-brand-300 text-xs font-semibold backdrop-blur-md mb-6 shadow-lg"
           >
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <ShieldCheck className="w-4 h-4 text-brand-400" />
             <span>100% RERA Certified Indian Residences • Zero Broker Spam</span>
           </motion.div>
 
@@ -85,7 +85,7 @@ export function HeroSection() {
             className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white leading-tight sm:leading-none mb-6"
           >
             Find Your Sanctuary in India's{' '}
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-amber-300 bg-clip-text text-transparent">
               Most Coveted Addresses
             </span>
           </motion.h1>
@@ -238,11 +238,11 @@ export function HeroSection() {
 
             <div className="flex items-center gap-3 text-slate-500 text-xs font-medium">
               <span className="flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-brand-600" />
                 Verified Legal Titles
               </span>
               <span className="flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-brand-600" />
                 Zero Brokerage
               </span>
             </div>
@@ -256,7 +256,7 @@ export function HeroSection() {
             <p className="text-xs text-slate-400 mt-0.5">Asset Value Listed</p>
           </div>
           <div className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <p className="text-2xl sm:text-3xl font-extrabold font-display text-emerald-400">100%</p>
+            <p className="text-2xl sm:text-3xl font-extrabold font-display text-sky-400">100%</p>
             <p className="text-xs text-slate-400 mt-0.5">RERA Certified Projects</p>
           </div>
           <div className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/10">
