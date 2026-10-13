@@ -29,6 +29,10 @@ export function ListingsView() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [filters]);
+
   // Pagination calculations
   const totalPages = Math.ceil(filteredProperties.length / itemsPerPage) || 1;
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -228,7 +232,7 @@ export function ListingsView() {
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="mt-12 flex items-center justify-center gap-2">
+              <div className="mt-12 flex items-center justify-center gap-2 flex-wrap">
                 <button
                   disabled={currentPage === 1}
                   onClick={() => {
@@ -242,24 +246,46 @@ export function ListingsView() {
                   <ChevronLeft className="w-4 h-4" />
                 </button>
 
-                {[...Array(totalPages)].map((_, i) => (
-                  <button
-                    key={i + 1}
-                    onClick={() => {
-                      setCurrentPage(i + 1);
-                      const sc = document.getElementById('main-scroll-container');
-                      if (sc) sc.scrollTo({ top: 0, behavior: 'smooth' });
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className={`w-10 h-10 rounded-xl text-xs font-bold transition-all ${
-                      currentPage === i + 1
-                        ? 'bg-slate-900 text-white shadow-md'
-                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
-                    }`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
+                {(() => {
+                  const pages = [];
+                  if (totalPages <= 7) {
+                    for (let i = 1; i <= totalPages; i++) pages.push(i);
+                  } else if (currentPage <= 4) {
+                    pages.push(1, 2, 3, 4, 5, '...', totalPages);
+                  } else if (currentPage >= totalPages - 3) {
+                    pages.push(1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+                  } else {
+                    pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+                  }
+
+                  return pages.map((page, idx) => {
+                    if (page === '...') {
+                      return (
+                        <span key={`dots-${idx}`} className="w-8 h-10 flex items-center justify-center text-slate-400 font-bold">
+                          ...
+                        </span>
+                      );
+                    }
+                    return (
+                      <button
+                        key={page}
+                        onClick={() => {
+                          setCurrentPage(page);
+                          const sc = document.getElementById('main-scroll-container');
+                          if (sc) sc.scrollTo({ top: 0, behavior: 'smooth' });
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className={`w-10 h-10 rounded-xl text-xs font-bold transition-all ${
+                          currentPage === page
+                            ? 'bg-slate-900 text-white shadow-md'
+                            : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    );
+                  });
+                })()}
 
                 <button
                   disabled={currentPage === totalPages}
