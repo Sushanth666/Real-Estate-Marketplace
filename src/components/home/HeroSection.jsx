@@ -97,7 +97,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
           >
-            Explore verified sea-facing penthouses, private golf villas, and architectural duplexes across Mumbai, Bengaluru, Delhi NCR, Hyderabad, Pune, and Goa.
+            Explore verified beach villas, luxury estates, and sky duplexes across Tamil Nadu (Chennai & Coimbatore), Mumbai, Bengaluru, Delhi NCR, and Goa.
           </motion.p>
         </div>
 

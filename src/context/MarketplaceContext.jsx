@@ -27,14 +27,14 @@ export function MarketplaceProvider({ children }) {
   const [wishlist, setWishlist] = useState(() => {
     try {
       const saved = localStorage.getItem(WISHLIST_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : ['prop-1', 'prop-4'];
+      return saved ? JSON.parse(saved) : ['prop-tn-1', 'prop-tn-2'];
     } catch (e) {
-      return ['prop-1', 'prop-4'];
+      return ['prop-tn-1', 'prop-tn-2'];
     }
   });
 
   // Compare state (up to 4 items)
-  const [compareList, setCompareList] = useState(['prop-1', 'prop-3']);
+  const [compareList, setCompareList] = useState(['prop-tn-1', 'prop-tn-2']);
 
   // Authentication State
   const [currentUser, setCurrentUser] = useState(() => {

@@ -35,7 +35,7 @@ export function PostPropertyModal() {
     title: '',
     purpose: 'buy', // 'buy' | 'rent'
     propertyType: 'Apartment',
-    city: 'Mumbai',
+    city: 'Chennai (Tamil Nadu)',
     locality: '',
     address: '',
     price: 15000000, // ₹1.5 Cr

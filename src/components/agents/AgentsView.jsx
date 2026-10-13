@@ -57,17 +57,17 @@ export function AgentsView() {
 
           {/* City Filter Pills */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 mt-6 no-scrollbar">
-            {['all', 'Mumbai', 'Bengaluru', 'Delhi NCR', 'Goa', 'Hyderabad', 'Kolkata'].map(city => (
+            {['all', 'Tamil Nadu (Chennai)', 'Mumbai', 'Bengaluru', 'Delhi NCR', 'Goa'].map(city => (
               <button
                 key={city}
-                onClick={() => setSelectedCity(city)}
+                onClick={() => setSelectedCity(city === 'Tamil Nadu (Chennai)' ? 'Chennai (Tamil Nadu)' : city)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
-                  selectedCity === city
+                  (selectedCity === city || (city === 'Tamil Nadu (Chennai)' && selectedCity === 'Chennai (Tamil Nadu)'))
                     ? 'bg-slate-900 text-white shadow-md'
                     : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'
                 }`}
               >
-                {city === 'all' ? 'All Advisory Hubs' : city}
+                {city === 'all' ? 'All Advisory Hubs' : city === 'Tamil Nadu (Chennai)' ? '⭐ Tamil Nadu (Chennai)' : city}
               </button>
             ))}
           </div>

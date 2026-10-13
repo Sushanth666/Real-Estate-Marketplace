@@ -1,7 +1,34 @@
 export const indianCities = [
   {
+    id: 'tamilnadu-chennai',
+    name: 'Chennai (Tamil Nadu)',
+    shortName: 'Chennai',
+    tagline: 'Coastal Metropolis & Premier Cultural Capital',
+    state: 'Tamil Nadu',
+    propertyCount: '4,850+',
+    avgPriceSqft: '₹12,400/sqft',
+    popularLocalities: ['Boat Club Road', 'Poes Garden', 'ECR (East Coast Road)', 'Anna Nagar', 'OMR Corridor'],
+    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+    featured: true,
+    isFirstChoice: true
+  },
+  {
+    id: 'tamilnadu-coimbatore',
+    name: 'Coimbatore (Tamil Nadu)',
+    shortName: 'Coimbatore',
+    tagline: 'Manchester of South India & Verdant Living',
+    state: 'Tamil Nadu',
+    propertyCount: '1,920+',
+    avgPriceSqft: '₹7,800/sqft',
+    popularLocalities: ['Race Course', 'RS Puram', 'Avinashi Road', 'Saravanampatti IT Corridor'],
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+    featured: true,
+    isFirstChoice: true
+  },
+  {
     id: 'mumbai',
     name: 'Mumbai',
+    shortName: 'Mumbai',
     tagline: 'Financial Capital & Coastal Skylines',
     state: 'Maharashtra',
     propertyCount: '3,450+',
@@ -13,6 +40,7 @@ export const indianCities = [
   {
     id: 'bengaluru',
     name: 'Bengaluru',
+    shortName: 'Bengaluru',
     tagline: 'Silicon Valley & Verdant Living',
     state: 'Karnataka',
     propertyCount: '4,120+',
@@ -24,6 +52,7 @@ export const indianCities = [
   {
     id: 'delhi-ncr',
     name: 'Delhi NCR',
+    shortName: 'Delhi NCR',
     tagline: 'Modern Metropolis & Expansive Living',
     state: 'Delhi / Haryana',
     propertyCount: '2,980+',
@@ -35,6 +64,7 @@ export const indianCities = [
   {
     id: 'hyderabad',
     name: 'Hyderabad',
+    shortName: 'Hyderabad',
     tagline: 'HITEC Corridor & Royal Heritage',
     state: 'Telangana',
     propertyCount: '2,400+',
@@ -46,45 +76,37 @@ export const indianCities = [
   {
     id: 'pune',
     name: 'Pune',
+    shortName: 'Pune',
     tagline: 'Green Corridors & IT Enclaves',
     state: 'Maharashtra',
     propertyCount: '1,890+',
     avgPriceSqft: '₹8,900/sqft',
     popularLocalities: ['Koregaon Park', 'Baner', 'Kalyani Nagar', 'Kharadi', 'Aundh'],
     image: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=800&q=80',
-    featured: true
+    featured: false
   },
   {
     id: 'goa',
     name: 'Goa',
+    shortName: 'Goa',
     tagline: 'Tropical Luxury & Portuguese Heritage',
     state: 'Goa',
     propertyCount: '840+',
     avgPriceSqft: '₹16,500/sqft',
     popularLocalities: ['Assagao', 'Anjuna', 'Candolim', 'Aldona', 'Dona Paula'],
     image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
-    featured: true
+    featured: false
   },
   {
     id: 'kolkata',
     name: 'Kolkata',
+    shortName: 'Kolkata',
     tagline: 'Cultural Haven & New Town Corridors',
     state: 'West Bengal',
     propertyCount: '1,200+',
     avgPriceSqft: '₹7,400/sqft',
     popularLocalities: ['New Town', 'Ballygunge', 'Alipore', 'Salt Lake', 'EM Bypass'],
     image: 'https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=800&q=80',
-    featured: false
-  },
-  {
-    id: 'chennai',
-    name: 'Chennai',
-    tagline: 'Coastal Metropolis & IT Expressways',
-    state: 'Tamil Nadu',
-    propertyCount: '1,560+',
-    avgPriceSqft: '₹9,100/sqft',
-    popularLocalities: ['Anna Nagar', 'ECR', 'Adyar', 'OMR', 'Boat Club Road'],
-    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
     featured: false
   }
 ];

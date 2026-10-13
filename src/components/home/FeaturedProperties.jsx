@@ -10,6 +10,7 @@ export function FeaturedProperties() {
 
   const filtered = properties.filter(prop => {
     if (activeCategory === 'all') return true;
+    if (activeCategory === 'tamilnadu') return prop.city.toLowerCase().includes('tamil nadu') || prop.state === 'Tamil Nadu';
     if (activeCategory === 'penthouse') return prop.propertyType.toLowerCase() === 'penthouse';
     if (activeCategory === 'villa') return prop.propertyType.toLowerCase() === 'luxury villa';
     if (activeCategory === 'rent') return prop.purpose === 'rent';
@@ -40,6 +41,7 @@ export function FeaturedProperties() {
           <div className="mt-6 md:mt-0 flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
             {[
               { id: 'all', label: 'All Featured' },
+              { id: 'tamilnadu', label: '⭐ Tamil Nadu Signature' },
               { id: 'penthouse', label: 'Penthouses' },
               { id: 'villa', label: 'Villas' },
               { id: 'mumbai', label: 'Mumbai Sea-Facing' },

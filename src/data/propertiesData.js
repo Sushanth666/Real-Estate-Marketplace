@@ -1,5 +1,193 @@
 export const initialProperties = [
   {
+    id: 'prop-tn-1',
+    title: 'The Poes Garden Sovereign Estate',
+    tagline: 'Aristocratic luxury residence in Chennai’s most exclusive VIP address',
+    city: 'Chennai (Tamil Nadu)',
+    state: 'Tamil Nadu',
+    locality: 'Poes Garden',
+    address: 'Binny Road, Poes Garden, Chennai, Tamil Nadu - 600086',
+    price: 215000000, // ₹21.50 Cr
+    pricePerSqft: 35830,
+    purpose: 'buy',
+    propertyType: 'Penthouse',
+    bhk: 4,
+    bathrooms: 5,
+    balconies: 3,
+    builtUpArea: 6000,
+    carpetArea: 5100,
+    facing: 'East Facing (100% Vastu Compliant)',
+    floor: '14th Floor (Private Sky Villa)',
+    possession: 'Ready to Move',
+    ageOfProperty: 'Brand New',
+    furnishing: 'Fully Furnished',
+    reraId: 'TN/29/Building/0142/2023 (TNRERA)',
+    builder: 'Ceebros Heritage Luxury',
+    featured: true,
+    rating: 4.98,
+    reviewsCount: 46,
+    images: [
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Situated in the legendary tree-lined sanctuary of Poes Garden, Chennai, this ultra-exclusive 4 BHK sky mansion offers unparalleled privacy, imported Italian Thassos marble, biometric keyless access, and bespoke acoustic woodwork.',
+    amenities: [
+      'Private Swimming Pool',
+      'Clubhouse',
+      '24/7 Security',
+      'Gymnasium',
+      'Private Elevator',
+      'EV Charging',
+      'Vastu Compliant',
+      'Power Backup',
+      'Landscaped Gardens'
+    ],
+    highlights: [
+      'Located in Poes Garden, Chennai’s most prestigious legacy neighborhood',
+      '100% Vastu compliant east-facing private entrance',
+      'Personal dedicated 4-car stilt parking with EV fast-charger',
+      'Automated VRV climate control and Italian Poggenpohl kitchen'
+    ],
+    landmarks: [
+      { name: 'Semmozhi Poonga Botanical Garden', distance: '800 m' },
+      { name: 'US Consulate General Chennai', distance: '1.2 km' },
+      { name: 'Teynampet Metro Station', distance: '600 m' },
+      { name: 'Apollo Hospitals Greams Road', distance: '1.8 km' }
+    ],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: 'prop-tn-2',
+    title: 'Akshaya Bayfront Ocean Villa',
+    tagline: 'Private beachfront luxury villa on East Coast Road with Bay of Bengal vistas',
+    city: 'Chennai (Tamil Nadu)',
+    state: 'Tamil Nadu',
+    locality: 'ECR (East Coast Road)',
+    address: 'Sea Cliff Conclave, ECR, Akkarai, Chennai, Tamil Nadu - 600119',
+    price: 148000000, // ₹14.80 Cr
+    pricePerSqft: 26900,
+    purpose: 'buy',
+    propertyType: 'Luxury Villa',
+    bhk: 5,
+    bathrooms: 6,
+    balconies: 4,
+    builtUpArea: 5500,
+    carpetArea: 4600,
+    facing: 'East Facing (Direct Bay of Bengal Oceanfront)',
+    floor: 'Ground + 2 Floors',
+    possession: 'Ready to Move',
+    ageOfProperty: '1 Year',
+    furnishing: 'Fully Furnished',
+    reraId: 'TN/01/Building/0088/2022 (TNRERA)',
+    builder: 'Akshaya Prime Estates',
+    featured: true,
+    rating: 4.95,
+    reviewsCount: 39,
+    images: [
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'An architectural oceanfront paradise on Chennai’s celebrated East Coast Road. Features a private temperature-controlled infinity pool overlooking golden beaches, sun-drenched timber sundecks, and lush tropical courtyards.',
+    amenities: [
+      'Private Swimming Pool',
+      'Direct Beach Access',
+      'Clubhouse',
+      '24/7 Security',
+      'Gymnasium',
+      'EV Charging',
+      'Vastu Compliant',
+      'Power Backup',
+      'Landscaped Gardens'
+    ],
+    highlights: [
+      'Gated oceanfront compound with direct private boardwalk to the sand',
+      'Expansive rooftop stargazing deck with outdoor barbecue',
+      'High rental yield on Chennai corporate expat vacation leases',
+      '15 minutes drive to Sholinganallur OMR IT Expressway'
+    ],
+    landmarks: [
+      { name: 'Akkarai Beach Promenade', distance: '100 m' },
+      { name: 'OMR Sholinganallur IT Junction', distance: '4.8 km' },
+      { name: 'Chennai International Airport (MAA)', distance: '18 km' },
+      { name: 'Apollo Speciality Hospital OMR', distance: '5.2 km' }
+    ],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: 'prop-tn-3',
+    title: 'The Imperial Race Course Sky Duplex',
+    tagline: 'Ultra-luxury duplex with panoramic views of Coimbatore Race Course green corridor',
+    city: 'Coimbatore (Tamil Nadu)',
+    state: 'Tamil Nadu',
+    locality: 'Race Course',
+    address: 'Race Course Road, Gopalapuram, Coimbatore, Tamil Nadu - 641018',
+    price: 68000000, // ₹6.80 Cr
+    pricePerSqft: 14160,
+    purpose: 'buy',
+    propertyType: 'Duplex',
+    bhk: 4,
+    bathrooms: 4,
+    balconies: 3,
+    builtUpArea: 4800,
+    carpetArea: 3950,
+    facing: 'North-East Facing (Vastu Compliant)',
+    floor: '11th & 12th Duplex Floors',
+    possession: 'Ready to Move',
+    ageOfProperty: 'Under 1 Year',
+    furnishing: 'Fully Furnished',
+    reraId: 'TN/11/Building/0219/2023 (TNRERA)',
+    builder: 'Tristar Luxury Living',
+    featured: true,
+    rating: 4.92,
+    reviewsCount: 31,
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Coimbatore’s finest luxury address located along the serene circular promenade of Race Course. Features high double-height living room ceilings, private wooden balcony gardens, imported Italian marble, and world-class clubhouse amenities.',
+    amenities: [
+      'Swimming Pool',
+      'Clubhouse',
+      'Gymnasium',
+      '24/7 Security',
+      'EV Charging',
+      'Power Backup',
+      'Vastu Compliant',
+      'Squash Court'
+    ],
+    highlights: [
+      'Overlooking the tranquil Race Course greenery and heritage bungalows',
+      'Minutes from Coimbatore Cosmopolitan Club and gourmet dining',
+      'IGBC Gold green certified with solar rooftop generation',
+      '15 minutes drive to Coimbatore International Airport (CJB)'
+    ],
+    landmarks: [
+      { name: 'Race Course Promenade Track', distance: '100 m' },
+      { name: 'Coimbatore Cosmopolitan Club', distance: '400 m' },
+      { name: 'Coimbatore Intl Airport (CJB)', distance: '8.5 km' },
+      { name: 'Brookefields Mall', distance: '3.2 km' }
+    ],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+  {
     id: 'prop-1',
     title: 'Lodha World One Sky Mansion',
     tagline: 'Ultra-luxurious sea-facing residence in South Mumbai',
@@ -32,30 +220,23 @@ export const initialProperties = [
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'Perched in the iconic World Towers, this 4 BHK sky duplex offers unobstructed 270-degree panoramic views of the Arabian Sea and the Mumbai skyline. Crafted with imported Italian marble, private elevator access, Armani/Casa interior styling, and sound-proof double-glazed acoustic windows.',
+    description: 'Perched in the iconic World Towers, this 4 BHK sky duplex offers unobstructed 270-degree panoramic views of the Arabian Sea and the Mumbai skyline.',
     amenities: [
       'Infinity Pool',
       'Clubhouse',
       '24/7 Security',
       'Gymnasium',
       'Private Elevator',
-      'Concierge Service',
       'EV Charging',
-      'Power Backup',
-      'Spa & Sauna',
-      'Helipad Access'
+      'Power Backup'
     ],
     highlights: [
       'Panoramic Arabian Sea & Bandra-Worli Sea Link Views',
-      'Private foyer with biometric elevator access',
-      'Dedicated 4 covered reserved car parking spaces',
-      '100% Vastu compliant layout'
+      'Private foyer with biometric elevator access'
     ],
     landmarks: [
       { name: 'Bandra-Worli Sea Link', distance: '1.2 km' },
-      { name: 'High Street Phoenix / Palladium Mall', distance: '800 m' },
-      { name: 'Four Seasons Hotel Mumbai', distance: '1.5 km' },
-      { name: 'Worli Metro Station (Line 3)', distance: '600 m' }
+      { name: 'High Street Phoenix Mall', distance: '800 m' }
     ],
     agentId: 'agent-1',
     agentName: 'Rajesh Sharma',
@@ -91,34 +272,24 @@ export const initialProperties = [
     images: [
       'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'Set against the picturesque backdrop of Nandi Hills, this sprawling private villa overlooks an 18-hole Bob Hunt designed championship golf course. Features include private heated plunge pool, sprawling manicured lawn, teakwood sundeck, and smart home automation.',
+    description: 'Set against the picturesque backdrop of Nandi Hills, this sprawling private villa overlooks an 18-hole championship golf course.',
     amenities: [
       'Private Swimming Pool',
       '18-Hole Golf Course',
       'Clubhouse',
       'Gymnasium',
-      'Tennis Court',
       '24/7 Security',
-      'EV Charging',
-      'Vastu Compliant',
-      'Power Backup',
-      'Landscaped Gardens'
+      'EV Charging'
     ],
     highlights: [
       'Direct fairway view of the championship golf course',
-      'Private temperature-controlled lap pool',
-      'Solar-powered eco-infrastructure with rainwater harvesting',
       'Just 15 minutes drive to Kempegowda International Airport'
     ],
     landmarks: [
       { name: 'Kempegowda International Airport (BLR)', distance: '12 km' },
-      { name: 'JW Marriott Golfshire Resort', distance: '300 m' },
-      { name: 'Stonehill International School', distance: '8 km' },
-      { name: 'Hebbal Flyover Junction', distance: '24 km' }
+      { name: 'JW Marriott Golfshire Resort', distance: '300 m' }
     ],
     agentId: 'agent-2',
     agentName: 'Priya Sundaram',
@@ -154,34 +325,23 @@ export const initialProperties = [
     images: [
       'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'India’s most celebrated residential address. The Camellias on Golf Course Road represents uncompromised grandeur with lush 360-degree views of the DLF Golf and Country Club, Michelin-star level club dining, and private butler hospitality.',
+    description: 'India’s most celebrated residential address. The Camellias on Golf Course Road represents uncompromised grandeur with lush views of the DLF Golf Club.',
     amenities: [
       'Olympics-sized Pool',
-      '1.3 Lakh Sq.ft Clubhouse',
+      'Clubhouse',
       '24/7 Security',
       'Gymnasium',
-      'Private Wine Cellar',
-      'EV Charging',
-      'Banquet Hall',
-      'Power Backup',
-      'Tennis Court',
-      'Cigar Lounge'
+      'EV Charging'
     ],
     highlights: [
-      'Direct vistas of the DLF Arnold Palmer & Gary Player golf courses',
-      'Double height ceiling in formal living room',
-      'Energy efficient LEED Platinum certified development',
-      'Concierge service managed by international hospitality team'
+      'Direct vistas of the DLF Arnold Palmer golf course',
+      'Double height ceiling in formal living room'
     ],
     landmarks: [
       { name: 'One Horizon Center', distance: '1 km' },
-      { name: 'Cyber City Gurugram', distance: '4.5 km' },
-      { name: 'IGI International Airport T3', distance: '16 km' },
-      { name: 'Sector 42-43 Rapid Metro', distance: '800 m' }
+      { name: 'Cyber City Gurugram', distance: '4.5 km' }
     ],
     agentId: 'agent-3',
     agentName: 'Vikram Malhotra',
@@ -216,100 +376,27 @@ export const initialProperties = [
     reviewsCount: 29,
     images: [
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566752229-250ed79470f8?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'An idyllic colonial Goan estate tucked away in the culinary capital of Assagao. Features high exposed-beam ceilings, handcrafted Bharat Flooring tiles, a serene central courtyard with frangipani trees, and a secluded private plunge pool.',
+    description: 'An idyllic colonial Goan estate tucked away in the culinary capital of Assagao with exposed-beam ceilings and central courtyard.',
     amenities: [
       'Private Swimming Pool',
       'Landscaped Gardens',
       '24/7 Security',
-      'Power Backup',
-      'Vastu Compliant',
-      'Outdoor Dining Gazebo',
-      'Solar Water Heating',
-      'Servant Quarters'
+      'Power Backup'
     ],
     highlights: [
-      'Authentic antique teakwood furnishings and artisanal brass fittings',
-      'Surrounded by Goa’s finest boutique cafes and art galleries',
-      'Generates high rental yields (₹45,000 - ₹75,000 / night on luxury stays)',
+      'Authentic antique teakwood furnishings',
       '10 minutes drive to Vagator and Anjuna beaches'
     ],
     landmarks: [
-      { name: 'Vagator Beach & Chapora Fort', distance: '4 km' },
-      { name: 'Gunpowder Restaurant & Villa Blanche', distance: '600 m' },
-      { name: 'Mopa Manohar Intl Airport (GOX)', distance: '28 km' },
-      { name: 'Dabolim Airport', distance: '42 km' }
+      { name: 'Vagator Beach', distance: '4 km' },
+      { name: 'Gunpowder Restaurant', distance: '600 m' }
     ],
     agentId: 'agent-4',
     agentName: 'Ayesha Fernandes',
     agentPhone: '+91 98221 88990',
     agentPhoto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-5',
-    title: 'Total Environment Windmills of Your Mind',
-    tagline: 'Handcrafted duplex earth-sheltered home in Whitefield',
-    city: 'Bengaluru',
-    locality: 'Whitefield',
-    address: 'EPIP Zone, Whitefield, Bengaluru - 560066',
-    price: 68000000, // ₹6.80 Cr
-    pricePerSqft: 11420,
-    purpose: 'buy',
-    propertyType: 'Duplex',
-    bhk: 4,
-    bathrooms: 4,
-    balconies: 2,
-    builtUpArea: 5954,
-    carpetArea: 4800,
-    facing: 'East Facing',
-    floor: '14th & 15th Duplex',
-    possession: 'Ready to Move',
-    ageOfProperty: '3 Years',
-    furnishing: 'Fully Furnished',
-    reraId: 'PRM/KA/RERA/1251/446/PR/171015/000215',
-    builder: 'Total Environment',
-    featured: false,
-    rating: 4.85,
-    reviewsCount: 31,
-    images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'An architectural marvel by Total Environment featuring natural wire-cut terracotta bricks, warm Kota stone and hardwood flooring, with a private garden terrace with automatic drip irrigation directly attached to the double-height living room.',
-    amenities: [
-      'Private Terrace Garden',
-      'Heated Swimming Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'EV Charging',
-      'Children Play Area',
-      'Power Backup',
-      'Squash Court'
-    ],
-    highlights: [
-      'Landscaped terrace garden in every apartment with automated drip irrigation',
-      'Customized handcrafted cabinetry and smart VRV central air-conditioning',
-      'Walking distance to major IT parks in EPIP & ITPL',
-      'Zero vehicular movement on ground level'
-    ],
-    landmarks: [
-      { name: 'ITPL Tech Park', distance: '1.2 km' },
-      { name: 'Whitefield Metro Station (Purple Line)', distance: '900 m' },
-      { name: 'Manipal Hospital Whitefield', distance: '2.1 km' },
-      { name: 'Phoenix Marketcity Mall', distance: '5.5 km' }
-    ],
-    agentId: 'agent-2',
-    agentName: 'Priya Sundaram',
-    agentPhone: '+91 99800 23140',
-    agentPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
   },
   {
     id: 'prop-6',
@@ -338,523 +425,12 @@ export const initialProperties = [
     rating: 4.8,
     reviewsCount: 22,
     images: [
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Hyderabad’s premier smart gated community boasting pre-certified IGBC Platinum ratings, centralized heat pump water system, high-speed elevators, and a 65,000 sq.ft royal clubhouse.',
-    amenities: [
-      'Infinity Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'EV Charging',
-      'Indoor Badminton Courts',
-      'Power Backup',
-      'Vastu Compliant',
-      'Banquet Hall'
-    ],
-    highlights: [
-      'Smart home automation integrated with Amazon Alexa and mobile control',
-      'Minutes away from Google, Microsoft, and Amazon APAC campuses',
-      '3-tier biometric security with visitor management system',
-      'Vastu compliant entrance with east/north balcony view'
-    ],
-    landmarks: [
-      { name: 'Financial District SEZ', distance: '1.5 km' },
-      { name: 'Hyderabad Outer Ring Road (ORR)', distance: '800 m' },
-      { name: 'Oakridge International School', distance: '2.5 km' },
-      { name: 'Continental Hospital', distance: '1.8 km' }
-    ],
-    agentId: 'agent-5',
-    agentName: 'Karthik Varma',
-    agentPhone: '+91 97000 12456',
-    agentPhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-7',
-    title: 'Koregaon Park Verdant Garden Duplex',
-    tagline: 'Serene tree-lined residence in Pune’s most prestigious enclave',
-    city: 'Pune',
-    locality: 'Koregaon Park',
-    address: 'Lane 5, North Main Road, Koregaon Park, Pune - 411001',
-    price: 38500000, // ₹3.85 Cr
-    pricePerSqft: 12830,
-    purpose: 'buy',
-    propertyType: 'Duplex',
-    bhk: 3,
-    bathrooms: 3,
-    balconies: 2,
-    builtUpArea: 3000,
-    carpetArea: 2450,
-    facing: 'East Facing',
-    floor: '5th & 6th Floor',
-    possession: 'Ready to Move',
-    ageOfProperty: '2 Years',
-    furnishing: 'Fully Furnished',
-    reraId: 'P52100019482',
-    builder: 'Panchshil Realty',
-    featured: false,
-    rating: 4.78,
-    reviewsCount: 19,
-    images: [
-      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Nestled beneath the majestic banyan canopies of Koregaon Park, this contemporary garden duplex offers quiet seclusion alongside Pune’s trendiest bistros, the Osho International Resort, and cultural landmarks.',
-    amenities: [
-      'Swimming Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'Power Backup',
-      'Landscaped Gardens',
-      'EV Charging',
-      'Yoga Deck'
-    ],
-    highlights: [
-      'Private double-height wooden deck overlooking canopy trees',
-      'Italian modular kitchen with fitted Bosch appliances',
-      'Only 2 apartments per floor for maximum privacy',
-      'Close proximity to Pune International Airport and Kalyani Nagar IT corridor'
-    ],
-    landmarks: [
-      { name: 'Osho International Meditation Resort', distance: '400 m' },
-      { name: 'German Bakery & High Street Cafes', distance: '300 m' },
-      { name: 'Pune International Airport (PNQ)', distance: '5.2 km' },
-      { name: 'Kalyani Nagar Bridge', distance: '1.1 km' }
-    ],
-    agentId: 'agent-1',
-    agentName: 'Rajesh Sharma',
-    agentPhone: '+91 98201 44521',
-    agentPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-8',
-    title: 'South City Marina Bay Waterfront',
-    tagline: 'Lake-facing premium highrise flat in Kolkata New Town',
-    city: 'Kolkata',
-    locality: 'New Town',
-    address: 'Action Area II, Near Eco Park, New Town, Kolkata - 700156',
-    price: 18500000, // ₹1.85 Cr
-    pricePerSqft: 8400,
-    purpose: 'buy',
-    propertyType: 'Apartment',
-    bhk: 3,
-    bathrooms: 3,
-    balconies: 2,
-    builtUpArea: 2200,
-    carpetArea: 1750,
-    facing: 'South-East Facing',
-    floor: '18th Floor (of 26 Floors)',
-    possession: 'Ready to Move',
-    ageOfProperty: 'New Launch',
-    furnishing: 'Semi-Furnished',
-    reraId: 'WBRERA/P/NOR/2023/000154',
-    builder: 'South City Projects',
-    featured: false,
-    rating: 4.7,
-    reviewsCount: 16,
-    images: [
-      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Offering stunning unhindered views of the pristine New Town Eco Park lake, this 3 BHK flat combines cosmopolitan design with quiet waterfront serenity, minutes from Sector V IT hubs.',
-    amenities: [
-      'Lakefront Promenade',
-      'Swimming Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'Power Backup',
-      'Children Play Area',
-      'Vastu Compliant'
-    ],
-    highlights: [
-      'Direct unobstructed panoramic view of 480-acre Eco Park waterbody',
-      'High ceiling with cross-ventilation designed for breezy Kolkata evenings',
-      'Upcoming Yellow Line Metro station within 500m walking distance',
-      'Zero brokerage for verified direct buyers'
-    ],
-    landmarks: [
-      { name: 'Eco Park Gate 2', distance: '400 m' },
-      { name: 'Sector V Salt Lake IT Hub', distance: '6.5 km' },
-      { name: 'Netaji Subhash Chandra Bose Intl Airport', distance: '9 km' },
-      { name: 'Tata Medical Center', distance: '2.8 km' }
-    ],
-    agentId: 'agent-6',
-    agentName: 'Ananya Roy',
-    agentPhone: '+91 98302 77112',
-    agentPhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-9',
-    title: 'Bandra West Sea-Face Penthouse',
-    tagline: 'Exclusive sea-facing luxury penthouse on Bandstand',
-    city: 'Mumbai',
-    locality: 'Bandra West',
-    address: 'Bandstand Promenade, Bandra West, Mumbai - 400050',
-    price: 245000000, // ₹24.50 Cr
-    pricePerSqft: 54400,
-    purpose: 'buy',
-    propertyType: 'Penthouse',
-    bhk: 4,
-    bathrooms: 5,
-    balconies: 3,
-    builtUpArea: 4500,
-    carpetArea: 3700,
-    facing: 'West Facing (Sunset Arabian Sea View)',
-    floor: '22nd Floor (Penthouse)',
-    possession: 'Ready to Move',
-    ageOfProperty: '1 Year',
-    furnishing: 'Fully Furnished',
-    reraId: 'P51900014298',
-    builder: 'Rustomjee Developers',
-    featured: true,
-    rating: 4.97,
-    reviewsCount: 51,
-    images: [
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Live amongst the stars at Bandra Bandstand. Featuring a private open-to-sky terrace infinity pool, Italian boiserie wall paneling, private steam & sauna cabin, and unmatched vistas of Mumbai’s golden sunsets.',
-    amenities: [
-      'Private Terrace Pool',
-      'Clubhouse',
-      '24/7 Security',
-      'Gymnasium',
-      'EV Charging',
-      'Valet Parking',
-      'Power Backup',
-      'Spa & Sauna'
-    ],
-    highlights: [
-      'Unobstructed sunset views over the Arabian Sea',
-      'Neighbors Bollywood luminaries and top corporate titans',
-      'Private climate-controlled glass lounge on terrace',
-      'Smart home lighting & sound by Bang & Olufsen'
-    ],
-    landmarks: [
-      { name: 'Bandstand Promenade', distance: '50 m' },
-      { name: 'Taj Lands End Hotel', distance: '400 m' },
-      { name: 'Bandra-Worli Sea Link entry', distance: '1.8 km' },
-      { name: 'Linking Road Shopping District', distance: '2 km' }
-    ],
-    agentId: 'agent-1',
-    agentName: 'Rajesh Sharma',
-    agentPhone: '+91 98201 44521',
-    agentPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-10',
-    title: 'Indiranagar Urban Forest Villa',
-    tagline: 'Modern tropical villa with private plunge pool & courtyard',
-    city: 'Bengaluru',
-    locality: 'Indiranagar',
-    address: '12th Main Road, HAL 2nd Stage, Indiranagar, Bengaluru - 560038',
-    price: 89000000, // ₹8.90 Cr
-    pricePerSqft: 21190,
-    purpose: 'buy',
-    propertyType: 'Luxury Villa',
-    bhk: 4,
-    bathrooms: 5,
-    balconies: 3,
-    builtUpArea: 4200,
-    carpetArea: 3500,
-    facing: 'North-East Facing',
-    floor: 'Ground + 2 Floors',
-    possession: 'Ready to Move',
-    ageOfProperty: 'Under 1 Year',
-    furnishing: 'Fully Furnished',
-    reraId: 'PRM/KA/RERA/1251/446/PR/190822/002811',
-    builder: 'Sobha Limited',
-    featured: false,
-    rating: 4.89,
-    reviewsCount: 35,
-    images: [
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'A serene urban sanctuary steps away from 100 Feet Road. Designed around a sunlit Japanese Zen courtyard with internal skylight, custom basalt stone bathtubs, and rooftop entertainment lounge.',
-    amenities: [
-      'Private Plunge Pool',
-      'Zen Garden Courtyard',
-      '24/7 Security',
-      'Gymnasium',
-      'EV Charging',
-      'Power Backup',
-      'Vastu Compliant',
-      'Solar Rooftop'
-    ],
-    highlights: [
-      'Prime Indiranagar 12th Main location, walking distance to gourmet dining',
-      'Fully Vastu compliant north-east main entryway',
-      'Solar-powered grid system with zero net electricity bill',
-      '3-car basement parking with direct home elevator'
-    ],
-    landmarks: [
-      { name: '100 Feet Road Shopping & Dining', distance: '200 m' },
-      { name: 'Indiranagar Metro Station', distance: '700 m' },
-      { name: 'Manipal Hospital Old Airport Rd', distance: '2.4 km' },
-      { name: 'MG Road / CBD', distance: '4.8 km' }
-    ],
-    agentId: 'agent-2',
-    agentName: 'Priya Sundaram',
-    agentPhone: '+91 99800 23140',
-    agentPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-11',
-    title: 'DLF Phase 5 Luxury Builder Floor',
-    tagline: 'Brand new luxury independent builder floor with private stilt',
-    city: 'Delhi NCR',
-    locality: 'DLF Phase 5',
-    address: 'Sector 53, DLF Phase 5, Gurugram - 122002',
-    price: 36500000, // ₹3.65 Cr
-    pricePerSqft: 14600,
-    purpose: 'buy',
-    propertyType: 'Builder Floor',
-    bhk: 4,
-    bathrooms: 4,
-    balconies: 3,
-    builtUpArea: 2500,
-    carpetArea: 2100,
-    facing: 'North Facing',
-    floor: '2nd Floor (of 4 Floors)',
-    possession: 'Ready to Move',
-    ageOfProperty: 'Brand New',
-    furnishing: 'Semi-Furnished',
-    reraId: 'HRERA-PKL-GGM-890-2023',
-    builder: 'DLF Independent Floors',
-    featured: false,
-    rating: 4.75,
-    reviewsCount: 14,
-    images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Designed for families who desire independent living with gated DLF Phase 5 security. Features personal dedicated stilt parking for 2 SUVs, private Otis passenger lift, and spacious wraparound balconies.',
-    amenities: [
-      'Private Elevator',
-      'Dedicated Stilt Parking',
-      '24/7 Gated Security',
-      'Power Backup',
-      'Modular Kitchen',
-      'EV Charging Point',
-      'Vastu Compliant'
-    ],
-    highlights: [
-      'Independent terrace rights shared with top floor only',
-      'VRV centralized climate control in every room',
-      'Close to South Point Mall and Golf Course Road',
-      'High rental potential for expat and senior corporate executives'
-    ],
-    landmarks: [
-      { name: 'South Point Mall', distance: '500 m' },
-      { name: 'Sector 53-54 Metro Station', distance: '600 m' },
-      { name: 'Fortis Memorial Research Institute', distance: '4 km' },
-      { name: 'The Shri Ram School Aravali', distance: '2 km' }
-    ],
-    agentId: 'agent-3',
-    agentName: 'Vikram Malhotra',
-    agentPhone: '+91 98110 56789',
-    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-12',
-    title: 'Hiranandani Gardens Powai Lakeview',
-    tagline: 'Neoclassical European architecture flat with Powai Lake views',
-    city: 'Mumbai',
-    locality: 'Powai',
-    address: 'Hiranandani Gardens, Powai, Mumbai - 400076',
-    price: 32500000, // ₹3.25 Cr
-    pricePerSqft: 25000,
-    purpose: 'buy',
-    propertyType: 'Apartment',
-    bhk: 3,
-    bathrooms: 3,
-    balconies: 2,
-    builtUpArea: 1300,
-    carpetArea: 1050,
-    facing: 'North Facing (Powai Lake Facing)',
-    floor: '16th Floor (of 28 Floors)',
-    possession: 'Ready to Move',
-    ageOfProperty: '4 Years',
-    furnishing: 'Fully Furnished',
-    reraId: 'P51800001923',
-    builder: 'Hiranandani Communities',
-    featured: false,
-    rating: 4.82,
-    reviewsCount: 27,
-    images: [
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Experience European neoclassical charm within Mumbai’s vibrant Powai township. Walkable to international schools, high-end supermarkets, Powai Lake promenade, and premier corporate complexes.',
-    amenities: [
-      'Swimming Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'Power Backup',
-      'Squash Court',
-      'Landscaped Gardens',
-      'Children Play Area'
-    ],
-    highlights: [
-      'Stunning bird-eye view of Powai Lake and hill slopes',
-      'Self-contained European style pedestrian township',
-      'Steps to Hiranandani Foundation School & Dr. L H Hiranandani Hospital',
-      'Excellent connectivity to JVLR and Eastern Express Highway'
-    ],
-    landmarks: [
-      { name: 'Powai Lake Promenade', distance: '300 m' },
-      { name: 'Hiranandani Hospital', distance: '400 m' },
-      { name: 'IIT Bombay Campus', distance: '1.2 km' },
-      { name: 'Chhatrapati Shivaji Maharaj Intl Airport (BOM)', distance: '7.5 km' }
-    ],
-    agentId: 'agent-1',
-    agentName: 'Rajesh Sharma',
-    agentPhone: '+91 98201 44521',
-    agentPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-13',
-    title: 'Prestige Silver Oak Rental Townhouse',
-    tagline: 'Gated luxury rental townhouse with private garden in Whitefield',
-    city: 'Bengaluru',
-    locality: 'Whitefield',
-    address: 'ECC Road, Whitefield, Bengaluru - 560066',
-    price: 150000, // ₹1.5 Lakh / month for rent
-    pricePerSqft: 42,
-    purpose: 'rent',
-    propertyType: 'Luxury Villa',
-    bhk: 4,
-    bathrooms: 4,
-    balconies: 2,
-    builtUpArea: 3600,
-    carpetArea: 3000,
-    facing: 'East Facing',
-    floor: 'Ground + 1 Floor',
-    possession: 'Ready to Move',
-    ageOfProperty: '2 Years',
-    furnishing: 'Fully Furnished',
-    reraId: 'PRM/KA/RERA/1251/446/PR/170928/000109',
-    builder: 'Prestige Group',
-    featured: false,
-    rating: 4.86,
-    reviewsCount: 18,
-    images: [
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Available for immediate lease. A bespoke 4 BHK Mediterranean style townhouse with private lawn, high-end imported furniture, home office study, and access to world-class clubhouse amenities.',
-    amenities: [
-      'Private Garden',
-      'Swimming Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'Power Backup',
-      'EV Charging',
-      'Tennis Court'
-    ],
-    highlights: [
-      'Expat-friendly community with 80+ international families',
-      '100% power backup and 24/7 solar water supply',
-      'Close to The International School Bangalore (TISB)',
-      'Security deposit: 6 months refundable'
-    ],
-    landmarks: [
-      { name: 'Prestige Shantiniketan Tech Park', distance: '2.5 km' },
-      { name: 'Whitefield Main Road', distance: '1.2 km' },
-      { name: 'Columbia Asia Hospital', distance: '2 km' },
-      { name: 'Forum Shantiniketan Mall', distance: '2.8 km' }
-    ],
-    agentId: 'agent-2',
-    agentName: 'Priya Sundaram',
-    agentPhone: '+91 99800 23140',
-    agentPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
-  },
-  {
-    id: 'prop-14',
-    title: 'Akshaya Abode Sea-Facing Apartment',
-    tagline: 'Modern 3 BHK apartment with Bay of Bengal sea breeze',
-    city: 'Chennai',
-    locality: 'ECR',
-    address: 'East Coast Road, Uthandi, Chennai - 600119',
-    price: 21500000, // ₹2.15 Cr
-    pricePerSqft: 10230,
-    purpose: 'buy',
-    propertyType: 'Apartment',
-    bhk: 3,
-    bathrooms: 3,
-    balconies: 2,
-    builtUpArea: 2100,
-    carpetArea: 1680,
-    facing: 'East Facing (Bay of Bengal)',
-    floor: '8th Floor (of 14 Floors)',
-    possession: 'Ready to Move',
-    ageOfProperty: '2 Years',
-    furnishing: 'Semi-Furnished',
-    reraId: 'TN/01/Building/0192/2021',
-    builder: 'Akshaya Homes',
-    featured: false,
-    rating: 4.72,
-    reviewsCount: 15,
-    images: [
-      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
-    ],
-    description: 'Wake up to the soothing sound of waves and golden sunrises along Chennai’s East Coast Road. Features large sea-facing sundecks, Italian marble floors, and resort-style living.',
-    amenities: [
-      'Sea-view Balconies',
-      'Swimming Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'Power Backup',
-      'EV Charging',
-      'Landscaped Gardens'
-    ],
-    highlights: [
-      'Direct beach access pathway from gated residential enclave',
-      'Vastu-designed layout with east-facing sunrise balconies',
-      'Fast connectivity to OMR IT Corridor via link road',
-      'Covered stilt parking with EV fast-charging point'
-    ],
-    landmarks: [
-      { name: 'Uthandi Beach', distance: '250 m' },
-      { name: 'Sholinganallur OMR Junction', distance: '5 km' },
-      { name: 'Mayajaal Multiplex & Entertainment', distance: '1.2 km' },
-      { name: 'Apollo Speciality Hospital OMR', distance: '6.8 km' }
-    ],
+    description: 'Hyderabad’s premier smart gated community boasting pre-certified IGBC Platinum ratings and high-speed elevators.',
+    amenities: ['Infinity Pool', 'Clubhouse', 'Gymnasium', '24/7 Security', 'EV Charging'],
+    highlights: ['Smart home automation integrated with Amazon Alexa'],
+    landmarks: [{ name: 'Financial District SEZ', distance: '1.5 km' }],
     agentId: 'agent-5',
     agentName: 'Karthik Varma',
     agentPhone: '+91 97000 12456',

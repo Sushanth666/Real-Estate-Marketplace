@@ -68,7 +68,12 @@ export function QuickCitySelector() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
               {/* Top Badge */}
-              <div className="absolute top-3.5 left-3.5">
+              <div className="absolute top-3.5 left-3.5 flex flex-col gap-1 items-start">
+                {city.isFirstChoice && (
+                  <span className="text-[10px] font-extrabold bg-gradient-to-r from-amber-500 to-orange-500 text-white px-2 py-0.5 rounded-full shadow-sm">
+                    ⭐ 1st Choice
+                  </span>
+                )}
                 <span className="text-[11px] font-bold bg-black/60 backdrop-blur-md text-white px-2.5 py-1 rounded-full border border-white/20">
                   {city.propertyCount} Homes
                 </span>
