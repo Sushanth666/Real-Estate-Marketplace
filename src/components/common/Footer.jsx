@@ -81,19 +81,19 @@ export function Footer() {
           </div>
 
           {/* Top Indian Cities */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide">
+          <div className="text-left">
+            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide text-left">
               Top Indian Cities
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-sm text-left">
               {indianCities.slice(0, 6).map(city => (
-                <li key={city.id}>
+                <li key={city.id} className="text-left">
                   <button
                     onClick={() => {
                       updateFilter('selectedCity', city.name);
                       navigateTo('listings');
                     }}
-                    className="text-slate-400 hover:text-white transition-colors"
+                    className="text-left text-slate-400 hover:text-white transition-colors block w-full"
                   >
                     Properties in {city.name}
                   </button>
@@ -103,73 +103,73 @@ export function Footer() {
           </div>
 
           {/* Property Collections */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide">
+          <div className="text-left">
+            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide text-left">
               Property Categories
             </h4>
-            <ul className="space-y-2.5 text-sm">
-              <li>
+            <ul className="space-y-2.5 text-sm text-left">
+              <li className="text-left">
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Penthouse');
                     navigateTo('listings');
                   }}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
                 >
                   Sea-Facing Penthouses
                 </button>
               </li>
-              <li>
+              <li className="text-left">
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Luxury Villa');
                     navigateTo('listings');
                   }}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
                 >
                   Gated Golf Villas
                 </button>
               </li>
-              <li>
+              <li className="text-left">
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Duplex');
                     navigateTo('listings');
                   }}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
                 >
                   Modern Sky Duplexes
                 </button>
               </li>
-              <li>
+              <li className="text-left">
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Individual House');
                     navigateTo('listings');
                   }}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
                 >
                   Independent Individual Houses
                 </button>
               </li>
-              <li>
+              <li className="text-left">
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Builder Floor');
                     navigateTo('listings');
                   }}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
                 >
                   Independent Builder Floors
                 </button>
               </li>
-              <li>
+              <li className="text-left">
                 <button
                   onClick={() => {
                     updateFilter('purpose', 'rent');
                     navigateTo('listings');
                   }}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
                 >
                   Luxury Expat Rentals
                 </button>
@@ -178,31 +178,31 @@ export function Footer() {
           </div>
 
           {/* Real Estate Tools & RERA */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide">
+          <div className="text-left">
+            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide text-left">
               PropTech Tools
             </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400">
-              <li>
-                <button onClick={() => navigateTo('home')} className="hover:text-white transition-colors">
+            <ul className="space-y-2.5 text-sm text-slate-400 text-left">
+              <li className="text-left">
+                <button onClick={() => navigateTo('home')} className="text-left text-slate-400 hover:text-white transition-colors block w-full">
                   EMI & Home Loan Calculator
                 </button>
               </li>
-              <li>
-                <button onClick={() => navigateTo('listings')} className="hover:text-white transition-colors">
+              <li className="text-left">
+                <button onClick={() => navigateTo('listings')} className="text-left text-slate-400 hover:text-white transition-colors block w-full">
                   Property Comparison Matrix
                 </button>
               </li>
-              <li>
-                <button onClick={() => navigateTo('agents')} className="hover:text-white transition-colors">
+              <li className="text-left">
+                <button onClick={() => navigateTo('agents')} className="text-left text-slate-400 hover:text-white transition-colors block w-full">
                   RERA Registered Advisors
                 </button>
               </li>
-              <li>
-                <span className="text-slate-500">MahaRERA & K-RERA Guide</span>
+              <li className="text-left">
+                <span className="text-slate-500 block">MahaRERA & K-RERA Guide</span>
               </li>
-              <li>
-                <span className="text-slate-500">Stamp Duty Calculator (2025)</span>
+              <li className="text-left">
+                <span className="text-slate-500 block">Stamp Duty Calculator (2025)</span>
               </li>
             </ul>
           </div>
