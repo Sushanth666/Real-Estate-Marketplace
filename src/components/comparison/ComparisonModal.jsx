@@ -126,6 +126,11 @@ export function ComparisonModal() {
                         <img
                           src={prop.images?.[0] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80'}
                           alt={prop.title}
+                          referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80';
+                          }}
                           className="w-full h-32 object-cover rounded-xl mb-2.5 shadow-xs"
                         />
                         <button

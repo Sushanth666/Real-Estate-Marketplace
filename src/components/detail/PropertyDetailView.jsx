@@ -189,6 +189,11 @@ export function PropertyDetailView() {
             <img
               src={images[0]}
               alt={currentProperty.title}
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80';
+              }}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
@@ -211,6 +216,11 @@ export function PropertyDetailView() {
                 <img
                   src={imgUrl}
                   alt={`Photo ${idx + 2}`}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
@@ -618,6 +628,11 @@ export function PropertyDetailView() {
               <img
                 src={images[modalPhotoIndex]}
                 alt="Enlarged photo"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80';
+                }}
                 className="max-h-[75vh] max-w-full object-contain rounded-2xl shadow-2xl"
               />
             </div>

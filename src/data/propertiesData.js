@@ -774,9 +774,9 @@ export const initialProperties = [
     "rating": 4.87,
     "reviewsCount": 42,
     "images": [
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1565182999561-18d7dc61c393?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Olympia Group ECR (East Coast Road) Harmony Apartment. Thoughtfully designed 2 BHK Apartment in prime ECR (East Coast Road), featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -1022,9 +1022,9 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1560185007-5f0bb1866cab?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Ceebros Heritage Alwarpet Magnolia Apartment. Thoughtfully designed 2 BHK Apartment in prime Alwarpet, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -1458,7 +1458,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Akshaya Homes Anna Nagar Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Anna Nagar, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -1829,7 +1829,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Casagrand Premier Nungambakkam Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Nungambakkam, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -2076,7 +2076,7 @@ export const initialProperties = [
     "rating": 4.88,
     "reviewsCount": 44,
     "images": [
-      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -2262,7 +2262,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -3502,8 +3502,8 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Ceebros Heritage Alwarpet Magnolia Individual House. Thoughtfully designed 2 BHK Individual House in prime Alwarpet, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -8898,7 +8898,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Mayflower Enterprises Saravanampatti IT Corridor Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Saravanampatti IT Corridor, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -9269,7 +9269,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Mayflower Enterprises RS Puram Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime RS Puram, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -9702,7 +9702,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -16338,7 +16338,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Meenakshi Infra Bypass Road Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Bypass Road, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -16709,7 +16709,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Rishi Builders Tallakulam Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Tallakulam, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -17142,7 +17142,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -23778,7 +23778,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Piramal Realty Hiranandani Powai Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Hiranandani Powai, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -24149,7 +24149,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Godrej Properties Bandra West (Pali Hill) Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Bandra West (Pali Hill), featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -24582,7 +24582,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -31218,7 +31218,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Brigade Group Sarjapur Road Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Sarjapur Road, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -31589,7 +31589,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Brigade Group Hebbal Lakeview Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Hebbal Lakeview, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -32022,7 +32022,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -38658,7 +38658,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at M3M India Greater Kailash II Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Greater Kailash II, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -39029,7 +39029,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at M3M India Greater Kailash II Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Greater Kailash II, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -39462,7 +39462,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -46098,7 +46098,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Rajapushpa Properties Madhapur Hitec City Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Madhapur Hitec City, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -46469,7 +46469,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Lansum Estates Kokapet Golden Mile Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Kokapet Golden Mile, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -46902,7 +46902,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -53538,7 +53538,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at VTP Realty Boat Club Road Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Boat Club Road, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -53909,7 +53909,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Kumar Properties Aundh Meadows Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Aundh Meadows, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -54342,7 +54342,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -60978,7 +60978,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Vianaar Homes Vagator Coastal Strip Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Vagator Coastal Strip, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -61349,7 +61349,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Aldeia de Goa Moira Riverside Village Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Moira Riverside Village, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -61782,7 +61782,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -68418,7 +68418,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at PS Group Luxury Salt Lake Sector 5 Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Salt Lake Sector 5, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -68789,7 +68789,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Ambuja Neotia Loudon Street Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Loudon Street, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -69222,7 +69222,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -75858,7 +75858,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Puravankara Marine Drive Thevara Riverside Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Thevara Riverside, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -76229,7 +76229,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Confident Group Fort Kochi Heritage Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Fort Kochi Heritage, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -76662,7 +76662,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -83298,7 +83298,7 @@ export const initialProperties = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at bSafal Group Ambli Bopal Road Grandeur Luxury Villa. Thoughtfully designed 5 BHK Luxury Villa in prime Ambli Bopal Road, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
     "amenities": [
@@ -83669,7 +83669,7 @@ export const initialProperties = [
     "reviewsCount": 36,
     "images": [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Experience exceptional living at Sheetal Infrastructure Prahlad Nagar Radiance Luxury Villa. Thoughtfully designed 3 BHK Luxury Villa in prime Prahlad Nagar, featuring modern specifications, expansive layouts, and 100% RERA compliance.",
@@ -84102,7 +84102,7 @@ export const initialProperties = [
     "rating": 4.91,
     "reviewsCount": 50,
     "images": [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],

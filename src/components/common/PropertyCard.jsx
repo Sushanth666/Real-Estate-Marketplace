@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Heart, 
@@ -35,6 +35,21 @@ export function PropertyCard({ property, layout = 'grid' }) {
     ? property.images 
     : ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'];
 
+  const [imgSrc, setImgSrc] = useState(images[activeImageIndex]);
+
+  useEffect(() => {
+    setImgSrc(images[activeImageIndex]);
+  }, [activeImageIndex, images]);
+
+  const handleImageError = () => {
+    const nextIdx = (activeImageIndex + 1) % images.length;
+    if (images[nextIdx] && images[nextIdx] !== imgSrc) {
+      setImgSrc(images[nextIdx]);
+    } else {
+      setImgSrc('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80');
+    }
+  };
+
   const emiMonthly = property.purpose === 'buy' 
     ? calculateEMI(property.price * 0.8, 8.5, 20) 
     : null;
@@ -56,8 +71,10 @@ export function PropertyCard({ property, layout = 'grid' }) {
         layout === 'list' ? 'md:w-5/12 h-64 md:h-auto min-h-[260px]' : 'w-full h-64'
       }`}>
         <img
-          src={images[activeImageIndex]}
+          src={imgSrc || images[0]}
           alt={property.title}
+          referrerPolicy="no-referrer"
+          onError={handleImageError}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           loading="lazy"
         />

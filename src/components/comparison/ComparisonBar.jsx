@@ -43,8 +43,13 @@ export function ComparisonBar() {
             {comparedProperties.map(prop => (
               <div key={prop.id} className="relative group shrink-0">
                 <img
-                  src={prop.images?.[0]}
+                  src={prop.images?.[0] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=100&q=80'}
                   alt={prop.title}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=100&q=80';
+                  }}
                   className="w-9 h-9 rounded-xl object-cover border border-white/20"
                 />
                 <button
