@@ -85,63 +85,63 @@ export function PropertyDetailView() {
 
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
-      
-      {/* Top Navigation & Breadcrumb */}
-      <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-30 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+        
+        {/* Top Navigation & Action Bar - Perfectly Aligned */}
+        <div className="flex items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-200/80">
           <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => navigateTo('listings')}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-brand-700 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-700 transition-colors cursor-pointer group"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center group-hover:border-brand-300 group-hover:bg-brand-50 transition-colors shadow-xs">
+              <ArrowLeft className="w-4 h-4 text-slate-600 group-hover:text-brand-600" />
+            </div>
             <span>Back to Listings</span>
           </motion.button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={handleShare}
-              className="p-2 sm:px-3 sm:py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 text-xs font-semibold flex items-center gap-2 transition-all shadow-xs cursor-pointer"
             >
-              <Share2 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Share</span>
+              <Share2 className="w-3.5 h-3.5 text-slate-500" />
+              <span>Share</span>
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => toggleCompare(currentProperty.id)}
-              className={`p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all shadow-xs cursor-pointer ${
                 isCompared
-                  ? 'bg-brand-600 text-white border-brand-600'
-                  : 'border-slate-200 text-slate-700 hover:bg-slate-50'
+                  ? 'bg-brand-600 text-white border-brand-600 shadow-sm'
+                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300'
               }`}
             >
-              <Scale className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">{isCompared ? 'In Compare' : 'Compare'}</span>
+              <Scale className={`w-3.5 h-3.5 ${isCompared ? 'text-white' : 'text-slate-500'}`} />
+              <span>{isCompared ? 'In Compare' : 'Compare'}</span>
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => toggleWishlist(currentProperty.id)}
-              className={`p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all shadow-xs cursor-pointer ${
                 isWishlisted
-                  ? 'bg-rose-500 text-white border-rose-500'
-                  : 'border-slate-200 text-slate-700 hover:bg-slate-50'
+                  ? 'bg-rose-500 text-white border-rose-500 shadow-sm'
+                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300'
               }`}
             >
-              <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-current' : ''}`} />
-              <span className="hidden sm:inline">{isWishlisted ? 'Saved' : 'Save'}</span>
+              <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'text-white fill-white' : 'text-slate-500'}`} />
+              <span>{isWishlisted ? 'Saved' : 'Save'}</span>
             </motion.button>
           </div>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         
         {/* Title & Price Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
