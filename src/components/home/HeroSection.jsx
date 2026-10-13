@@ -177,8 +177,9 @@ export function HeroSection() {
                 <option value="all">All Residences</option>
                 <option value="Apartment">Apartment</option>
                 <option value="Luxury Villa">Luxury Villa</option>
+                <option value="Individual House">Individual House</option>
                 <option value="Penthouse">Penthouse</option>
-                <option value="Duplex">Duplex Masion</option>
+                <option value="Duplex">Duplex Mansion</option>
                 <option value="Builder Floor">Builder Floor</option>
               </select>
             </div>

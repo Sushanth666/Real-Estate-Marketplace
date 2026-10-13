@@ -144,6 +144,17 @@ export function Footer() {
               <li>
                 <button
                   onClick={() => {
+                    updateFilter('propertyType', 'Individual House');
+                    navigateTo('listings');
+                  }}
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
+                  Independent Individual Houses
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
                     updateFilter('propertyType', 'Builder Floor');
                     navigateTo('listings');
                   }}

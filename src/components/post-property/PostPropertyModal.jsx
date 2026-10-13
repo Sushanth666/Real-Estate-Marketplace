@@ -161,6 +161,7 @@ export function PostPropertyModal() {
                   >
                     <option value="Apartment">Apartment</option>
                     <option value="Luxury Villa">Luxury Villa</option>
+                    <option value="Individual House">Individual House</option>
                     <option value="Penthouse">Penthouse</option>
                     <option value="Duplex">Duplex Mansion</option>
                     <option value="Builder Floor">Independent Builder Floor</option>

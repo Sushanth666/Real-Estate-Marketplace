@@ -1,4 +1,5 @@
 export const initialProperties = [
+  // 1. TAMIL NADU - CHENNAI (Penthouse - Buy)
   {
     id: 'prop-tn-1',
     title: 'The Poes Garden Sovereign Estate',
@@ -33,35 +34,17 @@ export const initialProperties = [
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'Situated in the legendary tree-lined sanctuary of Poes Garden, Chennai, this ultra-exclusive 4 BHK sky mansion offers unparalleled privacy, imported Italian Thassos marble, biometric keyless access, and bespoke acoustic woodwork.',
-    amenities: [
-      'Private Swimming Pool',
-      'Clubhouse',
-      '24/7 Security',
-      'Gymnasium',
-      'Private Elevator',
-      'EV Charging',
-      'Vastu Compliant',
-      'Power Backup',
-      'Landscaped Gardens'
-    ],
-    highlights: [
-      'Located in Poes Garden, Chennai’s most prestigious legacy neighborhood',
-      '100% Vastu compliant east-facing private entrance',
-      'Personal dedicated 4-car stilt parking with EV fast-charger',
-      'Automated VRV climate control and Italian Poggenpohl kitchen'
-    ],
-    landmarks: [
-      { name: 'Semmozhi Poonga Botanical Garden', distance: '800 m' },
-      { name: 'US Consulate General Chennai', distance: '1.2 km' },
-      { name: 'Teynampet Metro Station', distance: '600 m' },
-      { name: 'Apollo Hospitals Greams Road', distance: '1.8 km' }
-    ],
+    description: 'Situated in the legendary tree-lined sanctuary of Poes Garden, Chennai, this ultra-exclusive 4 BHK sky mansion offers unparalleled privacy, imported Italian Thassos marble, and biometric keyless access.',
+    amenities: ['Private Swimming Pool', 'Clubhouse', '24/7 Security', 'Gymnasium', 'Private Elevator', 'EV Charging', 'Vastu Compliant', 'Power Backup'],
+    highlights: ['Located in Poes Garden, Chennai’s most prestigious legacy address', '100% Vastu compliant east-facing private entrance', 'Dedicated 4-car stilt parking with EV fast-charger'],
+    landmarks: [{ name: 'Semmozhi Poonga Botanical Garden', distance: '800 m' }, { name: 'Teynampet Metro Station', distance: '600 m' }],
     agentId: 'agent-tn-1',
     agentName: 'S. Ramanathan (TNRERA Certified)',
     agentPhone: '+91 98400 12890',
     agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
   },
+
+  // 2. TAMIL NADU - CHENNAI (Luxury Villa - Buy)
   {
     id: 'prop-tn-2',
     title: 'Akshaya Bayfront Ocean Villa',
@@ -92,41 +75,106 @@ export const initialProperties = [
     images: [
       'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'An architectural oceanfront paradise on Chennai’s celebrated East Coast Road. Features a private temperature-controlled infinity pool overlooking golden beaches, sun-drenched timber sundecks, and lush tropical courtyards.',
-    amenities: [
-      'Private Swimming Pool',
-      'Direct Beach Access',
-      'Clubhouse',
-      '24/7 Security',
-      'Gymnasium',
-      'EV Charging',
-      'Vastu Compliant',
-      'Power Backup',
-      'Landscaped Gardens'
-    ],
-    highlights: [
-      'Gated oceanfront compound with direct private boardwalk to the sand',
-      'Expansive rooftop stargazing deck with outdoor barbecue',
-      'High rental yield on Chennai corporate expat vacation leases',
-      '15 minutes drive to Sholinganallur OMR IT Expressway'
-    ],
-    landmarks: [
-      { name: 'Akkarai Beach Promenade', distance: '100 m' },
-      { name: 'OMR Sholinganallur IT Junction', distance: '4.8 km' },
-      { name: 'Chennai International Airport (MAA)', distance: '18 km' },
-      { name: 'Apollo Speciality Hospital OMR', distance: '5.2 km' }
-    ],
+    description: 'An architectural oceanfront paradise on Chennai’s celebrated East Coast Road. Features a private temperature-controlled infinity pool overlooking golden beaches.',
+    amenities: ['Private Swimming Pool', 'Direct Beach Access', 'Clubhouse', '24/7 Security', 'Gymnasium', 'EV Charging', 'Vastu Compliant'],
+    highlights: ['Direct private boardwalk to the beach', 'Expansive rooftop stargazing deck with barbecue', '15 mins drive to Sholinganallur OMR IT Expressway'],
+    landmarks: [{ name: 'Akkarai Beach Promenade', distance: '100 m' }, { name: 'OMR IT Corridor', distance: '4.8 km' }],
     agentId: 'agent-tn-1',
     agentName: 'S. Ramanathan (TNRERA Certified)',
     agentPhone: '+91 98400 12890',
     agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
   },
+
+  // 3. TAMIL NADU - CHENNAI (Individual House - Buy)
   {
     id: 'prop-tn-3',
+    title: 'Anna Nagar Emerald Individual House',
+    tagline: 'Independent luxury vastu-compliant bungalow in prime Anna Nagar West',
+    city: 'Chennai (Tamil Nadu)',
+    state: 'Tamil Nadu',
+    locality: 'Anna Nagar',
+    address: '6th Avenue, Anna Nagar West Extension, Chennai, Tamil Nadu - 600101',
+    price: 52000000, // ₹5.20 Cr
+    pricePerSqft: 14850,
+    purpose: 'buy',
+    propertyType: 'Individual House',
+    bhk: 4,
+    bathrooms: 4,
+    balconies: 3,
+    builtUpArea: 3500,
+    carpetArea: 2950,
+    facing: 'North-East Facing (Vastu Compliant)',
+    floor: 'Ground + 1 Floor + Terrace Garden',
+    possession: 'Ready to Move',
+    ageOfProperty: '2 Years',
+    furnishing: 'Semi-Furnished',
+    reraId: 'TN/01/Layout/0281/2021 (TNRERA)',
+    builder: 'Individual Private Homeowner',
+    featured: true,
+    rating: 4.89,
+    reviewsCount: 28,
+    images: [
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'An elegant independent home with private compound, traditional teakwood door pillars, covered portico for 2 cars, and private landscaped rooftop terrace.',
+    amenities: ['Private Compound Lawn', '24/7 Security', 'Power Backup', 'Vastu Compliant', 'Solar Rooftop', 'Covered Car Portico'],
+    highlights: ['Prime Anna Nagar 6th Avenue peaceful residential enclave', 'Independent land title with 100% clear legal search report', 'Walking distance to Anna Nagar Tower Park & Metro'],
+    landmarks: [{ name: 'Anna Nagar Tower Park', distance: '400 m' }, { name: 'Thirumangalam Metro Station', distance: '700 m' }],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 4. TAMIL NADU - CHENNAI (Apartment - Rent)
+  {
+    id: 'prop-tn-4',
+    title: 'OMR Olympia Opaline IT Corridor Highrise',
+    tagline: 'Modern 3 BHK rental flat near TCS, Cognizant & Infosys campuses',
+    city: 'Chennai (Tamil Nadu)',
+    state: 'Tamil Nadu',
+    locality: 'OMR Corridor',
+    address: 'Rajiv Gandhi Salai (OMR), Navalur, Chennai, Tamil Nadu - 600130',
+    price: 65000, // ₹65,000 / month Rent
+    pricePerSqft: 36,
+    purpose: 'rent',
+    propertyType: 'Apartment',
+    bhk: 3,
+    bathrooms: 3,
+    balconies: 2,
+    builtUpArea: 1800,
+    carpetArea: 1450,
+    facing: 'East Facing',
+    floor: '16th Floor (of 22 Floors)',
+    possession: 'Ready to Move',
+    ageOfProperty: '1 Year',
+    furnishing: 'Fully Furnished',
+    reraId: 'TN/01/Building/0199/2021 (TNRERA)',
+    builder: 'Olympia Group',
+    featured: false,
+    rating: 4.82,
+    reviewsCount: 22,
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Fully furnished high-floor rental apartment with modular kitchen, VRV air conditioning, high-speed fiber internet, and clubhouse with Olympic-size swimming pool.',
+    amenities: ['Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security', 'Power Backup', 'EV Charging', 'Badminton Court'],
+    highlights: ['Walkable to major tech parks on OMR', 'Furnished with high-end appliances, sofas, beds, and smart TVs'],
+    landmarks: [{ name: 'Navalur Vivira Mall', distance: '600 m' }, { name: 'SIPCOT IT Park Siruseri', distance: '2.5 km' }],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 5. TAMIL NADU - COIMBATORE (Duplex - Buy)
+  {
+    id: 'prop-tn-5',
     title: 'The Imperial Race Course Sky Duplex',
     tagline: 'Ultra-luxury duplex with panoramic views of Coimbatore Race Course green corridor',
     city: 'Coimbatore (Tamil Nadu)',
@@ -153,42 +201,106 @@ export const initialProperties = [
     rating: 4.92,
     reviewsCount: 31,
     images: [
-      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'Coimbatore’s finest luxury address located along the serene circular promenade of Race Course. Features high double-height living room ceilings, private wooden balcony gardens, imported Italian marble, and world-class clubhouse amenities.',
-    amenities: [
-      'Swimming Pool',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'EV Charging',
-      'Power Backup',
-      'Vastu Compliant',
-      'Squash Court'
-    ],
-    highlights: [
-      'Overlooking the tranquil Race Course greenery and heritage bungalows',
-      'Minutes from Coimbatore Cosmopolitan Club and gourmet dining',
-      'IGBC Gold green certified with solar rooftop generation',
-      '15 minutes drive to Coimbatore International Airport (CJB)'
-    ],
-    landmarks: [
-      { name: 'Race Course Promenade Track', distance: '100 m' },
-      { name: 'Coimbatore Cosmopolitan Club', distance: '400 m' },
-      { name: 'Coimbatore Intl Airport (CJB)', distance: '8.5 km' },
-      { name: 'Brookefields Mall', distance: '3.2 km' }
-    ],
+    description: 'Coimbatore’s finest luxury address located along the serene circular promenade of Race Course with double-height ceiling living rooms and private sundeck.',
+    amenities: ['Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security', 'EV Charging', 'Vastu Compliant'],
+    highlights: ['Overlooking the tranquil Race Course greenery', 'Minutes from Coimbatore Cosmopolitan Club'],
+    landmarks: [{ name: 'Race Course Promenade Track', distance: '100 m' }, { name: 'Coimbatore Intl Airport (CJB)', distance: '8.5 km' }],
     agentId: 'agent-tn-1',
     agentName: 'S. Ramanathan (TNRERA Certified)',
     agentPhone: '+91 98400 12890',
     agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
   },
+
+  // 6. TAMIL NADU - COIMBATORE (Individual House - Buy)
   {
-    id: 'prop-1',
+    id: 'prop-tn-6',
+    title: 'RS Puram Heritage Courtyard Villa',
+    tagline: 'Independent Chettinad-style architectural residence in prime RS Puram',
+    city: 'Coimbatore (Tamil Nadu)',
+    state: 'Tamil Nadu',
+    locality: 'RS Puram',
+    address: 'East Sambandam Road, RS Puram, Coimbatore, Tamil Nadu - 641002',
+    price: 38500000, // ₹3.85 Cr
+    pricePerSqft: 11000,
+    purpose: 'buy',
+    propertyType: 'Individual House',
+    bhk: 4,
+    bathrooms: 4,
+    balconies: 2,
+    builtUpArea: 3500,
+    carpetArea: 2900,
+    facing: 'East Facing',
+    floor: 'Ground + 1 Floor',
+    possession: 'Ready to Move',
+    ageOfProperty: '2 Years',
+    furnishing: 'Fully Furnished',
+    reraId: 'TN/11/Layout/0115/2022 (TNRERA)',
+    builder: 'Kovai Heritage Builders',
+    featured: false,
+    rating: 4.86,
+    reviewsCount: 19,
+    images: [
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'An independent home featuring central courtyard skylights, Athangudi handmade tiles, carved Burma teak pillars, and rainwater harvesting.',
+    amenities: ['Central Courtyard', 'Private Garden', '24/7 Security', 'Power Backup', 'Vastu Compliant', 'Solar Water Heating'],
+    highlights: ['Authentic Chettinad architectural design elements', 'Peaceful residential lane near DB Road shopping precinct'],
+    landmarks: [{ name: 'DB Road Shopping Street', distance: '300 m' }, { name: 'Brookefields Mall', distance: '1.8 km' }],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 7. TAMIL NADU - CHENNAI (Luxury Villa - Rent)
+  {
+    id: 'prop-tn-7',
+    title: 'ECR Sea Breeze Holiday Rental Villa',
+    tagline: 'Private pool vacation villa for luxury lease on East Coast Road',
+    city: 'Chennai (Tamil Nadu)',
+    state: 'Tamil Nadu',
+    locality: 'ECR (East Coast Road)',
+    address: 'Olive Beach Road, Muttukadu, Chennai, Tamil Nadu - 603112',
+    price: 180000, // ₹1.80 L / month
+    pricePerSqft: 45,
+    purpose: 'rent',
+    propertyType: 'Luxury Villa',
+    bhk: 4,
+    bathrooms: 4,
+    balconies: 3,
+    builtUpArea: 4000,
+    carpetArea: 3300,
+    facing: 'East Facing',
+    floor: 'Ground + 1 Floor',
+    possession: 'Ready to Move',
+    ageOfProperty: '1 Year',
+    furnishing: 'Fully Furnished',
+    reraId: 'TN/01/Building/0045/2022 (TNRERA)',
+    builder: 'ECR Coastal Retreats',
+    featured: false,
+    rating: 4.88,
+    reviewsCount: 26,
+    images: [
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Bespoke coastal rental villa with private blue tile plunge pool, manicured lawn, sundeck gazebo, and full housekeeping concierge service.',
+    amenities: ['Private Swimming Pool', 'Beach Access', 'Power Backup', '24/7 Security', 'Lawn Barbecue', 'EV Charging'],
+    highlights: ['Perfect for expat families and corporate executives', '100% uninterrupted power backup with generator'],
+    landmarks: [{ name: 'MGM Dizzee World', distance: '1.2 km' }, { name: 'Kovalam Surf Beach', distance: '3.5 km' }],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 8. MUMBAI (Penthouse - Buy)
+  {
+    id: 'prop-mum-1',
     title: 'Lodha World One Sky Mansion',
     tagline: 'Ultra-luxurious sea-facing residence in South Mumbai',
     city: 'Mumbai',
@@ -208,43 +320,110 @@ export const initialProperties = [
     possession: 'Ready to Move',
     ageOfProperty: '1 Year',
     furnishing: 'Fully Furnished',
-    reraId: 'P51900008345',
+    reraId: 'P51900008345 (MahaRERA)',
     builder: 'Lodha Group',
     featured: true,
     rating: 4.9,
     reviewsCount: 38,
     images: [
       'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'Perched in the iconic World Towers, this 4 BHK sky duplex offers unobstructed 270-degree panoramic views of the Arabian Sea and the Mumbai skyline.',
-    amenities: [
-      'Infinity Pool',
-      'Clubhouse',
-      '24/7 Security',
-      'Gymnasium',
-      'Private Elevator',
-      'EV Charging',
-      'Power Backup'
-    ],
-    highlights: [
-      'Panoramic Arabian Sea & Bandra-Worli Sea Link Views',
-      'Private foyer with biometric elevator access'
-    ],
-    landmarks: [
-      { name: 'Bandra-Worli Sea Link', distance: '1.2 km' },
-      { name: 'High Street Phoenix Mall', distance: '800 m' }
-    ],
+    description: 'Iconic World Towers 4 BHK sky duplex with unobstructed 270-degree views of the Arabian Sea and Mumbai skyline.',
+    amenities: ['Infinity Pool', 'Clubhouse', '24/7 Security', 'Gymnasium', 'Private Elevator', 'EV Charging'],
+    highlights: ['Panoramic Arabian Sea & Bandra-Worli Sea Link Views', 'Private biometric elevator access'],
+    landmarks: [{ name: 'Bandra-Worli Sea Link', distance: '1.2 km' }, { name: 'High Street Phoenix', distance: '800 m' }],
     agentId: 'agent-1',
     agentName: 'Rajesh Sharma',
     agentPhone: '+91 98201 44521',
     agentPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
   },
+
+  // 9. MUMBAI (Individual House - Buy)
   {
-    id: 'prop-2',
+    id: 'prop-mum-2',
+    title: 'Juhu Tara Road Sea Bungalow',
+    tagline: 'Rare independent luxury beach bungalow in Mumbai’s celebrity row',
+    city: 'Mumbai',
+    locality: 'Juhu',
+    address: 'Juhu Tara Road, Near Sea Princess, Juhu, Mumbai - 400049',
+    price: 360000000, // ₹36.00 Cr
+    pricePerSqft: 60000,
+    purpose: 'buy',
+    propertyType: 'Individual House',
+    bhk: 5,
+    bathrooms: 6,
+    balconies: 4,
+    builtUpArea: 6000,
+    carpetArea: 5100,
+    facing: 'West Facing (Sunset Sea View)',
+    floor: 'Ground + 2 Floors + Private Terrace',
+    possession: 'Ready to Move',
+    ageOfProperty: '3 Years',
+    furnishing: 'Fully Furnished',
+    reraId: 'P51800021490 (MahaRERA)',
+    builder: 'Private Heritage Owner',
+    featured: true,
+    rating: 4.97,
+    reviewsCount: 42,
+    images: [
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'A once-in-a-generation opportunity to own an independent standalone villa on Juhu Tara Road with private garden compound, personal lift, and sunset sea views.',
+    amenities: ['Private Swimming Pool', 'Private Garden', '24/7 Security', 'Elevator', 'Power Backup', 'EV Charging'],
+    highlights: ['Celebrity neighbor enclave', 'Independent freehold land parcel with clear title'],
+    landmarks: [{ name: 'Juhu Beach Promenade', distance: '150 m' }, { name: 'JW Marriott Juhu', distance: '800 m' }],
+    agentId: 'agent-1',
+    agentName: 'Rajesh Sharma',
+    agentPhone: '+91 98201 44521',
+    agentPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 10. MUMBAI (Apartment - Rent)
+  {
+    id: 'prop-mum-3',
+    title: 'Hiranandani Powai Lakeview Flat',
+    tagline: 'Neoclassical 3 BHK rental flat overlooking Powai Lake',
+    city: 'Mumbai',
+    locality: 'Powai',
+    address: 'High Street, Hiranandani Gardens, Powai, Mumbai - 400076',
+    price: 140000, // ₹1.40 L / month
+    pricePerSqft: 82,
+    purpose: 'rent',
+    propertyType: 'Apartment',
+    bhk: 3,
+    bathrooms: 3,
+    balconies: 2,
+    builtUpArea: 1700,
+    carpetArea: 1350,
+    facing: 'North Facing (Lake View)',
+    floor: '18th Floor (of 28 Floors)',
+    possession: 'Ready to Move',
+    ageOfProperty: '2 Years',
+    furnishing: 'Fully Furnished',
+    reraId: 'P51800001923 (MahaRERA)',
+    builder: 'Hiranandani Communities',
+    featured: false,
+    rating: 4.81,
+    reviewsCount: 23,
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Fully furnished European neoclassical apartment with Powai Lake views, walkable to European cafes, supermarkets, and IIT Bombay.',
+    amenities: ['Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security', 'Power Backup'],
+    highlights: ['Panoramic views of Powai Lake', 'Self-contained pedestrian township'],
+    landmarks: [{ name: 'Powai Lake', distance: '200 m' }, { name: 'Hiranandani Hospital', distance: '400 m' }],
+    agentId: 'agent-1',
+    agentName: 'Rajesh Sharma',
+    agentPhone: '+91 98201 44521',
+    agentPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 11. BENGALURU (Luxury Villa - Buy)
+  {
+    id: 'prop-blr-1',
     title: 'Prestige Golfshire Signature Villa',
     tagline: 'Private championship golf course living with Nandi Hills views',
     city: 'Bengaluru',
@@ -259,7 +438,7 @@ export const initialProperties = [
     balconies: 4,
     builtUpArea: 6000,
     carpetArea: 5100,
-    facing: 'East Facing (Vastu Compliant)',
+    facing: 'East Facing',
     floor: 'Ground + 2 Floors',
     possession: 'Ready to Move',
     ageOfProperty: '2 Years',
@@ -271,33 +450,144 @@ export const initialProperties = [
     reviewsCount: 42,
     images: [
       'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'Set against the picturesque backdrop of Nandi Hills, this sprawling private villa overlooks an 18-hole championship golf course.',
-    amenities: [
-      'Private Swimming Pool',
-      '18-Hole Golf Course',
-      'Clubhouse',
-      'Gymnasium',
-      '24/7 Security',
-      'EV Charging'
-    ],
-    highlights: [
-      'Direct fairway view of the championship golf course',
-      'Just 15 minutes drive to Kempegowda International Airport'
-    ],
-    landmarks: [
-      { name: 'Kempegowda International Airport (BLR)', distance: '12 km' },
-      { name: 'JW Marriott Golfshire Resort', distance: '300 m' }
-    ],
+    description: 'Set against the backdrop of Nandi Hills, overlooking an 18-hole championship golf course with heated plunge pool.',
+    amenities: ['Private Swimming Pool', 'Golf Course', 'Clubhouse', 'Gymnasium', '24/7 Security'],
+    highlights: ['Direct fairway view', '15 mins drive to Kempegowda International Airport'],
+    landmarks: [{ name: 'Kempegowda Intl Airport (BLR)', distance: '12 km' }],
     agentId: 'agent-2',
     agentName: 'Priya Sundaram',
     agentPhone: '+91 99800 23140',
     agentPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
   },
+
+  // 12. BENGALURU (Individual House - Buy)
   {
-    id: 'prop-3',
+    id: 'prop-blr-2',
+    title: 'Indiranagar Urban Forest Individual House',
+    tagline: 'Modern tropical independent bungalow with zen courtyard on 12th Main',
+    city: 'Bengaluru',
+    locality: 'Indiranagar',
+    address: '12th Main Road, HAL 2nd Stage, Indiranagar, Bengaluru - 560038',
+    price: 89000000, // ₹8.90 Cr
+    pricePerSqft: 21190,
+    purpose: 'buy',
+    propertyType: 'Individual House',
+    bhk: 4,
+    bathrooms: 5,
+    balconies: 3,
+    builtUpArea: 4200,
+    carpetArea: 3500,
+    facing: 'North-East Facing',
+    floor: 'Ground + 2 Floors',
+    possession: 'Ready to Move',
+    ageOfProperty: 'Under 1 Year',
+    furnishing: 'Fully Furnished',
+    reraId: 'PRM/KA/RERA/1251/446/PR/190822/002811',
+    builder: 'Sobha Limited',
+    featured: false,
+    rating: 4.89,
+    reviewsCount: 35,
+    images: [
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'An independent urban sanctuary steps from 100 Feet Road with Japanese Zen internal courtyard, private plunge pool, and rooftop lounge.',
+    amenities: ['Plunge Pool', 'Zen Courtyard', '24/7 Security', 'Power Backup', 'Vastu Compliant', 'Solar Rooftop'],
+    highlights: ['Prime Indiranagar 12th Main location', 'Zero net electricity bill via solar grid'],
+    landmarks: [{ name: '100 Feet Road', distance: '200 m' }, { name: 'Indiranagar Metro', distance: '700 m' }],
+    agentId: 'agent-2',
+    agentName: 'Priya Sundaram',
+    agentPhone: '+91 99800 23140',
+    agentPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 13. BENGALURU (Duplex - Buy)
+  {
+    id: 'prop-blr-3',
+    title: 'Total Environment Windmills Duplex',
+    tagline: 'Handcrafted duplex earth-sheltered residence in Whitefield',
+    city: 'Bengaluru',
+    locality: 'Whitefield',
+    address: 'EPIP Zone, Whitefield, Bengaluru - 560066',
+    price: 68000000, // ₹6.80 Cr
+    pricePerSqft: 11420,
+    purpose: 'buy',
+    propertyType: 'Duplex',
+    bhk: 4,
+    bathrooms: 4,
+    balconies: 2,
+    builtUpArea: 5954,
+    carpetArea: 4800,
+    facing: 'East Facing',
+    floor: '14th & 15th Duplex',
+    possession: 'Ready to Move',
+    ageOfProperty: '3 Years',
+    furnishing: 'Fully Furnished',
+    reraId: 'PRM/KA/RERA/1251/446/PR/171015/000215',
+    builder: 'Total Environment',
+    featured: false,
+    rating: 4.85,
+    reviewsCount: 31,
+    images: [
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Wire-cut terracotta brick architectural duplex with private landscaped terrace garden and automatic drip irrigation.',
+    amenities: ['Private Terrace Garden', 'Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security'],
+    highlights: ['Double-height terrace garden', 'Walking distance to ITPL'],
+    landmarks: [{ name: 'ITPL Tech Park', distance: '1.2 km' }, { name: 'Whitefield Metro', distance: '900 m' }],
+    agentId: 'agent-2',
+    agentName: 'Priya Sundaram',
+    agentPhone: '+91 99800 23140',
+    agentPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 14. BENGALURU (Luxury Villa - Rent)
+  {
+    id: 'prop-blr-4',
+    title: 'Whitefield Expat Townhouse Villa',
+    tagline: 'Gated 4 BHK luxury rental townhouse with private garden',
+    city: 'Bengaluru',
+    locality: 'Whitefield',
+    address: 'ECC Road, Whitefield, Bengaluru - 560066',
+    price: 150000, // ₹1.50 L / month
+    pricePerSqft: 42,
+    purpose: 'rent',
+    propertyType: 'Luxury Villa',
+    bhk: 4,
+    bathrooms: 4,
+    balconies: 2,
+    builtUpArea: 3600,
+    carpetArea: 3000,
+    facing: 'East Facing',
+    floor: 'Ground + 1 Floor',
+    possession: 'Ready to Move',
+    ageOfProperty: '2 Years',
+    furnishing: 'Fully Furnished',
+    reraId: 'PRM/KA/RERA/1251/446/PR/170928/000109',
+    builder: 'Prestige Group',
+    featured: false,
+    rating: 4.86,
+    reviewsCount: 18,
+    images: [
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Bespoke 4 BHK townhouse for immediate lease with private lawn, home office, and world-class clubhouse access.',
+    amenities: ['Private Garden', 'Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security'],
+    highlights: ['Expat-friendly gated community', '100% power backup'],
+    landmarks: [{ name: 'Prestige Shantiniketan', distance: '2.5 km' }],
+    agentId: 'agent-2',
+    agentName: 'Priya Sundaram',
+    agentPhone: '+91 99800 23140',
+    agentPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 15. DELHI NCR (Apartment - Buy)
+  {
+    id: 'prop-ncr-1',
     title: 'DLF The Camellias Ultra Residence',
     tagline: 'The epitome of high-life luxury on Golf Course Road',
     city: 'Delhi NCR',
@@ -324,32 +614,224 @@ export const initialProperties = [
     reviewsCount: 64,
     images: [
       'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'India’s most celebrated residential address. The Camellias on Golf Course Road represents uncompromised grandeur with lush views of the DLF Golf Club.',
-    amenities: [
-      'Olympics-sized Pool',
-      'Clubhouse',
-      '24/7 Security',
-      'Gymnasium',
-      'EV Charging'
-    ],
-    highlights: [
-      'Direct vistas of the DLF Arnold Palmer golf course',
-      'Double height ceiling in formal living room'
-    ],
-    landmarks: [
-      { name: 'One Horizon Center', distance: '1 km' },
-      { name: 'Cyber City Gurugram', distance: '4.5 km' }
-    ],
+    description: 'India’s most celebrated residential address overlooking DLF Golf Club with private butler services.',
+    amenities: ['Olympics Pool', '1.3L sqft Club', '24/7 Security', 'Gymnasium', 'Wine Cellar'],
+    highlights: ['Direct vistas of the golf course', 'Double height ceilings'],
+    landmarks: [{ name: 'One Horizon Center', distance: '1 km' }, { name: 'Cyber City', distance: '4.5 km' }],
     agentId: 'agent-3',
     agentName: 'Vikram Malhotra',
     agentPhone: '+91 98110 56789',
     agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
   },
+
+  // 16. DELHI NCR (Builder Floor - Buy)
   {
-    id: 'prop-4',
+    id: 'prop-ncr-2',
+    title: 'DLF Phase 5 Luxury Builder Floor',
+    tagline: 'Brand new luxury independent builder floor with private stilt',
+    city: 'Delhi NCR',
+    locality: 'DLF Phase 5',
+    address: 'Sector 53, DLF Phase 5, Gurugram - 122002',
+    price: 36500000, // ₹3.65 Cr
+    pricePerSqft: 14600,
+    purpose: 'buy',
+    propertyType: 'Builder Floor',
+    bhk: 4,
+    bathrooms: 4,
+    balconies: 3,
+    builtUpArea: 2500,
+    carpetArea: 2100,
+    facing: 'North Facing',
+    floor: '2nd Floor (of 4 Floors)',
+    possession: 'Ready to Move',
+    ageOfProperty: 'Brand New',
+    furnishing: 'Semi-Furnished',
+    reraId: 'HRERA-PKL-GGM-890-2023',
+    builder: 'DLF Independent Floors',
+    featured: false,
+    rating: 4.75,
+    reviewsCount: 14,
+    images: [
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Independent builder floor with dedicated stilt parking for 2 SUVs and private elevator access.',
+    amenities: ['Private Elevator', 'Stilt Parking', '24/7 Security', 'Power Backup', 'Vastu Compliant'],
+    highlights: ['Independent floor living', 'Close to South Point Mall'],
+    landmarks: [{ name: 'South Point Mall', distance: '500 m' }, { name: 'Sector 53-54 Metro', distance: '600 m' }],
+    agentId: 'agent-3',
+    agentName: 'Vikram Malhotra',
+    agentPhone: '+91 98110 56789',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 17. DELHI NCR (Penthouse - Rent)
+  {
+    id: 'prop-ncr-3',
+    title: 'Golf Course Road Expat Penthouse',
+    tagline: 'Ultra-luxury rental penthouse in Gurugram prime corporate corridor',
+    city: 'Delhi NCR',
+    locality: 'Golf Course Road',
+    address: 'Sector 54, Golf Course Road, Gurugram, Haryana - 122011',
+    price: 225000, // ₹2.25 L / month
+    pricePerSqft: 45,
+    purpose: 'rent',
+    propertyType: 'Penthouse',
+    bhk: 4,
+    bathrooms: 5,
+    balconies: 3,
+    builtUpArea: 5000,
+    carpetArea: 4200,
+    facing: 'East Facing',
+    floor: '28th Floor (Penthouse)',
+    possession: 'Ready to Move',
+    ageOfProperty: '1 Year',
+    furnishing: 'Fully Furnished',
+    reraId: 'HRERA-PKL-GGM-442-2022',
+    builder: 'Ireo Grand Hyatt Residences',
+    featured: false,
+    rating: 4.91,
+    reviewsCount: 20,
+    images: [
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'High-end furnished corporate rental penthouse with private sundeck, Jacuzzi, Italian leather furnishings, and housekeeping.',
+    amenities: ['Jacuzzi', 'Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security'],
+    highlights: ['Expansive wrap-around sky terrace', 'Top-tier executive lease standard'],
+    landmarks: [{ name: 'Sector 54 Rapid Metro', distance: '300 m' }],
+    agentId: 'agent-3',
+    agentName: 'Vikram Malhotra',
+    agentPhone: '+91 98110 56789',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 18. HYDERABAD (Individual House - Buy)
+  {
+    id: 'prop-hyd-1',
+    title: 'Jubilee Hills Nizam Heritage Bungalow',
+    tagline: 'Stately independent mansion on Road No. 36 Jubilee Hills',
+    city: 'Hyderabad',
+    locality: 'Jubilee Hills',
+    address: 'Road No. 36, Jubilee Hills, Hyderabad, Telangana - 500033',
+    price: 165000000, // ₹16.50 Cr
+    pricePerSqft: 27500,
+    purpose: 'buy',
+    propertyType: 'Individual House',
+    bhk: 5,
+    bathrooms: 6,
+    balconies: 4,
+    builtUpArea: 6000,
+    carpetArea: 5200,
+    facing: 'North Facing (Vastu Compliant)',
+    floor: 'Ground + 2 Floors',
+    possession: 'Ready to Move',
+    ageOfProperty: '2 Years',
+    furnishing: 'Fully Furnished',
+    reraId: 'P02400001920 (TS-RERA)',
+    builder: 'Banjara Luxury Residences',
+    featured: true,
+    rating: 4.96,
+    reviewsCount: 37,
+    images: [
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'An elite standalone residence in Jubilee Hills with central courtyard, private home theater, 4-car basement parking, and landscaped garden.',
+    amenities: ['Private Garden', 'Home Theater', '24/7 Security', 'Elevator', 'Power Backup', 'EV Charging'],
+    highlights: ['Coveted Jubilee Hills address', '100% Vastu compliant'],
+    landmarks: [{ name: 'KBR National Park', distance: '1.2 km' }, { name: 'Jubilee Hills Check Post', distance: '1.5 km' }],
+    agentId: 'agent-5',
+    agentName: 'Karthik Varma',
+    agentPhone: '+91 97000 12456',
+    agentPhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 19. HYDERABAD (Apartment - Buy)
+  {
+    id: 'prop-hyd-2',
+    title: 'Aparna One Luxury Highrise',
+    tagline: 'Smart voice-automated luxury residences overlooking Golconda',
+    city: 'Hyderabad',
+    locality: 'Gachibowli',
+    address: 'Near Financial District, Gachibowli, Hyderabad - 500032',
+    price: 49000000, // ₹4.90 Cr
+    pricePerSqft: 9400,
+    purpose: 'buy',
+    propertyType: 'Apartment',
+    bhk: 3,
+    bathrooms: 3,
+    balconies: 2,
+    builtUpArea: 5210,
+    carpetArea: 4100,
+    facing: 'North Facing (Vastu Compliant)',
+    floor: '28th Floor (of 36 Floors)',
+    possession: 'Ready to Move',
+    ageOfProperty: 'Under 1 Year',
+    furnishing: 'Semi-Furnished',
+    reraId: 'P02400000854 (TS-RERA)',
+    builder: 'Aparna Constructions',
+    featured: false,
+    rating: 4.8,
+    reviewsCount: 22,
+    images: [
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Smart gated community with pre-certified IGBC Platinum ratings and 65,000 sqft royal clubhouse.',
+    amenities: ['Infinity Pool', 'Clubhouse', 'Gymnasium', '24/7 Security', 'EV Charging'],
+    highlights: ['Smart home voice automation', 'Minutes to Google & Microsoft campuses'],
+    landmarks: [{ name: 'Financial District SEZ', distance: '1.5 km' }],
+    agentId: 'agent-5',
+    agentName: 'Karthik Varma',
+    agentPhone: '+91 97000 12456',
+    agentPhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 20. PUNE (Duplex - Buy)
+  {
+    id: 'prop-pune-1',
+    title: 'Koregaon Park Verdant Garden Duplex',
+    tagline: 'Serene tree-lined residence in Pune’s most prestigious enclave',
+    city: 'Pune',
+    locality: 'Koregaon Park',
+    address: 'Lane 5, North Main Road, Koregaon Park, Pune - 411001',
+    price: 38500000, // ₹3.85 Cr
+    pricePerSqft: 12830,
+    purpose: 'buy',
+    propertyType: 'Duplex',
+    bhk: 3,
+    bathrooms: 3,
+    balconies: 2,
+    builtUpArea: 3000,
+    carpetArea: 2450,
+    facing: 'East Facing',
+    floor: '5th & 6th Floor',
+    possession: 'Ready to Move',
+    ageOfProperty: '2 Years',
+    furnishing: 'Fully Furnished',
+    reraId: 'P52100019482 (MahaRERA)',
+    builder: 'Panchshil Realty',
+    featured: false,
+    rating: 4.78,
+    reviewsCount: 19,
+    images: [
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Contemporary garden duplex beneath majestic banyans near Osho Resort and Koregaon Park high street cafes.',
+    amenities: ['Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security', 'Power Backup'],
+    highlights: ['Private double-height wooden deck', 'Italian modular kitchen'],
+    landmarks: [{ name: 'Osho International Resort', distance: '400 m' }],
+    agentId: 'agent-1',
+    agentName: 'Rajesh Sharma',
+    agentPhone: '+91 98201 44521',
+    agentPhoto: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 21. GOA (Luxury Villa - Buy)
+  {
+    id: 'prop-goa-1',
     title: 'Assagao Heritage Portuguese Villa',
     tagline: 'Restored 19th-century luxury Goan estate with private pool',
     city: 'Goa',
@@ -378,62 +860,135 @@ export const initialProperties = [
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'An idyllic colonial Goan estate tucked away in the culinary capital of Assagao with exposed-beam ceilings and central courtyard.',
-    amenities: [
-      'Private Swimming Pool',
-      'Landscaped Gardens',
-      '24/7 Security',
-      'Power Backup'
-    ],
-    highlights: [
-      'Authentic antique teakwood furnishings',
-      '10 minutes drive to Vagator and Anjuna beaches'
-    ],
-    landmarks: [
-      { name: 'Vagator Beach', distance: '4 km' },
-      { name: 'Gunpowder Restaurant', distance: '600 m' }
-    ],
+    description: 'An idyllic colonial Goan estate in Assagao with exposed teak beams, central frangipani courtyard, and private plunge pool.',
+    amenities: ['Private Pool', 'Courtyard', '24/7 Security', 'Power Backup'],
+    highlights: ['Authentic antique furnishings', '10 mins to Vagator & Anjuna beaches'],
+    landmarks: [{ name: 'Vagator Beach', distance: '4 km' }],
     agentId: 'agent-4',
     agentName: 'Ayesha Fernandes',
     agentPhone: '+91 98221 88990',
     agentPhoto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
   },
+
+  // 22. GOA (Luxury Villa - Rent)
   {
-    id: 'prop-6',
-    title: 'Aparna One Luxury Highrise',
-    tagline: 'Smart voice-automated luxury residences overlooking Golconda',
-    city: 'Hyderabad',
-    locality: 'Gachibowli',
-    address: 'Near Financial District, Gachibowli, Hyderabad - 500032',
-    price: 49000000, // ₹4.90 Cr
-    pricePerSqft: 9400,
+    id: 'prop-goa-2',
+    title: 'Candolim Sunset Holiday Villa',
+    tagline: 'Private seaside villa for monthly vacation lease near Candolim Beach',
+    city: 'Goa',
+    locality: 'Candolim',
+    address: 'Pintado Road, Candolim, North Goa - 403515',
+    price: 250000, // ₹2.50 L / month
+    pricePerSqft: 71,
+    purpose: 'rent',
+    propertyType: 'Luxury Villa',
+    bhk: 3,
+    bathrooms: 4,
+    balconies: 2,
+    builtUpArea: 3500,
+    carpetArea: 2900,
+    facing: 'West Facing (Sunset View)',
+    floor: 'Ground + 1 Floor',
+    possession: 'Ready to Move',
+    ageOfProperty: '1 Year',
+    furnishing: 'Fully Furnished',
+    reraId: 'GOARERA11200455',
+    builder: 'Goa Leisure Stays',
+    featured: false,
+    rating: 4.93,
+    reviewsCount: 33,
+    images: [
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'Beachside holiday villa with private pool, tropical garden, chef kitchen, and high-speed Wi-Fi.',
+    amenities: ['Private Swimming Pool', 'Beach Access', 'Power Backup', '24/7 Security', 'Chef Kitchen'],
+    highlights: ['200 meters to Candolim Beach', 'Full daily housekeeping included'],
+    landmarks: [{ name: 'Candolim Beach', distance: '200 m' }],
+    agentId: 'agent-4',
+    agentName: 'Ayesha Fernandes',
+    agentPhone: '+91 98221 88990',
+    agentPhoto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 23. KOLKATA (Apartment - Buy)
+  {
+    id: 'prop-kol-1',
+    title: 'South City Marina Bay Waterfront',
+    tagline: 'Lake-facing premium highrise flat in Kolkata New Town',
+    city: 'Kolkata',
+    locality: 'New Town',
+    address: 'Action Area II, Near Eco Park, New Town, Kolkata - 700156',
+    price: 18500000, // ₹1.85 Cr
+    pricePerSqft: 8400,
     purpose: 'buy',
     propertyType: 'Apartment',
     bhk: 3,
     bathrooms: 3,
     balconies: 2,
-    builtUpArea: 5210,
-    carpetArea: 4100,
-    facing: 'North Facing (Vastu Compliant)',
-    floor: '28th Floor (of 36 Floors)',
+    builtUpArea: 2200,
+    carpetArea: 1750,
+    facing: 'South-East Facing',
+    floor: '18th Floor (of 26 Floors)',
     possession: 'Ready to Move',
-    ageOfProperty: 'Under 1 Year',
+    ageOfProperty: 'New Launch',
     furnishing: 'Semi-Furnished',
-    reraId: 'P02400000854',
-    builder: 'Aparna Constructions',
+    reraId: 'WBRERA/P/NOR/2023/000154',
+    builder: 'South City Projects',
     featured: false,
-    rating: 4.8,
-    reviewsCount: 22,
+    rating: 4.7,
+    reviewsCount: 16,
     images: [
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80'
     ],
-    description: 'Hyderabad’s premier smart gated community boasting pre-certified IGBC Platinum ratings and high-speed elevators.',
-    amenities: ['Infinity Pool', 'Clubhouse', 'Gymnasium', '24/7 Security', 'EV Charging'],
-    highlights: ['Smart home automation integrated with Amazon Alexa'],
-    landmarks: [{ name: 'Financial District SEZ', distance: '1.5 km' }],
-    agentId: 'agent-5',
-    agentName: 'Karthik Varma',
-    agentPhone: '+91 97000 12456',
-    agentPhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+    description: 'Offering stunning views of New Town Eco Park lake, combining cosmopolitan architecture with quiet waterfront serenity.',
+    amenities: ['Lakefront Promenade', 'Swimming Pool', 'Clubhouse', 'Gymnasium', '24/7 Security'],
+    highlights: ['Direct view of 480-acre Eco Park waterbody', 'Zero brokerage for direct buyers'],
+    landmarks: [{ name: 'Eco Park Gate 2', distance: '400 m' }, { name: 'Sector V Salt Lake', distance: '6.5 km' }],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+  },
+
+  // 24. KOLKATA (Individual House - Buy)
+  {
+    id: 'prop-kol-2',
+    title: 'Alipore Royal Heritage Bungalow',
+    tagline: 'Stately colonial independent mansion in Kolkata’s most prestigious heritage district',
+    city: 'Kolkata',
+    locality: 'Alipore',
+    address: 'Burdwan Road, Alipore, Kolkata - 700027',
+    price: 145000000, // ₹14.50 Cr
+    pricePerSqft: 29000,
+    purpose: 'buy',
+    propertyType: 'Individual House',
+    bhk: 5,
+    bathrooms: 5,
+    balconies: 3,
+    builtUpArea: 5000,
+    carpetArea: 4200,
+    facing: 'South Facing',
+    floor: 'Ground + 1 Floor + Private Lawn',
+    possession: 'Ready to Move',
+    ageOfProperty: 'Restored 2023',
+    furnishing: 'Fully Furnished',
+    reraId: 'WBRERA/A/KOL/2022/00021',
+    builder: 'Heritage Bengal Estates',
+    featured: false,
+    rating: 4.92,
+    reviewsCount: 25,
+    images: [
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
+    ],
+    description: 'A restored colonial heritage bungalow in Alipore surrounded by lush raintrees, private driveway, Corinthian columns, and manicured lawn.',
+    amenities: ['Private Garden', '24/7 Security', 'Power Backup', 'Servant Quarters', 'Private Driveway'],
+    highlights: ['Prime Burdwan Road Alipore location', 'Heritage character with modern plumbing and centralized VRV cooling'],
+    landmarks: [{ name: 'Alipore Zoological Gardens', distance: '1.1 km' }, { name: 'Taj Bengal Hotel', distance: '1.4 km' }],
+    agentId: 'agent-tn-1',
+    agentName: 'S. Ramanathan (TNRERA Certified)',
+    agentPhone: '+91 98400 12890',
+    agentPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
   }
 ];

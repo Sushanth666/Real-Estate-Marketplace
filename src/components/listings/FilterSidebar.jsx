@@ -16,7 +16,7 @@ import { indianCities } from '../../data/citiesData';
 export function FilterSidebar({ isMobile = false, onCloseMobile = () => {} }) {
   const { filters, updateFilter, resetFilters } = useMarketplace();
 
-  const propertyTypes = ['Apartment', 'Luxury Villa', 'Penthouse', 'Duplex', 'Builder Floor'];
+  const propertyTypes = ['Apartment', 'Luxury Villa', 'Individual House', 'Penthouse', 'Duplex', 'Builder Floor'];
   const allAmenities = [
     'Swimming Pool',
     'Clubhouse',
