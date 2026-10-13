@@ -24,22 +24,20 @@ export function FeaturedProperties() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              <span>Signature Collection</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
-              Featured Verified Homes
-            </h2>
-            <p className="text-slate-500 text-sm sm:text-base mt-2 max-w-xl">
-              Handpicked luxury properties verified for clear title ownership, RERA approvals, and world-class architecture.
-            </p>
+        <div className="mb-8">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <span>Signature Collection</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
+            Featured Verified Homes
+          </h2>
+          <p className="text-slate-500 text-sm sm:text-base mt-2 max-w-2xl">
+            Handpicked luxury properties verified for clear title ownership, RERA approvals, and world-class architecture.
+          </p>
 
           {/* Filter Pills */}
-          <div className="mt-6 md:mt-0 flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+          <div className="mt-6 flex items-center gap-2.5 overflow-x-auto pb-2 no-scrollbar">
             {[
               { id: 'all', label: 'All Featured' },
               { id: 'tamilnadu', label: '⭐ Tamil Nadu Signature' },
