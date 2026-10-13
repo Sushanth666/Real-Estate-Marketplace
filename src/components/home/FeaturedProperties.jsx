@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { useMarketplace } from '../../context/MarketplaceContext';
+import { PropertyCard } from '../common/PropertyCard';
+
+export function FeaturedProperties() {
+  const { properties, navigateTo, updateFilter } = useMarketplace();
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  const filtered = properties.filter(prop => {
+    if (activeCategory === 'all') return true;
+    if (activeCategory === 'penthouse') return prop.propertyType.toLowerCase() === 'penthouse';
+    if (activeCategory === 'villa') return prop.propertyType.toLowerCase() === 'luxury villa';
+    if (activeCategory === 'rent') return prop.purpose === 'rent';
+    if (activeCategory === 'mumbai') return prop.city.toLowerCase() === 'mumbai';
+    return true;
+  }).slice(0, 6);
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+          <div>
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span>Signature Collection</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
+              Featured Verified Homes
+            </h2>
+            <p className="text-slate-500 text-sm sm:text-base mt-2 max-w-xl">
+              Handpicked luxury properties verified for clear title ownership, RERA approvals, and world-class architecture.
+            </p>
+          </div>
+
+          {/* Filter Pills */}
+          <div className="mt-6 md:mt-0 flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+            {[
+              { id: 'all', label: 'All Featured' },
+              { id: 'penthouse', label: 'Penthouses' },
+              { id: 'villa', label: 'Villas' },
+              { id: 'mumbai', label: 'Mumbai Sea-Facing' },
+              { id: 'rent', label: 'For Rent' },
+            ].map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                  activeCategory === cat.id
+                    ? 'bg-slate-900 text-white shadow-md'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Properties Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filtered.map(property => (
+            <PropertyCard key={property.id} property={property} layout="grid" />
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-14 text-center">
+          <button
+            onClick={() => {
+              updateFilter('purpose', 'all');
+              navigateTo('listings');
+            }}
+            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-brand-700 text-white font-bold px-8 py-3.5 rounded-2xl transition-all shadow-md hover:shadow-xl text-sm"
+          >
+            <span>Explore All {properties.length} Properties</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+      </div>
+    </section>
+  );
+}
