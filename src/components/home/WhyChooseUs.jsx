@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   ShieldCheck, 
   Sparkles, 
@@ -44,11 +45,17 @@ export function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-20 bg-slate-50 border-t border-slate-200/60">
+    <section className="py-20 bg-slate-50 border-t border-slate-200/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-200 mb-3">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-200 mb-3 shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span>The BharatNivas Advantage</span>
           </div>
@@ -58,24 +65,29 @@ export function WhyChooseUs() {
           <p className="text-slate-500 text-sm sm:text-base mt-2">
             Built for modern homebuyers and NRIs who value transparency, architectural excellence, and peace of mind.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group bg-white p-7 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-brand-200 transition-all cursor-default"
             >
-              <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-brand-50 transition-all duration-300">
                 {item.icon}
               </div>
-              <h3 className="text-lg font-bold font-display text-slate-900 mb-2">
+              <h3 className="text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-brand-700 transition-colors">
                 {item.title}
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -83,3 +95,4 @@ export function WhyChooseUs() {
     </section>
   );
 }
+

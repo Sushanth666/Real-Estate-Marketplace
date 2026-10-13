@@ -89,26 +89,32 @@ export function PropertyDetailView() {
       {/* Top Navigation & Breadcrumb */}
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
             onClick={() => navigateTo('listings')}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-brand-700 transition-colors"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-brand-700 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Listings</span>
-          </button>
+          </motion.button>
 
           <div className="flex items-center gap-2">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleShare}
-              className="p-2 sm:px-3 sm:py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+              className="p-2 sm:px-3 sm:py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Share2 className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Share</span>
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => toggleCompare(currentProperty.id)}
-              className={`p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+              className={`p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
                 isCompared
                   ? 'bg-brand-600 text-white border-brand-600'
                   : 'border-slate-200 text-slate-700 hover:bg-slate-50'
@@ -116,11 +122,13 @@ export function PropertyDetailView() {
             >
               <Scale className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{isCompared ? 'In Compare' : 'Compare'}</span>
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => toggleWishlist(currentProperty.id)}
-              className={`p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+              className={`p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
                 isWishlisted
                   ? 'bg-rose-500 text-white border-rose-500'
                   : 'border-slate-200 text-slate-700 hover:bg-slate-50'
@@ -128,7 +136,7 @@ export function PropertyDetailView() {
             >
               <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-current' : ''}`} />
               <span className="hidden sm:inline">{isWishlisted ? 'Saved' : 'Save'}</span>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
@@ -400,26 +408,30 @@ export function PropertyDetailView() {
                 </div>
 
                 <div className="flex gap-2">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => setActiveFloorPlan('3bhk')}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                       activeFloorPlan === '3bhk'
-                        ? 'bg-slate-900 text-white'
+                        ? 'bg-slate-900 text-white shadow-xs'
                         : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                     }`}
                   >
                     {currentProperty.bhk} BHK Layout
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => setActiveFloorPlan('penthouse')}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                       activeFloorPlan === 'penthouse'
-                        ? 'bg-slate-900 text-white'
+                        ? 'bg-slate-900 text-white shadow-xs'
                         : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                     }`}
                   >
                     Duplex / Terrace Level
-                  </button>
+                  </motion.button>
                 </div>
               </div>
 
@@ -524,31 +536,37 @@ export function PropertyDetailView() {
 
                 {/* Direct Actions */}
                 <div className="space-y-3 mb-6">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setScheduleModalProp(currentProperty)}
-                    className="w-full bg-slate-900 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md"
+                    className="w-full bg-slate-900 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer"
                   >
                     <Calendar className="w-4 h-4" />
                     <span>Schedule Private Site Visit</span>
-                  </button>
+                  </motion.button>
 
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     href={`https://wa.me/919820144521?text=Hi, I am interested in ${encodeURIComponent(currentProperty.title)} on BharatNivas.`}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+                    className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Inquire via WhatsApp</span>
-                  </a>
+                  </motion.a>
 
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     href={`tel:${currentProperty.agentPhone || '+919820144521'}`}
-                    className="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold py-3 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all"
+                    className="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold py-3 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     <Phone className="w-4 h-4 text-brand-600" />
                     <span>Call Advisor ({currentProperty.agentPhone || '+91 98201 44521'})</span>
-                  </a>
+                  </motion.a>
                 </div>
 
                 {/* Developer Stamp */}
@@ -616,21 +634,34 @@ export function PropertyDetailView() {
       {/* High-Resolution Photo Lightbox Modal */}
       <AnimatePresence>
         {activePhotoModal && (
-          <div className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-between p-4 sm:p-8">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-between p-4 sm:p-8 backdrop-blur-md"
+          >
             <div className="flex items-center justify-between text-white max-w-7xl mx-auto w-full">
               <div>
                 <h4 className="font-bold text-base sm:text-lg">{currentProperty.title}</h4>
                 <p className="text-xs text-slate-400">Photo {modalPhotoIndex + 1} of {images.length}</p>
               </div>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => setActivePhotoModal(false)}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white"
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white cursor-pointer"
               >
                 <X className="w-6 h-6" />
-              </button>
+              </motion.button>
             </div>
 
-            <div className="relative flex-1 flex items-center justify-center my-4 max-w-5xl mx-auto w-full">
+            <motion.div 
+              key={modalPhotoIndex}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              className="relative flex-1 flex items-center justify-center my-4 max-w-5xl mx-auto w-full"
+            >
               <img
                 src={images[modalPhotoIndex]}
                 alt="Enlarged photo"
@@ -641,23 +672,25 @@ export function PropertyDetailView() {
                 }}
                 className="max-h-[75vh] max-w-full object-contain rounded-2xl shadow-2xl"
               />
-            </div>
+            </motion.div>
 
             {/* Thumbnail Strip */}
             <div className="flex gap-2 justify-center overflow-x-auto py-2">
               {images.map((img, i) => (
-                <button
+                <motion.button
                   key={i}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => setModalPhotoIndex(i)}
-                  className={`w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
-                    modalPhotoIndex === i ? 'border-brand-500 scale-105' : 'border-transparent opacity-50'
+                  className={`w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
+                    modalPhotoIndex === i ? 'border-brand-500 scale-105 shadow-md' : 'border-transparent opacity-50 hover:opacity-80'
                   }`}
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
-                </button>
+                </motion.button>
               ))}
             </div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
 

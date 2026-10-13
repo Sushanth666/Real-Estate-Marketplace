@@ -27,14 +27,20 @@ export function EmiCalculatorWidget() {
   return (
     <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 bg-brand-950/80 px-3 py-1 rounded-full border border-brand-500/30 mb-3">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto text-center mb-14"
+        >
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 bg-brand-950/80 px-3 py-1 rounded-full border border-brand-500/30 mb-3 shadow-md">
             <Calculator className="w-3.5 h-3.5" />
             <span>Interactive Financial Planning</span>
           </div>
@@ -44,10 +50,16 @@ export function EmiCalculatorWidget() {
           <p className="text-slate-400 text-sm sm:text-base mt-2">
             Plan your dream home budget with prevailing Indian banking rates from SBI, HDFC Bank, ICICI & Kotak.
           </p>
-        </div>
+        </motion.div>
 
         {/* Calculator Main Grid */}
-        <div className="max-w-5xl mx-auto bg-slate-800/80 rounded-3xl p-6 sm:p-10 border border-slate-700 backdrop-blur-xl shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="max-w-5xl mx-auto bg-slate-800/80 rounded-3xl p-6 sm:p-10 border border-slate-700 backdrop-blur-xl shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+        >
           
           {/* Sliders Area (7 cols) */}
           <div className="lg:col-span-7 space-y-7">
@@ -69,7 +81,7 @@ export function EmiCalculatorWidget() {
                 step="500000"
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
-                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500"
+                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500 hover:accent-brand-400 transition-all"
               />
               <div className="flex justify-between text-[11px] text-slate-500 mt-1">
                 <span>₹20 Lakhs</span>
@@ -95,7 +107,7 @@ export function EmiCalculatorWidget() {
                 step="0.1"
                 value={interestRate}
                 onChange={(e) => setInterestRate(Number(e.target.value))}
-                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500"
+                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500 hover:accent-brand-400 transition-all"
               />
               <div className="flex justify-between text-[11px] text-slate-500 mt-1">
                 <span>7.5% (Prime)</span>
@@ -121,7 +133,7 @@ export function EmiCalculatorWidget() {
                 step="1"
                 value={tenureYears}
                 onChange={(e) => setTenureYears(Number(e.target.value))}
-                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500"
+                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500 hover:accent-brand-400 transition-all"
               />
               <div className="flex justify-between text-[11px] text-slate-500 mt-1">
                 <span>5 Years</span>
@@ -136,25 +148,31 @@ export function EmiCalculatorWidget() {
                 Instant Approvals Partner Banks:
               </p>
               <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-300">
-                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600">SBI Home Loans</span>
-                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600">HDFC Bank</span>
-                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600">ICICI Bank</span>
-                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600">Axis Bank</span>
+                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600 hover:border-slate-500 transition-colors">SBI Home Loans</span>
+                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600 hover:border-slate-500 transition-colors">HDFC Bank</span>
+                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600 hover:border-slate-500 transition-colors">ICICI Bank</span>
+                <span className="bg-slate-700/60 px-2.5 py-1 rounded-lg border border-slate-600 hover:border-slate-500 transition-colors">Axis Bank</span>
               </div>
             </div>
 
           </div>
 
           {/* Results Summary Card (5 cols) */}
-          <div className="lg:col-span-5 bg-slate-900 rounded-2xl p-6 sm:p-7 border border-slate-700 flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-slate-900 rounded-2xl p-6 sm:p-7 border border-slate-700 flex flex-col justify-between shadow-xl">
             <div>
               <p className="text-xs uppercase font-bold text-slate-400 tracking-wider mb-1">
                 Your Monthly EMI
               </p>
-              <div className="text-3xl sm:text-4xl font-extrabold font-display text-sky-400 mb-6">
+              <motion.div 
+                key={monthlyEMI}
+                initial={{ scale: 0.96, opacity: 0.8 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                className="text-3xl sm:text-4xl font-extrabold font-display text-sky-400 mb-6"
+              >
                 {formatIndianCurrency(monthlyEMI)}
                 <span className="text-xs text-slate-400 font-normal ml-1">/ month</span>
-              </div>
+              </motion.div>
 
               {/* Progress Breakdown Bar */}
               <div className="space-y-2 mb-6">
@@ -200,18 +218,21 @@ export function EmiCalculatorWidget() {
             </div>
 
             {/* CTA */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => alert('Home Loan pre-approval request submitted! An SBI/HDFC representative will connect with you.')}
-              className="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-lg shadow-brand-600/30"
+              className="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-lg shadow-brand-600/30 cursor-pointer"
             >
               <ShieldCheck className="w-4 h-4" />
               <span>Apply Pre-Approved Loan</span>
-            </button>
+            </motion.button>
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
   );
 }
+

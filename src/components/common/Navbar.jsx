@@ -39,7 +39,9 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20 gap-4">
           
           {/* Brand Logo */}
-          <div 
+          <motion.div 
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => navigateTo('home')}
             className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
@@ -49,59 +51,69 @@ export function Navbar() {
             <span className="font-display font-extrabold text-2xl tracking-tight text-slate-900 group-hover:text-brand-700 transition-colors">
               Bharat<span className="text-brand-600">Nivas</span>
             </span>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => navigateTo('home')}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
                 currentView === 'home'
                   ? 'text-brand-700 bg-brand-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
               }`}
             >
               Home
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => {
                 updateFilter('purpose', 'all');
                 navigateTo('listings');
               }}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
                 currentView === 'listings'
                   ? 'text-brand-700 bg-brand-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
               }`}
             >
               Explore Properties
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => navigateTo('cities')}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
                 currentView === 'cities'
                   ? 'text-brand-700 bg-brand-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
               }`}
             >
               Top Cities
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => navigateTo('agents')}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
                 currentView === 'agents'
                   ? 'text-brand-700 bg-brand-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
               }`}
             >
               RERA Advisors
-            </button>
+            </motion.button>
 
             {/* Compare Button */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => {
                 if (compareList.length > 0) {
                   setIsCompareModalOpen(true);
@@ -109,44 +121,46 @@ export function Navbar() {
                   navigateTo('listings');
                 }
               }}
-              className="whitespace-nowrap relative px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="whitespace-nowrap relative px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer"
             >
               <Scale className="w-4 h-4 text-slate-500" />
               <span>Compare</span>
               {compareList.length > 0 && (
-                <span className="bg-brand-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                <span className="bg-brand-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-pulse">
                   {compareList.length}
                 </span>
               )}
-            </button>
+            </motion.button>
 
             {/* Wishlist Button */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => navigateTo('wishlist')}
-              className={`whitespace-nowrap relative px-3.5 py-2 text-sm font-medium rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              className={`whitespace-nowrap relative px-3.5 py-2 text-sm font-medium rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
                 currentView === 'wishlist'
                   ? 'text-rose-600 bg-rose-50/80 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
               }`}
             >
-              <Heart className={`w-4 h-4 ${wishlist.length > 0 ? 'text-rose-500 fill-rose-500' : 'text-slate-500'}`} />
+              <Heart className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${wishlist.length > 0 ? 'text-rose-500 fill-rose-500' : 'text-slate-500'}`} />
               <span>Saved</span>
               {wishlist.length > 0 && (
-                <span className="bg-rose-500 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                <span className="bg-rose-500 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-pulse">
                   {wishlist.length}
                 </span>
               )}
-            </button>
+            </motion.button>
           </nav>
 
           {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
             {/* Post Property Free Button */}
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => setIsPostPropertyOpen(true)}
-              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold tracking-wide uppercase shadow-sm flex items-center gap-2 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold tracking-wide uppercase shadow-sm flex items-center gap-2 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 cursor-pointer"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Post Property FREE</span>
@@ -155,9 +169,11 @@ export function Navbar() {
             {/* User Auth or Profile */}
             {currentUser ? (
               <div className="relative">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="whitespace-nowrap flex items-center gap-2.5 px-3 py-2 rounded-2xl border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-white transition-all text-left outline-none focus:outline-none"
+                  className="whitespace-nowrap flex items-center gap-2.5 px-3 py-2 rounded-2xl border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-white transition-all text-left outline-none focus:outline-none cursor-pointer"
                 >
                   <div className="w-8 h-8 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-xs shadow-xs">
                     {currentUser.name.charAt(0)}
@@ -170,59 +186,69 @@ export function Navbar() {
                       {currentUser.role || 'Buyer'}
                     </span>
                   </div>
-                </button>
+                </motion.button>
 
                 {/* Dropdown Menu */}
-                {userDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 z-50 animate-in fade-in slide-in-from-top-2">
-                    <div className="px-3 py-2.5 border-b border-slate-100">
-                      <p className="text-xs font-bold text-slate-900">{currentUser.name}</p>
-                      <p className="text-xs text-slate-500 truncate">{currentUser.email || currentUser.phone}</p>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        setUserDropdownOpen(false);
-                        navigateTo('wishlist');
-                      }}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl flex items-center gap-2 mt-1"
+                <AnimatePresence>
+                  {userDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6, scale: 0.96 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -6, scale: 0.96 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 z-50"
                     >
-                      <Heart className="w-4 h-4 text-rose-500" />
-                      <span>My Saved Homes ({wishlist.length})</span>
-                    </button>
+                      <div className="px-3 py-2.5 border-b border-slate-100">
+                        <p className="text-xs font-bold text-slate-900">{currentUser.name}</p>
+                        <p className="text-xs text-slate-500 truncate">{currentUser.email || currentUser.phone}</p>
+                      </div>
 
-                    <button
-                      onClick={() => {
-                        setUserDropdownOpen(false);
-                        setIsPostPropertyOpen(true);
-                      }}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl flex items-center gap-2"
-                    >
-                      <PlusCircle className="w-4 h-4 text-brand-600" />
-                      <span>Add New Listing</span>
-                    </button>
+                      <button
+                        onClick={() => {
+                          setUserDropdownOpen(false);
+                          navigateTo('wishlist');
+                        }}
+                        className="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl flex items-center gap-2 mt-1 cursor-pointer transition-colors"
+                      >
+                        <Heart className="w-4 h-4 text-rose-500" />
+                        <span>My Saved Homes ({wishlist.length})</span>
+                      </button>
 
-                    <button
-                      onClick={() => {
-                        setUserDropdownOpen(false);
-                        logoutUser();
-                      }}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 rounded-xl flex items-center gap-2 mt-1 border-t border-slate-100"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Sign Out</span>
-                    </button>
-                  </div>
-                )}
+                      <button
+                        onClick={() => {
+                          setUserDropdownOpen(false);
+                          setIsPostPropertyOpen(true);
+                        }}
+                        className="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl flex items-center gap-2 cursor-pointer transition-colors"
+                      >
+                        <PlusCircle className="w-4 h-4 text-brand-600" />
+                        <span>Add New Listing</span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setUserDropdownOpen(false);
+                          logoutUser();
+                        }}
+                        className="w-full text-left px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 rounded-xl flex items-center gap-2 mt-1 border-t border-slate-100 cursor-pointer transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Sign Out</span>
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ) : (
-              <button
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => setIsAuthModalOpen(true)}
-                className="px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-sm"
+                className="px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-sm cursor-pointer"
               >
                 <User className="w-4 h-4" />
                 <span>Sign In / OTP</span>
-              </button>
+              </motion.button>
             )}
           </div>
 

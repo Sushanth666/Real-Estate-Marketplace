@@ -111,7 +111,9 @@ export function HeroSection() {
         >
           {/* Tabs: Buy / Rent / Commercial */}
           <div className="flex items-center gap-2 border-b border-slate-100 pb-4 mb-5">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => setActiveTab('buy')}
               className={`px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeTab === 'buy'
@@ -120,8 +122,10 @@ export function HeroSection() {
               }`}
             >
               Buy Homes
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => setActiveTab('rent')}
               className={`px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeTab === 'rent'
@@ -130,8 +134,10 @@ export function HeroSection() {
               }`}
             >
               Luxury Rent
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => {
                 setActiveTab('buy');
                 setPropertyType('Penthouse');
@@ -140,7 +146,7 @@ export function HeroSection() {
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>Penthouses & Villas</span>
-            </button>
+            </motion.button>
           </div>
 
           {/* Search Inputs Grid */}
@@ -206,13 +212,15 @@ export function HeroSection() {
 
             {/* Search CTA */}
             <div className="flex flex-col justify-end">
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-5 rounded-xl shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition-all"
+                className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-5 rounded-xl shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
                 <Search className="w-4 h-4" />
                 <span>Search Properties</span>
-              </button>
+              </motion.button>
             </div>
           </form>
 
@@ -221,19 +229,21 @@ export function HeroSection() {
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-slate-400 font-medium">Popular BHKs:</span>
               {['all', '2', '3', '4', '5+'].map((item) => (
-                <button
+                <motion.button
                   key={item}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => {
                     setBhk(item);
                   }}
                   className={`px-2.5 py-1 rounded-lg font-semibold transition-all ${
                     bhk === item
-                      ? 'bg-slate-900 text-white'
+                      ? 'bg-slate-900 text-white shadow-xs'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
                   {item === 'all' ? 'All' : `${item} BHK`}
-                </button>
+                </motion.button>
               ))}
             </div>
 
@@ -252,22 +262,24 @@ export function HeroSection() {
 
         {/* Live Marketplace Statistics Banner */}
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-center">
-          <div className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <p className="text-2xl sm:text-3xl font-extrabold font-display text-white">₹3,400+ Cr</p>
-            <p className="text-xs text-slate-400 mt-0.5">Asset Value Listed</p>
-          </div>
-          <div className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <p className="text-2xl sm:text-3xl font-extrabold font-display text-sky-400">100%</p>
-            <p className="text-xs text-slate-400 mt-0.5">RERA Certified Projects</p>
-          </div>
-          <div className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <p className="text-2xl sm:text-3xl font-extrabold font-display text-amber-400">8 Metros</p>
-            <p className="text-xs text-slate-400 mt-0.5">Across India</p>
-          </div>
-          <div className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <p className="text-2xl sm:text-3xl font-extrabold font-display text-white">4.9 ★</p>
-            <p className="text-xs text-slate-400 mt-0.5">Client Rating</p>
-          </div>
+          {[
+            { value: '₹3,400+ Cr', label: 'Asset Value Listed', color: 'text-white' },
+            { value: '100%', label: 'RERA Certified Projects', color: 'text-sky-400' },
+            { value: '8 Metros', label: 'Across India', color: 'text-amber-400' },
+            { value: '4.9 ★', label: 'Client Rating', color: 'text-white' }
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35 + i * 0.08 }}
+              whileHover={{ y: -5, scale: 1.03 }}
+              className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/10 hover:border-brand-500/30 transition-all cursor-default"
+            >
+              <p className={`text-2xl sm:text-3xl font-extrabold font-display ${stat.color}`}>{stat.value}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{stat.label}</p>
+            </motion.div>
+          ))}
         </div>
 
       </div>

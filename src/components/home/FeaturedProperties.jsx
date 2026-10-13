@@ -24,8 +24,14 @@ export function FeaturedProperties() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="mb-8">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 mb-3">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 mb-3 shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span>Signature Collection</span>
           </div>
@@ -46,20 +52,22 @@ export function FeaturedProperties() {
               { id: 'penthouse', label: 'Penthouses' },
               { id: 'rent', label: 'For Rent' },
             ].map(cat => (
-              <button
+              <motion.button
                 key={cat.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   activeCategory === cat.id
                     ? 'bg-slate-900 text-white shadow-md'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
                 {cat.label}
-              </button>
+              </motion.button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Properties Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -70,16 +78,18 @@ export function FeaturedProperties() {
 
         {/* Bottom CTA */}
         <div className="mt-14 text-center">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => {
               updateFilter('purpose', 'all');
               navigateTo('listings');
             }}
-            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-brand-700 text-white font-bold px-8 py-3.5 rounded-2xl transition-all shadow-md hover:shadow-xl text-sm"
+            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-brand-700 text-white font-bold px-8 py-3.5 rounded-2xl transition-all shadow-md hover:shadow-xl text-sm cursor-pointer"
           >
             <span>Explore All {properties.length} Properties</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
 
       </div>
