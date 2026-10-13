@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -50,6 +50,12 @@ export function PropertyDetailView() {
   const [loanTenure, setLoanTenure] = useState(20);
   const [loanInterestRate, setLoanInterestRate] = useState(8.5);
 
+  useEffect(() => {
+    const el = document.getElementById('main-scroll-container');
+    if (el) el.scrollTop = 0;
+    window.scrollTo(0, 0);
+  }, [currentProperty?.id]);
+
   if (!currentProperty) return null;
 
   const isWishlisted = isInWishlist(currentProperty.id);
@@ -81,7 +87,7 @@ export function PropertyDetailView() {
     <div className="bg-slate-50 min-h-screen pb-24">
       
       {/* Top Navigation & Breadcrumb */}
-      <div className="bg-white border-b border-slate-200 sticky top-20 z-30">
+      <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           <button
             onClick={() => navigateTo('listings')}
@@ -493,7 +499,7 @@ export function PropertyDetailView() {
 
           {/* Right Column: Sticky Verified Advisor & Visit Card (4 cols) */}
           <div className="lg:col-span-4">
-            <div className="sticky top-36 space-y-6">
+            <div className="sticky top-20 space-y-6">
               
               {/* Schedule Visit & Contact Advisor Card */}
               <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-md">

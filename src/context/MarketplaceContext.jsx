@@ -164,9 +164,9 @@ export function MarketplaceProvider({ children }) {
   const scrollToTop = () => {
     const scrollContainer = document.getElementById('main-scroll-container');
     if (scrollContainer) {
-      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollContainer.scrollTop = 0;
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   const viewPropertyDetail = (propertyId) => {
