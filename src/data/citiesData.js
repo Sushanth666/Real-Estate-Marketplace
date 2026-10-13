@@ -26,6 +26,19 @@ export const indianCities = [
     isFirstChoice: true
   },
   {
+    id: 'tamilnadu-madurai',
+    name: 'Madurai (Tamil Nadu)',
+    shortName: 'Madurai',
+    tagline: 'Cultural Heritage City & Vaigai Riverside',
+    state: 'Tamil Nadu',
+    propertyCount: '980+',
+    avgPriceSqft: '₹5,600/sqft',
+    popularLocalities: ['KK Nagar', 'Anna Nagar', 'Tallakulam', 'Bypass Road'],
+    image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80',
+    featured: true,
+    isFirstChoice: true
+  },
+  {
     id: 'mumbai',
     name: 'Mumbai',
     shortName: 'Mumbai',
@@ -70,7 +83,7 @@ export const indianCities = [
     propertyCount: '2,400+',
     avgPriceSqft: '₹9,600/sqft',
     popularLocalities: ['Jubilee Hills', 'Gachibowli', 'Financial District', 'Madhapur', 'Banjara Hills'],
-    image: 'https://images.unsplash.com/photo-1605007493699-ce65834f8a00?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
     featured: true
   },
   {
@@ -83,7 +96,7 @@ export const indianCities = [
     avgPriceSqft: '₹8,900/sqft',
     popularLocalities: ['Koregaon Park', 'Baner', 'Kalyani Nagar', 'Kharadi', 'Aundh'],
     image: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=800&q=80',
-    featured: false
+    featured: true
   },
   {
     id: 'goa',
@@ -95,7 +108,7 @@ export const indianCities = [
     avgPriceSqft: '₹16,500/sqft',
     popularLocalities: ['Assagao', 'Anjuna', 'Candolim', 'Aldona', 'Dona Paula'],
     image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
-    featured: false
+    featured: true
   },
   {
     id: 'kolkata',
@@ -107,6 +120,30 @@ export const indianCities = [
     avgPriceSqft: '₹7,400/sqft',
     popularLocalities: ['New Town', 'Ballygunge', 'Alipore', 'Salt Lake', 'EM Bypass'],
     image: 'https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=800&q=80',
-    featured: false
+    featured: true
+  },
+  {
+    id: 'kochi',
+    name: 'Kochi (Kerala)',
+    shortName: 'Kochi',
+    tagline: 'Queen of the Arabian Sea & Marine Drive Waterfronts',
+    state: 'Kerala',
+    propertyCount: '780+',
+    avgPriceSqft: '₹7,900/sqft',
+    popularLocalities: ['Marine Drive', 'Panampilly Nagar', 'Kakkanad Infopark', 'Kadavanthra'],
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+    featured: true
+  },
+  {
+    id: 'ahmedabad',
+    name: 'Ahmedabad',
+    shortName: 'Ahmedabad',
+    tagline: 'Sabarmati Riverfront & Vibrant Heritage Living',
+    state: 'Gujarat',
+    propertyCount: '1,450+',
+    avgPriceSqft: '₹6,800/sqft',
+    popularLocalities: ['SG Highway', 'Bodakdev', 'Prahlad Nagar', 'Thaltej', 'Ambli Road'],
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+    featured: true
   }
 ];

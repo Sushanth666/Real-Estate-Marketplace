@@ -32,10 +32,7 @@ export function QuickCitySelector() {
           </div>
 
           <button
-            onClick={() => {
-              updateFilter('selectedCity', 'all');
-              navigateTo('listings');
-            }}
+            onClick={() => navigateTo('cities')}
             className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800 group"
           >
             <span>View All Indian Metros</span>
