@@ -57,6 +57,7 @@ export function HeroSection() {
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85"
           alt="Luxury Indian Real Estate"
+          referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center scale-105 animate-fade-in"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/40" />

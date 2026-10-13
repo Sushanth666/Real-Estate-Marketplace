@@ -8,7 +8,7 @@ export const indianCities = [
     propertyCount: '4,850+',
     avgPriceSqft: '₹12,400/sqft',
     popularLocalities: ['Boat Club Road', 'Poes Garden', 'ECR (East Coast Road)', 'Anna Nagar', 'OMR Corridor'],
-    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
     featured: true,
     isFirstChoice: true
   },
