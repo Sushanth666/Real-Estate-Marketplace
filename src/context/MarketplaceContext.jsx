@@ -27,14 +27,14 @@ export function MarketplaceProvider({ children }) {
   const [wishlist, setWishlist] = useState(() => {
     try {
       const saved = localStorage.getItem(WISHLIST_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : ['prop-tn-1', 'prop-tn-2'];
+      return saved ? JSON.parse(saved) : [];
     } catch (e) {
-      return ['prop-tn-1', 'prop-tn-2'];
+      return [];
     }
   });
 
-  // Compare state (up to 4 items)
-  const [compareList, setCompareList] = useState(['prop-tn-1', 'prop-tn-2']);
+  // Compare state (up to 4 items) - starts empty so floating bar is hidden on initial load
+  const [compareList, setCompareList] = useState([]);
 
   // Authentication State
   const [currentUser, setCurrentUser] = useState(() => {
