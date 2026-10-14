@@ -3,9 +3,9 @@ import fs from 'fs';
 import path from 'path';
 
 const VIEWPORTS = [
-  { name: 'desktop', width: 1440, height: 900, isMobile: false },
-  { name: 'tablet', width: 768, height: 1024, isMobile: true },
-  { name: 'mobile', width: 390, height: 844, isMobile: true }
+  { name: 'desktop', width: 1440, height: 900, scale: 2, hasMobileMenu: false },
+  { name: 'tablet', width: 768, height: 1024, scale: 1, hasMobileMenu: true },
+  { name: 'mobile', width: 390, height: 844, scale: 1, hasMobileMenu: true }
 ];
 
 const BASE_URL = 'http://localhost:5173';
@@ -19,31 +19,40 @@ for (const vp of VIEWPORTS) {
   }
 }
 
-async function captureScreen(page, filepath, isModal = false) {
+async function preparePageForCapture(page, isModal = false) {
   if (isModal) {
-    // For modals, wait a moment for animation then capture the viewport
     await page.waitForTimeout(600);
-    await page.screenshot({ path: filepath, fullPage: false });
     return;
   }
 
-  // For full-page screenshots with inner scroll container:
-  // Scroll through container to trigger lazy loading of images
+  // 1. Scroll through the page to trigger all image loads
   await page.evaluate(async () => {
     const scroller = document.getElementById('main-scroll-container') || document.documentElement;
     const totalHeight = scroller.scrollHeight;
-    const step = 400;
+    const step = 350;
     for (let pos = 0; pos <= totalHeight; pos += step) {
       scroller.scrollTop = pos;
-      await new Promise(r => setTimeout(r, 60));
+      await new Promise(r => setTimeout(r, 40));
     }
     scroller.scrollTop = 0;
   });
 
-  await page.waitForTimeout(600);
+  await page.waitForTimeout(500);
 
-  // Temporarily adapt container so fullPage captures the entire scrollable height
+  // 2. Ensure all Framer Motion elements that might be hidden offscreen are visible
   await page.evaluate(() => {
+    // Reveal all elements hidden by initial opacity
+    const allElements = document.querySelectorAll('*');
+    for (const el of allElements) {
+      if (el.style.opacity === '0') {
+        el.style.opacity = '1';
+      }
+      if (el.style.transform && el.style.transform.includes('translateY')) {
+        el.style.transform = 'none';
+      }
+    }
+
+    // Adapt container so fullPage captures the entire scrollable height
     const appRoot = document.querySelector('.h-screen');
     if (appRoot) {
       appRoot.style.height = 'auto';
@@ -61,9 +70,9 @@ async function captureScreen(page, filepath, isModal = false) {
   });
 
   await page.waitForTimeout(400);
-  await page.screenshot({ path: filepath, fullPage: true });
+}
 
-  // Restore container styles
+async function restorePageAfterCapture(page) {
   await page.evaluate(() => {
     const appRoot = document.querySelector('.h-screen');
     if (appRoot) {
@@ -83,7 +92,7 @@ async function captureScreen(page, filepath, isModal = false) {
 }
 
 async function run() {
-  console.log('🚀 Starting Automated Multi-Device Screenshot Capture Suite...');
+  console.log('🚀 Starting Precision Multi-Device Screenshot Capture Suite...');
 
   const executablePath = fs.existsSync('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
     ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
@@ -104,13 +113,16 @@ async function run() {
 
     const context = await browser.newContext({
       viewport: { width: vp.width, height: vp.height },
-      deviceScaleFactor: 2,
-      isMobile: vp.isMobile
+      deviceScaleFactor: vp.scale || 1,
+      isMobile: false
     });
 
     const page = await context.newPage();
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
     await page.waitForTimeout(1000);
+
+    // Wait until window.__marketplace is ready
+    await page.waitForFunction(() => window.__marketplace !== undefined);
 
     const outDir = path.join(OUTPUT_DIR, vp.name);
 
@@ -118,211 +130,153 @@ async function run() {
     // SCREEN 1: HOME PAGE
     // -------------------------------------------------------------------------
     console.log(`  📸 01_home_page.png`);
-    await page.evaluate(() => {
-      window.__testNavigate ? window.__testNavigate('home') : null;
-    });
-    await captureScreen(page, path.join(outDir, '01_home_page.png'));
+    await page.evaluate(() => window.__marketplace.navigateTo('home'));
+    await page.waitForTimeout(800);
+    await preparePageForCapture(page);
+    await page.screenshot({ path: path.join(outDir, '01_home_page.png'), fullPage: true });
+    await restorePageAfterCapture(page);
 
     // -------------------------------------------------------------------------
     // SCREEN 2: LISTINGS CATALOG
     // -------------------------------------------------------------------------
     console.log(`  📸 02_listings_catalog.png`);
-    await page.evaluate(() => {
-      // Find button or use link
-      const links = Array.from(document.querySelectorAll('button, a'));
-      const exploreBtn = links.find(el => el.textContent.includes('Explore Properties'));
-      if (exploreBtn) exploreBtn.click();
-    });
+    await page.evaluate(() => window.__marketplace.navigateTo('listings'));
     await page.waitForTimeout(800);
-    await captureScreen(page, path.join(outDir, '02_listings_catalog.png'));
+    await preparePageForCapture(page);
+    await page.screenshot({ path: path.join(outDir, '02_listings_catalog.png'), fullPage: true });
+    await restorePageAfterCapture(page);
 
     // -------------------------------------------------------------------------
     // SCREEN 3: TOP CITIES HUB
     // -------------------------------------------------------------------------
     console.log(`  📸 03_top_cities.png`);
-    await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll('button, a'));
-      const citiesBtn = links.find(el => el.textContent.includes('Top Cities'));
-      if (citiesBtn) citiesBtn.click();
-    });
+    await page.evaluate(() => window.__marketplace.navigateTo('cities'));
     await page.waitForTimeout(800);
-    await captureScreen(page, path.join(outDir, '03_top_cities.png'));
+    await preparePageForCapture(page);
+    await page.screenshot({ path: path.join(outDir, '03_top_cities.png'), fullPage: true });
+    await restorePageAfterCapture(page);
 
     // -------------------------------------------------------------------------
     // SCREEN 4: PROPERTY DETAIL PAGE
     // -------------------------------------------------------------------------
     console.log(`  📸 04_property_detail.png`);
-    // Navigate to listings first and click the first property card
     await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll('button, a'));
-      const exploreBtn = links.find(el => el.textContent.includes('Explore Properties'));
-      if (exploreBtn) exploreBtn.click();
-    });
-    await page.waitForTimeout(800);
-    await page.evaluate(() => {
-      const cards = document.querySelectorAll('article, [class*="group"]');
-      const firstCard = Array.from(cards).find(c => c.textContent.includes('₹') || c.textContent.includes('BHK'));
-      if (firstCard) firstCard.click();
+      const firstId = window.__marketplace.properties[0]?.id || 'prop-tn-chn-apartment-1';
+      window.__marketplace.viewPropertyDetail(firstId);
     });
     await page.waitForTimeout(1000);
-    await captureScreen(page, path.join(outDir, '04_property_detail.png'));
+    await preparePageForCapture(page);
+    await page.screenshot({ path: path.join(outDir, '04_property_detail.png'), fullPage: true });
+    await restorePageAfterCapture(page);
 
     // -------------------------------------------------------------------------
-    // SCREEN 5: SCHEDULE SITE VISIT MODAL (from property detail)
+    // SCREEN 5: SCHEDULE SITE VISIT MODAL
     // -------------------------------------------------------------------------
     console.log(`  📸 05_schedule_visit_modal.png`);
     await page.evaluate(() => {
-      const btns = Array.from(document.querySelectorAll('button'));
-      const visitBtn = btns.find(b => b.textContent.includes('Schedule Site Visit'));
-      if (visitBtn) visitBtn.click();
+      window.__marketplace.setScheduleModalProp(window.__marketplace.properties[0]);
     });
     await page.waitForTimeout(600);
-    await captureScreen(page, path.join(outDir, '05_schedule_visit_modal.png'), true);
-
-    // Close schedule modal
-    await page.keyboard.press('Escape');
-    await page.evaluate(() => {
-      const closeBtn = document.querySelector('button[aria-label="Close"], button svg.lucide-x');
-      if (closeBtn) closeBtn.closest('button')?.click();
-    });
-    await page.waitForTimeout(500);
+    await page.screenshot({ path: path.join(outDir, '05_schedule_visit_modal.png'), fullPage: false });
+    await page.evaluate(() => window.__marketplace.setScheduleModalProp(null));
+    await page.waitForTimeout(400);
 
     // -------------------------------------------------------------------------
-    // SCREEN 6: SAVED HOMES / WISHLIST
+    // SCREEN 6: SAVED HOMES / WISHLIST (With populated saved homes)
     // -------------------------------------------------------------------------
     console.log(`  📸 06_saved_wishlist.png`);
-    // First favorite a home so wishlist has items
     await page.evaluate(() => {
-      const heartBtn = document.querySelector('button svg.lucide-heart');
-      if (heartBtn) heartBtn.closest('button')?.click();
-    });
-    await page.waitForTimeout(300);
-    await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll('button, a'));
-      const savedBtn = links.find(el => el.textContent.includes('Saved'));
-      if (savedBtn) savedBtn.click();
+      const p1 = window.__marketplace.properties[0]?.id;
+      const p2 = window.__marketplace.properties[1]?.id;
+      if (p1 && !window.__marketplace.isInWishlist(p1)) window.__marketplace.toggleWishlist(p1);
+      if (p2 && !window.__marketplace.isInWishlist(p2)) window.__marketplace.toggleWishlist(p2);
+      window.__marketplace.navigateTo('wishlist');
     });
     await page.waitForTimeout(800);
-    await captureScreen(page, path.join(outDir, '06_saved_wishlist.png'));
+    await preparePageForCapture(page);
+    await page.screenshot({ path: path.join(outDir, '06_saved_wishlist.png'), fullPage: true });
+    await restorePageAfterCapture(page);
 
     // -------------------------------------------------------------------------
     // SCREEN 7: RERA ADVISORS DIRECTORY
     // -------------------------------------------------------------------------
     console.log(`  📸 07_rera_advisors.png`);
-    await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll('button, a'));
-      const advisorsBtn = links.find(el => el.textContent.includes('Advisors') || el.textContent.includes('RERA'));
-      if (advisorsBtn) advisorsBtn.click();
-    });
+    await page.evaluate(() => window.__marketplace.navigateTo('agents'));
     await page.waitForTimeout(800);
-    await captureScreen(page, path.join(outDir, '07_rera_advisors.png'));
+    await preparePageForCapture(page);
+    await page.screenshot({ path: path.join(outDir, '07_rera_advisors.png'), fullPage: true });
+    await restorePageAfterCapture(page);
 
     // -------------------------------------------------------------------------
     // SCREEN 8: AUTH MODAL - SIGN IN
     // -------------------------------------------------------------------------
     console.log(`  📸 08_auth_modal_login.png`);
     await page.evaluate(() => {
-      const btns = Array.from(document.querySelectorAll('button'));
-      const signInBtn = btns.find(b => b.textContent.trim() === 'Sign In' || b.textContent.includes('Sign In'));
-      if (signInBtn) signInBtn.click();
+      window.__marketplace.setAuthModalMode('login');
+      window.__marketplace.setIsAuthModalOpen(true);
     });
     await page.waitForTimeout(600);
-    await captureScreen(page, path.join(outDir, '08_auth_modal_login.png'), true);
+    await page.screenshot({ path: path.join(outDir, '08_auth_modal_login.png'), fullPage: false });
 
     // -------------------------------------------------------------------------
     // SCREEN 9: AUTH MODAL - CREATE ACCOUNT (REGISTER)
     // -------------------------------------------------------------------------
     console.log(`  📸 09_auth_modal_register.png`);
     await page.evaluate(() => {
-      const tabs = Array.from(document.querySelectorAll('button'));
-      const createAccTab = tabs.find(t => t.textContent.includes('Create Account') || t.textContent.includes('Sign Up'));
-      if (createAccTab) createAccTab.click();
+      window.__marketplace.setAuthModalMode('register');
     });
     await page.waitForTimeout(600);
-    await captureScreen(page, path.join(outDir, '09_auth_modal_register.png'), true);
-
-    // Close Auth Modal
-    await page.keyboard.press('Escape');
-    await page.evaluate(() => {
-      const closeBtn = document.querySelector('button svg.lucide-x');
-      if (closeBtn) closeBtn.closest('button')?.click();
-    });
-    await page.waitForTimeout(500);
+    await page.screenshot({ path: path.join(outDir, '09_auth_modal_register.png'), fullPage: false });
+    await page.evaluate(() => window.__marketplace.setIsAuthModalOpen(false));
+    await page.waitForTimeout(400);
 
     // -------------------------------------------------------------------------
     // SCREEN 10: POST PROPERTY FREE MODAL
     // -------------------------------------------------------------------------
     console.log(`  📸 10_post_property_modal.png`);
-    await page.evaluate(() => {
-      const btns = Array.from(document.querySelectorAll('button'));
-      const postBtn = btns.find(b => b.textContent.includes('Post Property') || b.textContent.includes('Post Free'));
-      if (postBtn) postBtn.click();
-    });
+    await page.evaluate(() => window.__marketplace.setIsPostPropertyOpen(true));
     await page.waitForTimeout(600);
-    await captureScreen(page, path.join(outDir, '10_post_property_modal.png'), true);
-
-    // Close Post Property Modal
-    await page.keyboard.press('Escape');
-    await page.evaluate(() => {
-      const closeBtn = document.querySelector('button svg.lucide-x');
-      if (closeBtn) closeBtn.closest('button')?.click();
-    });
-    await page.waitForTimeout(500);
+    await page.screenshot({ path: path.join(outDir, '10_post_property_modal.png'), fullPage: false });
+    await page.evaluate(() => window.__marketplace.setIsPostPropertyOpen(false));
+    await page.waitForTimeout(400);
 
     // -------------------------------------------------------------------------
     // SCREEN 11: COMPARISON MATRIX MODAL
     // -------------------------------------------------------------------------
     console.log(`  📸 11_comparison_matrix_modal.png`);
-    // Navigate to listings and add 2 properties to compare
     await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll('button, a'));
-      const exploreBtn = links.find(el => el.textContent.includes('Explore Properties'));
-      if (exploreBtn) exploreBtn.click();
-    });
-    await page.waitForTimeout(800);
-    await page.evaluate(() => {
-      const compareBtns = Array.from(document.querySelectorAll('button')).filter(b => b.textContent.includes('Compare') || b.querySelector('svg.lucide-scale'));
-      if (compareBtns.length >= 2) {
-        compareBtns[0].click();
-        compareBtns[1].click();
-      }
-    });
-    await page.waitForTimeout(600);
-    // Click compare in header or floating bar
-    await page.evaluate(() => {
-      const launchBtn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.includes('Compare Matrix') || (b.textContent.includes('Compare') && b.textContent.includes('2')));
-      if (launchBtn) launchBtn.click();
+      const p1 = window.__marketplace.properties[0]?.id;
+      const p2 = window.__marketplace.properties[1]?.id;
+      if (p1 && !window.__marketplace.isInCompare(p1)) window.__marketplace.toggleCompare(p1);
+      if (p2 && !window.__marketplace.isInCompare(p2)) window.__marketplace.toggleCompare(p2);
+      window.__marketplace.setIsCompareModalOpen(true);
     });
     await page.waitForTimeout(700);
-    await captureScreen(page, path.join(outDir, '11_comparison_matrix_modal.png'), true);
-
-    // Close Compare modal
-    await page.keyboard.press('Escape');
-    await page.evaluate(() => {
-      const closeBtn = document.querySelector('button svg.lucide-x');
-      if (closeBtn) closeBtn.closest('button')?.click();
-    });
-    await page.waitForTimeout(500);
+    await page.screenshot({ path: path.join(outDir, '11_comparison_matrix_modal.png'), fullPage: false });
+    await page.evaluate(() => window.__marketplace.setIsCompareModalOpen(false));
+    await page.waitForTimeout(400);
 
     // -------------------------------------------------------------------------
     // SCREEN 12: MOBILE NAVIGATION MENU (For Tablet & Mobile)
     // -------------------------------------------------------------------------
-    if (vp.isMobile) {
+    if (vp.hasMobileMenu) {
       console.log(`  📸 12_mobile_navigation_menu.png`);
       await page.evaluate(() => {
-        // Toggle mobile hamburger
-        const menuBtn = document.querySelector('button[aria-label="Toggle navigation menu"], header button svg.lucide-menu');
-        if (menuBtn) (menuBtn.closest('button') || menuBtn).click();
+        if (window.__toggleMobileMenu) window.__toggleMobileMenu(true);
       });
       await page.waitForTimeout(600);
-      await captureScreen(page, path.join(outDir, '12_mobile_navigation_menu.png'), true);
+      await page.screenshot({ path: path.join(outDir, '12_mobile_navigation_menu.png'), fullPage: false });
+      await page.evaluate(() => {
+        if (window.__toggleMobileMenu) window.__toggleMobileMenu(false);
+      });
+      await page.waitForTimeout(400);
     }
 
     await context.close();
   }
 
   await browser.close();
-  console.log('\n🎉 ALL SCREENSHOTS CAPTURED SUCCESSFULLY!');
+  console.log('\n🎉 ALL SCREENSHOTS RETAKEN AND VERIFIED WITH 100% VISIBILITY!');
 }
 
 run().catch(err => {

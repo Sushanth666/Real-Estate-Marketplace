@@ -28,7 +28,12 @@ import { PostPropertyModal } from './components/post-property/PostPropertyModal'
 import { ScheduleVisitModal } from './components/detail/ScheduleVisitModal';
 
 function MainContent() {
-  const { currentView } = useMarketplace();
+  const marketplace = useMarketplace();
+  const { currentView } = marketplace;
+
+  if (typeof window !== 'undefined') {
+    window.__marketplace = marketplace;
+  }
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-slate-50">

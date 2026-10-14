@@ -33,6 +33,10 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
+  if (typeof window !== 'undefined') {
+    window.__toggleMobileMenu = setMobileMenuOpen;
+  }
+
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all shrink-0">
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
