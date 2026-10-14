@@ -58,7 +58,7 @@ export function QuickCitySelector() {
                 src={city.image}
                 alt={city.name}
                 className="w-full h-full object-cover group-hover:scale-112 transition-transform duration-700 ease-out"
-                loading="lazy"
+                loading="eager"
               />
 
               {/* Gradient Scrim */}

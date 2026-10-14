@@ -25,19 +25,52 @@ async function preparePageForCapture(page, isModal = false) {
     return;
   }
 
-  // 1. Scroll through the page to trigger all image loads
+  // 1. Force eager loading and scroll to trigger all image loads
   await page.evaluate(async () => {
+    document.querySelectorAll('img').forEach(img => {
+      img.loading = 'eager';
+    });
+
     const scroller = document.getElementById('main-scroll-container') || document.documentElement;
     const totalHeight = scroller.scrollHeight;
-    const step = 350;
+    const step = 400;
     for (let pos = 0; pos <= totalHeight; pos += step) {
       scroller.scrollTop = pos;
-      await new Promise(r => setTimeout(r, 40));
+      await new Promise(r => setTimeout(r, 30));
     }
     scroller.scrollTop = 0;
   });
 
-  await page.waitForTimeout(500);
+  // 2. Verify all photos are fully decoded and visible; refresh if not loaded
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const report = await page.evaluate(async () => {
+      const images = Array.from(document.querySelectorAll('img'));
+      await Promise.all(images.map(async (img) => {
+        if (img.complete && img.naturalWidth > 0) return;
+        try {
+          await img.decode();
+        } catch (e) {
+          const orig = img.src;
+          img.src = '';
+          img.src = orig;
+          try { await img.decode(); } catch (err) {}
+        }
+      }));
+
+      const all = Array.from(document.querySelectorAll('img'));
+      const missing = all.filter(img => !img.complete || img.naturalWidth === 0);
+      return { total: all.length, missingCount: missing.length };
+    });
+
+    if (report.missingCount === 0) {
+      break;
+    }
+
+    console.log(`    🔄 ${report.missingCount} photos not loaded yet. Refreshing images (attempt ${attempt + 1})...`);
+    await page.waitForTimeout(800);
+  }
+
+  await page.waitForTimeout(300);
 
   // 2. Ensure all Framer Motion elements that might be hidden offscreen are visible
   await page.evaluate(() => {
