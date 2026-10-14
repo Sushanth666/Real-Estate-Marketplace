@@ -1,6 +1,14 @@
-# BharatNivas (भारतनिवास) 🇮🇳 — Premier Real Estate & Luxury Living Marketplace
+<div align="center">
 
-A responsive, high-performance Indian Real Estate Marketplace web application crafted with **React.js**, **Vite**, **Tailwind CSS**, and **Framer Motion**. Tailored specifically for the Indian real estate ecosystem with Indian Rupee (₹ Lakhs & Crores) pricing, RERA compliance diligence, top Indian metropolises, verified builder profiles, and interactive financial tools.
+  <img src="public/favicon.svg" alt="BharatNivas Logo" width="84" height="84" />
+
+  # BharatNivas 🇮🇳
+  
+  **Premier Real Estate & Luxury Living Marketplace**
+
+  A responsive, high-performance Indian Real Estate Marketplace web application crafted with **React 19**, **Vite**, **Tailwind CSS**, and **Framer Motion**. Tailored specifically for the Indian real estate ecosystem with Indian Rupee (₹ Lakhs & Crores) pricing, RERA compliance diligence, top Indian metropolises, verified builder profiles, and interactive financial tools.
+
+</div>
 
 ---
 
@@ -191,7 +199,7 @@ The entire platform is built with mobile-first Tailwind CSS classes and tested a
 - [x] Implemented Wishlist with persistent `localStorage` storage and badge counter.
 - [x] Built side-by-side Property Comparison Matrix modal supporting up to 4 properties with floating quick launcher.
 - [x] Created RERA Certified Advisors directory with consultation booking modal.
-- [x] Implemented Indian mobile number OTP authentication UI and role selector.
+- [x] Implemented secure Email and Password authentication modal with registration redirect and role selector.
 - [x] Created "Post Property FREE" 3-step wizard with real-time live preview and immediate marketplace listing sync.
 - [x] Verified build output (`npm run build`) and tested interactive flows via browser automation.
 - [x] Captured high-resolution screenshots for Desktop, Tablet, and Mobile views.
