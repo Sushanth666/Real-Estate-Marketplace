@@ -19,9 +19,7 @@ import {
   X, 
   Download, 
   Sparkles,
-  ChevronRight,
-  ExternalLink,
-  Info
+  ChevronRight
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';

@@ -8,7 +8,7 @@ export const indianCities = [
     propertyCount: '4,850+',
     avgPriceSqft: '₹12,400/sqft',
     popularLocalities: ['Boat Club Road', 'Poes Garden', 'ECR (East Coast Road)', 'Anna Nagar', 'OMR Corridor'],
-    image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/chennai.jpg',
     featured: true,
     isFirstChoice: true
   },
@@ -21,7 +21,7 @@ export const indianCities = [
     propertyCount: '1,920+',
     avgPriceSqft: '₹7,800/sqft',
     popularLocalities: ['Race Course', 'RS Puram', 'Avinashi Road', 'Saravanampatti IT Corridor'],
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/coimbatore.jpg',
     featured: true,
     isFirstChoice: true
   },
@@ -34,7 +34,7 @@ export const indianCities = [
     propertyCount: '980+',
     avgPriceSqft: '₹5,600/sqft',
     popularLocalities: ['KK Nagar', 'Anna Nagar', 'Tallakulam', 'Bypass Road'],
-    image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/madurai.jpg',
     featured: true,
     isFirstChoice: true
   },
@@ -47,7 +47,7 @@ export const indianCities = [
     propertyCount: '3,450+',
     avgPriceSqft: '₹34,500/sqft',
     popularLocalities: ['Worli', 'Bandra West', 'Juhu', 'Powai', 'Lower Parel'],
-    image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/mumbai.jpg',
     featured: true
   },
   {
@@ -59,7 +59,7 @@ export const indianCities = [
     propertyCount: '4,120+',
     avgPriceSqft: '₹11,800/sqft',
     popularLocalities: ['Indiranagar', 'Whitefield', 'Sarjapur Road', 'Koramangala', 'Hebbal'],
-    image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/bengaluru.jpg',
     featured: true
   },
   {
@@ -71,7 +71,7 @@ export const indianCities = [
     propertyCount: '2,980+',
     avgPriceSqft: '₹14,200/sqft',
     popularLocalities: ['Golf Course Road', 'DLF Phase 5', 'Vasant Vihar', 'Sohna Road', 'Noida Expressway'],
-    image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/delhi.jpg',
     featured: true
   },
   {
@@ -83,7 +83,7 @@ export const indianCities = [
     propertyCount: '2,400+',
     avgPriceSqft: '₹9,600/sqft',
     popularLocalities: ['Jubilee Hills', 'Gachibowli', 'Financial District', 'Madhapur', 'Banjara Hills'],
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/hyderabad.jpg',
     featured: true
   },
   {
@@ -95,7 +95,7 @@ export const indianCities = [
     propertyCount: '1,890+',
     avgPriceSqft: '₹8,900/sqft',
     popularLocalities: ['Koregaon Park', 'Baner', 'Kalyani Nagar', 'Kharadi', 'Aundh'],
-    image: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/pune.jpg',
     featured: true
   },
   {
@@ -107,7 +107,7 @@ export const indianCities = [
     propertyCount: '840+',
     avgPriceSqft: '₹16,500/sqft',
     popularLocalities: ['Assagao', 'Anjuna', 'Candolim', 'Aldona', 'Dona Paula'],
-    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/goa.jpg',
     featured: true
   },
   {
@@ -119,7 +119,7 @@ export const indianCities = [
     propertyCount: '1,200+',
     avgPriceSqft: '₹7,400/sqft',
     popularLocalities: ['New Town', 'Ballygunge', 'Alipore', 'Salt Lake', 'EM Bypass'],
-    image: 'https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/kolkata.jpg',
     featured: true
   },
   {
@@ -131,7 +131,7 @@ export const indianCities = [
     propertyCount: '780+',
     avgPriceSqft: '₹7,900/sqft',
     popularLocalities: ['Marine Drive', 'Panampilly Nagar', 'Kakkanad Infopark', 'Kadavanthra'],
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/kochi.jpg',
     featured: true
   },
   {
@@ -143,7 +143,7 @@ export const indianCities = [
     propertyCount: '1,450+',
     avgPriceSqft: '₹6,800/sqft',
     popularLocalities: ['SG Highway', 'Bodakdev', 'Prahlad Nagar', 'Thaltej', 'Ambli Road'],
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cities/ahmedabad.jpg',
     featured: true
   }
 ];

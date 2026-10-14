@@ -42,22 +42,22 @@ export function QuickCitySelector() {
 
         {/* Cities Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
-          {indianCities.slice(0, 6).map((city, index) => (
+          {indianCities.map((city, index) => (
             <motion.div
               key={city.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               onClick={() => handleCitySelect(city.name)}
-              className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all"
+              className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-300 shimmer-wrapper glow-card"
             >
               {/* Image */}
               <img
                 src={city.image}
                 alt={city.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover group-hover:scale-112 transition-transform duration-700 ease-out"
                 loading="lazy"
               />
 

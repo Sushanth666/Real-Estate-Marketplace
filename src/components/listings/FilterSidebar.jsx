@@ -226,8 +226,7 @@ export function FilterSidebar({ isMobile = false, onCloseMobile = () => {} }) {
             checked={filters.verifiedOnly}
             onChange={(e) => updateFilter('verifiedOnly', e.target.checked)}
             className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 accent-brand-600 cursor-pointer"
-          >
-          </input>
+          />
         </label>
       </div>
 

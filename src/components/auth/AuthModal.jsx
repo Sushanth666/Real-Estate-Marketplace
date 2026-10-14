@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   X, 
-  Smartphone, 
   Mail, 
-  ShieldCheck, 
+  Lock, 
   User, 
-  Building, 
+  ShieldCheck, 
   ArrowRight,
+  AlertCircle, 
   CheckCircle2,
-  Lock
+  Eye,
+  EyeOff,
+  Building2
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 
@@ -19,48 +21,137 @@ export function AuthModal() {
     setIsAuthModalOpen, 
     loginUser, 
     authModalMode, 
-    setAuthModalMode 
+    setAuthModalMode,
+    showToast 
   } = useMarketplace();
 
-  const [authMethod, setAuthMethod] = useState('phone'); // 'phone' | 'email'
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpCode, setOtpCode] = useState('');
+  // Local storage of registered users so created accounts persist
+  const [registeredAccounts, setRegisteredAccounts] = useState(() => {
+    try {
+      const saved = localStorage.getItem('bharatnivas_users');
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  // Form states
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [userRole, setUserRole] = useState('Buyer'); // 'Buyer' | 'Owner' | 'Agent'
+  const [showPassword, setShowPassword] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [signupSuccessMsg, setSignupSuccessMsg] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isAuthModalOpen) return null;
 
-  const handleSendOtp = (e) => {
+  // Switch between Login and Register tabs with clean state
+  const handleSwitchMode = (mode) => {
+    setAuthModalMode(mode);
+    setEmailError('');
+    setPassword('');
+    setConfirmPassword('');
+    if (mode === 'register') {
+      setSignupSuccessMsg('');
+    }
+  };
+
+  const handleAuthSubmit = (e) => {
     e.preventDefault();
-    if (phoneNumber.length < 10) {
-      alert('Please enter a valid 10-digit Indian mobile number');
+    setEmailError('');
+
+    if (!email.trim() || !password) {
+      setEmailError('Please enter both email and password.');
       return;
     }
-    setOtpSent(true);
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError('Please enter a valid email address.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setEmailError('Password must be at least 6 characters.');
+      return;
+    }
+
+    // 1. SIGNUP FLOW: Create account, redirect to Login page with blank password
+    if (authModalMode === 'register') {
+      if (!fullName.trim()) {
+        setEmailError('Please enter your full name.');
+        return;
+      }
+      if (confirmPassword && password !== confirmPassword) {
+        setEmailError('Passwords do not match.');
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      setTimeout(() => {
+        setIsSubmitting(false);
+
+        const newUserData = {
+          name: fullName.trim(),
+          email: email.trim().toLowerCase(),
+          password: password,
+          role: userRole === 'Buyer' ? 'Verified Home Buyer' : userRole === 'Owner' ? 'Verified Property Owner' : 'Certified RERA Agent',
+          phone: '+91 98200 88991'
+        };
+
+        const updatedUsers = {
+          ...registeredAccounts,
+          [email.trim().toLowerCase()]: newUserData
+        };
+
+        setRegisteredAccounts(updatedUsers);
+        try {
+          localStorage.setItem('bharatnivas_users', JSON.stringify(updatedUsers));
+        } catch (err) {
+          console.error(err);
+        }
+
+        // Switch to Sign In mode
+        setAuthModalMode('login');
+        // Clear passwords so login page is clean and blank for login
+        setPassword('');
+        setConfirmPassword('');
+        setSignupSuccessMsg(`Account created for ${fullName.trim()}! Please enter your password to sign in.`);
+        showToast('🎉 Account created! Please sign in to continue.', 'success');
+      }, 350);
+      return;
+    }
+
+    // 2. LOGIN FLOW: Validate credentials and log user in
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      const cleanEmail = email.trim().toLowerCase();
+      const existing = registeredAccounts[cleanEmail];
+
+      if (existing && existing.password && existing.password !== password) {
+        setEmailError('Incorrect password. Please verify your password and try again.');
+        return;
+      }
+
+      const userName = existing?.name || fullName.trim() || email.split('@')[0];
+      const role = existing?.role || (userRole === 'Buyer' ? 'Verified Home Buyer' : userRole === 'Owner' ? 'Verified Property Owner' : 'Certified RERA Agent');
+
+      loginUser({
+        name: userName,
+        email: cleanEmail,
+        role: role,
+        phone: existing?.phone || '+91 98200 88991'
+      });
+
+      showToast(`Welcome back, ${userName}! 🇮🇳`, 'success');
+    }, 350);
   };
 
-  const handleVerifyOtp = (e) => {
-    e.preventDefault();
-    loginUser({
-      name: fullName || 'Aarav Mehta',
-      phone: `+91 ${phoneNumber}`,
-      role: userRole,
-      email: email || `user.${phoneNumber.slice(-4)}@bharatnivas.in`
-    });
-  };
-
-  const handleEmailAuth = (e) => {
-    e.preventDefault();
-    loginUser({
-      name: fullName || email.split('@')[0],
-      email: email,
-      role: userRole,
-      phone: '+91 98200 45112'
-    });
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -78,219 +169,281 @@ export function AuthModal() {
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="relative bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full z-10 border border-slate-200"
+        className="relative bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full z-10 border border-slate-200 overflow-hidden max-h-[90vh] overflow-y-auto"
       >
         {/* Close Button */}
-        <button
-          onClick={() => setIsAuthModalOpen(false)}
-          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        <div className="absolute top-5 right-5">
+          <button
+            onClick={() => setIsAuthModalOpen(false)}
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
-        {/* Header */}
-        <div className="mb-6">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md mb-2">
-            <ShieldCheck className="w-3.5 h-3.5 text-brand-600" />
-            <span>Secure Indian PropTech Access</span>
+        {/* Modal Header */}
+        <div className="text-center mb-6">
+          <div className="w-12 h-12 bg-gradient-to-tr from-brand-700 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg shadow-brand-600/30 text-white">
+            <Building2 className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-bold font-display text-slate-900">
-            {authModalMode === 'login' ? 'Welcome to BharatNivas' : 'Create Free Account'}
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+            {authModalMode === 'login' ? 'Sign In to BharatNivas' : 'Create Free Account'}
           </h2>
           <p className="text-xs text-slate-500 mt-1">
-            Access saved properties, chat with verified builders, and post free listings.
+            {authModalMode === 'login' 
+              ? 'Enter your email and password to access your saved homes and alerts.'
+              : 'Join verified home buyers, owners, and top RERA builders across India.'}
           </p>
         </div>
 
-        {/* Role Selector (Buyer / Owner / Agent) */}
-        <div className="mb-5">
-          <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-1.5">
-            I am joining as:
-          </label>
-          <div className="grid grid-cols-3 gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold text-center">
-            {['Buyer', 'Owner', 'Agent'].map(role => (
-              <button
-                key={role}
-                type="button"
-                onClick={() => setUserRole(role)}
-                className={`py-1.5 rounded-lg transition-all ${
-                  userRole === role
-                    ? 'bg-white text-slate-900 shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {role === 'Buyer' ? 'Home Buyer' : role === 'Owner' ? 'Owner' : 'Agent'}
-              </button>
-            ))}
+        {/* Segmented Mode Switcher (Sign In vs Create Account) with smooth layout sliding pill */}
+        <div className="flex bg-slate-100 p-1 rounded-xl mb-5 text-xs font-bold text-center relative">
+          <button
+            type="button"
+            onClick={() => handleSwitchMode('login')}
+            className={`relative flex-1 py-2 rounded-lg transition-colors cursor-pointer ${
+              authModalMode === 'login' ? 'text-brand-700 font-bold' : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            {authModalMode === 'login' && (
+              <motion.div
+                layoutId="authTabPill"
+                className="absolute inset-0 bg-white rounded-lg shadow-xs"
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              />
+            )}
+            <span className="relative z-10">Sign In</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSwitchMode('register')}
+            className={`relative flex-1 py-2 rounded-lg transition-colors cursor-pointer ${
+              authModalMode === 'register' ? 'text-brand-700 font-bold' : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            {authModalMode === 'register' && (
+              <motion.div
+                layoutId="authTabPill"
+                className="absolute inset-0 bg-white rounded-lg shadow-xs"
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              />
+            )}
+            <span className="relative z-10">Create Account</span>
+          </button>
+        </div>
+
+        {/* Signup Success Banner (Shown on login page after successful registration) */}
+        {authModalMode === 'login' && signupSuccessMsg && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-4 bg-emerald-50 border border-emerald-200/90 p-3 rounded-2xl text-xs text-emerald-900 flex items-start gap-2.5 shadow-xs"
+          >
+            <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 mt-0.5" />
+            <div>
+              <p className="font-bold text-emerald-950">Registration Complete!</p>
+              <p className="text-[11px] text-emerald-800 mt-0.5 leading-snug">{signupSuccessMsg}</p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Role Selector (visible in Create Account mode) */}
+        {authModalMode === 'register' && (
+          <div className="mb-4">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-1.5">
+              I am joining as:
+            </label>
+            <div className="grid grid-cols-3 gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold text-center">
+              {[
+                { id: 'Buyer', label: 'Home Buyer' },
+                { id: 'Owner', label: 'Owner' },
+                { id: 'Agent', label: 'Agent / Builder' }
+              ].map(role => (
+                <button
+                  key={role.id}
+                  type="button"
+                  onClick={() => setUserRole(role.id)}
+                  className={`py-1.5 rounded-lg transition-all cursor-pointer text-[11px] ${
+                    userRole === role.id
+                      ? 'bg-white text-brand-700 shadow-xs font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  {role.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Tab Switcher: Phone OTP vs Email */}
-        <div className="flex border-b border-slate-200 mb-5">
-          <button
-            onClick={() => {
-              setAuthMethod('phone');
-              setOtpSent(false);
-            }}
-            className={`flex-1 pb-2.5 text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-              authMethod === 'phone'
-                ? 'text-brand-700 border-b-2 border-brand-600'
-                : 'text-slate-500 hover:text-slate-800'
-            }`}
-          >
-            <Smartphone className="w-3.5 h-3.5" />
-            <span>Mobile OTP (+91)</span>
-          </button>
-          <button
-            onClick={() => setAuthMethod('email')}
-            className={`flex-1 pb-2.5 text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-              authMethod === 'email'
-                ? 'text-brand-700 border-b-2 border-brand-600'
-                : 'text-slate-500 hover:text-slate-800'
-            }`}
-          >
-            <Mail className="w-3.5 h-3.5" />
-            <span>Email & Password</span>
-          </button>
-        </div>
-
-        {/* Auth Method 1: Phone OTP */}
-        {authMethod === 'phone' ? (
-          !otpSent ? (
-            <form onSubmit={handleSendOtp} className="space-y-4">
-              <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1">
-                  Your Full Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Aditya Birla"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1">
-                  Indian Mobile Number
-                </label>
-                <div className="flex">
-                  <span className="inline-flex items-center px-3.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-xs font-bold text-slate-700">
-                    +91
-                  </span>
-                  <input
-                    type="tel"
-                    required
-                    maxLength="10"
-                    placeholder="98765 43210"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-r-xl px-3.5 py-2.5 text-xs font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none"
-                  />
+        {/* Authentication Form */}
+        <form onSubmit={handleAuthSubmit} className="space-y-3.5">
+          {/* Full Name Field (Register Mode Only) */}
+          {authModalMode === 'register' && (
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-1">
+                Full Name
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <User className="w-4 h-4" />
                 </div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5 shadow-md shadow-brand-600/30"
-              >
-                <span>Send 6-Digit OTP</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </form>
-          ) : (
-            <form onSubmit={handleVerifyOtp} className="space-y-4">
-              <div className="bg-brand-50 border border-brand-200 p-3 rounded-xl text-xs text-brand-800">
-                <p className="font-semibold">OTP sent to +91 {phoneNumber}</p>
-                <p className="text-[11px] text-brand-700 mt-0.5">Demo OTP: <strong className="font-mono">842100</strong> (auto-filled)</p>
-              </div>
-
-              <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1">
-                  Enter 6-Digit OTP
-                </label>
                 <input
                   type="text"
                   required
-                  maxLength="6"
-                  placeholder="842100"
-                  defaultValue="842100"
-                  onChange={(e) => setOtpCode(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-center text-lg font-mono font-bold tracking-widest focus:ring-2 focus:ring-brand-500 focus:outline-none"
+                  placeholder="e.g. Sree"
+                  value={fullName}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                    setEmailError('');
+                  }}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-3.5 py-2.5 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:bg-white focus:outline-none transition-all"
                 />
               </div>
+            </div>
+          )}
 
-              <button
-                type="submit"
-                className="w-full bg-slate-900 hover:bg-brand-700 text-white font-bold py-3 rounded-xl text-xs transition-colors shadow-md"
-              >
-                Verify & Continue
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setOtpSent(false)}
-                className="w-full text-center text-xs text-slate-500 hover:underline"
-              >
-                Change mobile number
-              </button>
-            </form>
-          )
-        ) : (
-          /* Auth Method 2: Email & Password */
-          <form onSubmit={handleEmailAuth} className="space-y-3.5">
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">
-                Email Address
-              </label>
+          {/* Email Address Field */}
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Email Address
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <Mail className="w-4 h-4" />
+              </div>
               <input
                 type="email"
                 required
-                placeholder="you@company.in"
+                placeholder="name@example.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setEmailError('');
+                }}
+                className={`w-full bg-slate-50 border ${
+                  emailError ? 'border-red-400 focus:ring-red-400' : 'border-slate-200 focus:ring-brand-500'
+                } rounded-xl pl-10 pr-3.5 py-2.5 text-xs font-medium focus:ring-2 focus:bg-white focus:outline-none transition-all`}
               />
             </div>
+          </div>
 
+          {/* Password Field */}
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <label className="text-xs font-bold text-slate-700 block">
+                {authModalMode === 'register' ? 'Create Password' : 'Password'}
+              </label>
+              {authModalMode === 'login' && (
+                <button
+                  type="button"
+                  onClick={() => showToast('Password reset link sent to your email.', 'info')}
+                  className="text-[11px] font-semibold text-brand-600 hover:text-brand-700 hover:underline cursor-pointer"
+                >
+                  Forgot Password?
+                </button>
+              )}
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <Lock className="w-4 h-4" />
+              </div>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                required
+                placeholder={authModalMode === 'register' ? 'At least 6 characters' : 'Enter your password'}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setEmailError('');
+                }}
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-10 py-2.5 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:bg-white focus:outline-none transition-all"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer"
+                aria-label="Toggle password visibility"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Confirm Password Field (Register Mode Only) */}
+          {authModalMode === 'register' && (
             <div>
               <label className="text-xs font-bold text-slate-700 block mb-1">
-                Password
+                Confirm Password
               </label>
-              <input
-                type="password"
-                required
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  placeholder="Repeat your password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    setEmailError('');
+                  }}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-3.5 py-2.5 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:bg-white focus:outline-none transition-all"
+                />
+              </div>
             </div>
+          )}
 
-            <button
-              type="submit"
-              className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl text-xs transition-colors shadow-md shadow-brand-600/30"
-            >
-              Sign In to BharatNivas
-            </button>
-          </form>
-        )}
+          {/* Error Message */}
+          {emailError && (
+            <div className="bg-red-50 border border-red-200 p-2.5 rounded-xl text-xs text-red-700 flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+              <span>{emailError}</span>
+            </div>
+          )}
 
-        {/* Demo Fast Login helper */}
-        <div className="mt-5 pt-4 border-t border-slate-100 text-center">
-          <button
-            onClick={() => loginUser({
-              name: 'Arjun Singhania',
-              phone: '+91 98200 88991',
-              role: 'Verified Buyer',
-              email: 'arjun.singhania@mumbai.in'
-            })}
-            className="text-[11px] font-bold text-slate-500 hover:text-brand-700 underline"
+          {/* Submit Button */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-70 text-white font-bold py-3 rounded-xl text-xs transition-colors flex items-center justify-center gap-2 shadow-md shadow-brand-600/30 hover:shadow-lg hover:shadow-brand-600/40 cursor-pointer"
           >
-            ⚡ Quick 1-Click Demo Login as "Arjun Singhania"
-          </button>
-        </div>
+            <span>{authModalMode === 'register' ? 'Create Free Account' : 'Sign In'}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </motion.button>
+
+          {/* Toggle between Sign In and Create Account */}
+          <div className="text-center text-xs text-slate-500 pt-2">
+            {authModalMode === 'register' ? (
+              <span>
+                Already have an account?{' '}
+                <button
+                  type="button"
+                  onClick={() => handleSwitchMode('login')}
+                  className="font-bold text-brand-600 hover:text-brand-700 hover:underline cursor-pointer"
+                >
+                  Sign In
+                </button>
+              </span>
+            ) : (
+              <span>
+                Don't have an account?{' '}
+                <button
+                  type="button"
+                  onClick={() => handleSwitchMode('register')}
+                  className="font-bold text-brand-600 hover:text-brand-700 hover:underline cursor-pointer"
+                >
+                  Create Free Account
+                </button>
+              </span>
+            )}
+          </div>
+        </form>
+
 
       </motion.div>
     </div>

@@ -5,14 +5,9 @@ import {
   Star, 
   MapPin, 
   Phone, 
-  Mail, 
   MessageSquare, 
-  Award, 
-  Calendar, 
   CheckCircle2, 
-  X,
-  Briefcase,
-  Sparkles
+  X
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { realEstateAgents } from '../../data/agentsData';

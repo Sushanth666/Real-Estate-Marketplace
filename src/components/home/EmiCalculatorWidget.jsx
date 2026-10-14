@@ -26,9 +26,9 @@ export function EmiCalculatorWidget() {
 
   return (
     <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      {/* Background Floating Ambient Glow Orbs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none animate-blob" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none animate-blob-delayed" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

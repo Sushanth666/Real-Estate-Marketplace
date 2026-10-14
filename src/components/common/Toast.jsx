@@ -18,13 +18,13 @@ export function Toast() {
     <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
       <AnimatePresence>
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+          initial={{ opacity: 0, y: 30, scale: 0.88 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-          className="pointer-events-auto flex items-center gap-3 bg-slate-900/95 text-white px-5 py-3.5 rounded-2xl shadow-2xl backdrop-blur-md border border-slate-700/60 max-w-md text-sm font-medium"
+          exit={{ opacity: 0, y: 20, scale: 0.92 }}
+          transition={{ type: 'spring', damping: 20, stiffness: 320 }}
+          className="pointer-events-auto flex items-center gap-3 bg-slate-900/95 text-white px-5 py-3.5 rounded-2xl shadow-2xl shadow-brand-950/50 backdrop-blur-md border border-brand-500/30 max-w-md text-sm font-medium glow-card"
         >
-          {icons[toastMessage.type] || <Sparkles className="w-5 h-5 text-gold-400 shrink-0" />}
+          {icons[toastMessage.type] || <Sparkles className="w-5 h-5 text-amber-400 shrink-0 animate-pulse" />}
           <span>{toastMessage.message}</span>
         </motion.div>
       </AnimatePresence>

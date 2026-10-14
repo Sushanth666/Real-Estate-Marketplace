@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';
-import { Badge } from './Badge';
 
 export function PropertyCard({ property, layout = 'grid' }) {
   const { 
@@ -28,6 +27,8 @@ export function PropertyCard({ property, layout = 'grid' }) {
   } = useMarketplace();
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
   const isWishlisted = isInWishlist(property.id);
   const isCompared = isInCompare(property.id);
 
@@ -50,6 +51,23 @@ export function PropertyCard({ property, layout = 'grid' }) {
     }
   };
 
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    // Gentle 3D perspective tilt
+    setRotateX(((y - centerY) / centerY) * -4.5);
+    setRotateY(((x - centerX) / centerX) * 4.5);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
   const emiMonthly = property.purpose === 'buy' 
     ? calculateEMI(property.price * 0.8, 8.5, 20) 
     : null;
@@ -58,16 +76,23 @@ export function PropertyCard({ property, layout = 'grid' }) {
     <motion.div
       layout
       initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={{ 
+        opacity: 1, 
+        y: 0,
+        rotateX,
+        rotateY,
+        transition: { type: 'spring', damping: 20, stiffness: 220 }
+      }}
       exit={{ opacity: 0, scale: 0.96 }}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.25 }}
-      className={`group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-premium transition-all overflow-hidden flex ${
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+      className={`group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-brand-300 transition-all duration-300 overflow-hidden flex glow-card ${
         layout === 'list' ? 'flex-col md:flex-row' : 'flex-col'
       }`}
     >
       {/* Property Image Container */}
-      <div className={`relative overflow-hidden ${
+      <div className={`relative overflow-hidden shimmer-wrapper ${
         layout === 'list' ? 'md:w-5/12 h-64 md:h-auto min-h-[260px]' : 'w-full h-64'
       }`}>
         <img
@@ -75,24 +100,27 @@ export function PropertyCard({ property, layout = 'grid' }) {
           alt={property.title}
           referrerPolicy="no-referrer"
           onError={handleImageError}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
           loading="lazy"
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-90" />
 
         {/* Top Badges */}
         <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2 items-center z-10">
           {property.reraId && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-slate-950/80 text-sky-300 border border-sky-400/30 shadow-md">
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-slate-950/85 text-sky-300 border border-sky-400/40 shadow-lg shadow-sky-950/30">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400"></span>
+              </span>
               <span>RERA Verified</span>
             </span>
           )}
           {property.featured && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-slate-950/85 text-amber-300 border border-amber-400/40 shadow-md">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400 fill-amber-400/30" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-gradient-to-r from-amber-950/90 to-amber-900/90 text-amber-300 border border-amber-400/50 shadow-lg shadow-amber-950/30">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 fill-amber-300/40 animate-pulse" />
               <span>Signature</span>
             </span>
           )}
@@ -101,41 +129,45 @@ export function PropertyCard({ property, layout = 'grid' }) {
         {/* Top Right Quick Actions (Wishlist & Compare) */}
         <div className="absolute top-3.5 right-3.5 flex items-center gap-2 z-10">
           {/* Compare Button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.12 }}
+            whileTap={{ scale: 0.88 }}
             onClick={(e) => {
               e.stopPropagation();
               toggleCompare(property.id);
             }}
             title={isCompared ? "Remove from comparison" : "Add to compare"}
-            className={`p-2.5 rounded-full backdrop-blur-md transition-all shadow-md ${
+            className={`p-2.5 rounded-full backdrop-blur-md transition-all shadow-md cursor-pointer ${
               isCompared
                 ? 'bg-brand-600 text-white ring-2 ring-brand-400'
-                : 'bg-black/40 hover:bg-black/60 text-white'
+                : 'bg-black/45 hover:bg-black/70 text-white'
             }`}
           >
             {isCompared ? <Check className="w-4 h-4" /> : <Scale className="w-4 h-4" />}
-          </button>
+          </motion.button>
 
           {/* Wishlist Button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.8 }}
             onClick={(e) => {
               e.stopPropagation();
               toggleWishlist(property.id);
             }}
             title={isWishlisted ? "Remove from wishlist" : "Save to wishlist"}
-            className={`p-2.5 rounded-full backdrop-blur-md transition-all shadow-md ${
+            className={`p-2.5 rounded-full backdrop-blur-md transition-all shadow-md cursor-pointer ${
               isWishlisted
-                ? 'bg-rose-500 text-white'
-                : 'bg-black/40 hover:bg-black/60 text-white'
+                ? 'bg-rose-500 text-white ring-2 ring-rose-300 shadow-rose-500/30'
+                : 'bg-black/45 hover:bg-black/70 text-white'
             }`}
           >
             <motion.div
-              whileTap={{ scale: 0.75 }}
-              animate={isWishlisted ? { scale: [1, 1.25, 1] } : {}}
+              animate={isWishlisted ? { scale: [1, 1.35, 1], rotate: [0, -10, 10, 0] } : {}}
+              transition={{ duration: 0.4 }}
             >
               <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
             </motion.div>
-          </button>
+          </motion.button>
         </div>
 
         {/* Bottom Image Overlay Details */}
@@ -255,21 +287,25 @@ export function PropertyCard({ property, layout = 'grid' }) {
           </div>
 
           <div className="flex items-center gap-2">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setScheduleModalProp(property)}
-              className="text-xs font-semibold text-brand-700 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5"
+              className="text-xs font-semibold text-brand-700 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Visit</span>
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05, x: 2 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => viewPropertyDetail(property.id)}
-              className="text-xs font-semibold text-white bg-slate-900 hover:bg-brand-700 px-3.5 py-2 rounded-xl transition-all flex items-center gap-1 shadow-sm"
+              className="text-xs font-semibold text-white bg-slate-900 hover:bg-brand-700 px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm hover:shadow-brand-600/30 cursor-pointer"
             >
               <span>Explore</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            </motion.button>
           </div>
         </div>
       </div>

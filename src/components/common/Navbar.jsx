@@ -39,76 +39,97 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20 gap-4">
           
           {/* Brand Logo */}
+          {/* Brand Logo with dynamic hover tilt */}
           <motion.div 
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => navigateTo('home')}
             className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-800 via-brand-600 to-sky-400 flex items-center justify-center text-white shadow-md shadow-brand-600/20 group-hover:scale-105 transition-transform">
-              <Building2 className="w-6 h-6" />
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-800 via-brand-600 to-sky-400 flex items-center justify-center text-white shadow-md shadow-brand-600/30 group-hover:shadow-brand-600/50 group-hover:scale-108 transition-all duration-300">
+              <Building2 className="w-6 h-6 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110" />
             </div>
             <span className="font-display font-extrabold text-2xl tracking-tight text-slate-900 group-hover:text-brand-700 transition-colors">
               Bharat<span className="text-brand-600">Nivas</span>
             </span>
           </motion.div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+          {/* Desktop Navigation Links with layoutId sliding pill */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 relative">
+            <button
               onClick={() => navigateTo('home')}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
+              className={`relative whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none cursor-pointer ${
                 currentView === 'home'
-                  ? 'text-brand-700 bg-brand-50/80 font-semibold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  ? 'text-brand-700 font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Home
-            </motion.button>
+              {currentView === 'home' && (
+                <motion.div
+                  layoutId="activeNavTab"
+                  className="absolute inset-0 bg-brand-50 border border-brand-200/60 rounded-xl"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">Home</span>
+            </button>
 
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+            <button
               onClick={() => {
                 updateFilter('purpose', 'all');
                 navigateTo('listings');
               }}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
+              className={`relative whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none cursor-pointer ${
                 currentView === 'listings'
-                  ? 'text-brand-700 bg-brand-50/80 font-semibold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  ? 'text-brand-700 font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Explore Properties
-            </motion.button>
+              {currentView === 'listings' && (
+                <motion.div
+                  layoutId="activeNavTab"
+                  className="absolute inset-0 bg-brand-50 border border-brand-200/60 rounded-xl"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">Explore Properties</span>
+            </button>
 
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+            <button
               onClick={() => navigateTo('cities')}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
+              className={`relative whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none cursor-pointer ${
                 currentView === 'cities'
-                  ? 'text-brand-700 bg-brand-50/80 font-semibold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  ? 'text-brand-700 font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Top Cities
-            </motion.button>
+              {currentView === 'cities' && (
+                <motion.div
+                  layoutId="activeNavTab"
+                  className="absolute inset-0 bg-brand-50 border border-brand-200/60 rounded-xl"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">Top Cities</span>
+            </button>
 
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+            <button
               onClick={() => navigateTo('agents')}
-              className={`whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
+              className={`relative whitespace-nowrap px-3.5 py-2 text-sm font-medium rounded-xl transition-colors outline-none cursor-pointer ${
                 currentView === 'agents'
-                  ? 'text-brand-700 bg-brand-50/80 font-semibold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  ? 'text-brand-700 font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              RERA Advisors
-            </motion.button>
+              {currentView === 'agents' && (
+                <motion.div
+                  layoutId="activeNavTab"
+                  className="absolute inset-0 bg-brand-50 border border-brand-200/60 rounded-xl"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">RERA Advisors</span>
+            </button>
 
             {/* Compare Button */}
             <motion.button
@@ -155,14 +176,14 @@ export function Navbar() {
 
           {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
-            {/* Post Property Free Button */}
+            {/* Post Property Free Button with Shimmer & Glow */}
             <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsPostPropertyOpen(true)}
-              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold tracking-wide uppercase shadow-sm flex items-center gap-2 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 cursor-pointer"
+              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold tracking-wide uppercase shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/40 flex items-center gap-2 outline-none cursor-pointer shimmer-wrapper transition-all"
             >
-              <PlusCircle className="w-4 h-4" />
+              <PlusCircle className="w-4 h-4 animate-spin-slow" />
               <span>Post Property FREE</span>
             </motion.button>
 
@@ -247,7 +268,7 @@ export function Navbar() {
                 className="px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-sm cursor-pointer"
               >
                 <User className="w-4 h-4" />
-                <span>Sign In / OTP</span>
+                <span>Sign In</span>
               </motion.button>
             )}
           </div>
@@ -375,7 +396,7 @@ export function Navbar() {
                   className="w-full py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold flex items-center justify-center gap-2"
                 >
                   <User className="w-4 h-4" />
-                  <span>Sign In with OTP / Email</span>
+                  <span>Sign In</span>
                 </button>
               )}
             </div>

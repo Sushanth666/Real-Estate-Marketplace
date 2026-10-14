@@ -1,15 +1,12 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   X, 
   Scale, 
   Trash2, 
   Check, 
   Minus, 
-  ShieldCheck, 
-  ArrowRight,
-  ExternalLink,
-  Plus
+  ExternalLink
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';

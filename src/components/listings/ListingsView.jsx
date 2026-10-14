@@ -6,10 +6,8 @@ import {
   LayoutGrid, 
   List, 
   X, 
-  MapPin, 
-  Sparkles,
-  ChevronLeft,
-  ChevronRight,
+  ChevronLeft, 
+  ChevronRight, 
   ShieldAlert
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
