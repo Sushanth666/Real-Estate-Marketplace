@@ -132,8 +132,6 @@ Real Estate Marketplace/
 │   ├── desktop/                 # Desktop viewport captures (1440x900)
 │   ├── tablet/                  # Tablet viewport captures (768x1024)
 │   └── mobile/                  # Mobile viewport captures (390x844)
-├── scripts/
-│   └── capture_screenshots.mjs  # Playwright automated screenshot capture suite
 ├── src/
 │   ├── components/
 │   │   ├── agents/              # RERA Certified Advisors views & consultation modal
@@ -210,10 +208,6 @@ Real Estate Marketplace/
    ```
    Production-ready files will be bundled into the `dist/` directory.
 
-5. **Automate & retake multi-device screenshots:**
-   ```bash
-   node scripts/capture_screenshots.mjs
-   ```
 
 ---
 
