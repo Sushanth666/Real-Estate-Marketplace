@@ -15,6 +15,7 @@ export function ComparisonModal() {
   const { 
     properties, 
     compareList, 
+    toggleCompare,
     removeFromCompare, 
     clearCompare, 
     isCompareModalOpen, 
@@ -96,19 +97,34 @@ export function ComparisonModal() {
         {/* Modal Body / Table */}
         <div className="overflow-x-auto flex-1 p-4 sm:p-6">
           {comparedProperties.length === 0 ? (
-            <div className="text-center py-16">
-              <Scale className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-slate-800 mb-1">No Properties Selected</h3>
-              <p className="text-xs text-slate-500 mb-4">Click "Compare" on any property card to view side-by-side specs.</p>
-              <button
-                onClick={() => {
-                  setIsCompareModalOpen(false);
-                  navigateTo('listings');
-                }}
-                className="bg-brand-600 text-white font-bold px-4 py-2 rounded-xl text-xs"
-              >
-                Browse Properties
-              </button>
+            <div className="text-center py-16 px-4 max-w-md mx-auto">
+              <div className="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mx-auto mb-4 border border-brand-100 shadow-xs">
+                <Scale className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold font-display text-slate-900 mb-2">No Properties Selected for Comparison</h3>
+              <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+                Benchmark up to 4 luxury residences side-by-side. Click the scale icon (<span className="text-brand-600 font-semibold">⚖️</span>) on any property card, or test the matrix with top residences right away.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button
+                  onClick={() => {
+                    if (properties[0]?.id && !compareList.includes(properties[0].id)) toggleCompare(properties[0].id);
+                    if (properties[1]?.id && !compareList.includes(properties[1].id)) toggleCompare(properties[1].id);
+                  }}
+                  className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm shadow-md shadow-brand-600/25 transition-all cursor-pointer"
+                >
+                  ⚡ Quick Compare Top 2 Residences
+                </button>
+                <button
+                  onClick={() => {
+                    setIsCompareModalOpen(false);
+                    navigateTo('listings');
+                  }}
+                  className="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition-all cursor-pointer"
+                >
+                  Browse All Properties
+                </button>
+              </div>
             </div>
           ) : (
             <table className="w-full text-left text-xs border-collapse">

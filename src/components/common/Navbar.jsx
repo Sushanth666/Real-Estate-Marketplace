@@ -139,13 +139,7 @@ export function Navbar() {
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              onClick={() => {
-                if (compareList.length > 0) {
-                  setIsCompareModalOpen(true);
-                } else {
-                  navigateTo('listings');
-                }
-              }}
+              onClick={() => setIsCompareModalOpen(true)}
               className="whitespace-nowrap relative px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer"
             >
               <Scale className="w-4 h-4 text-slate-500" />
