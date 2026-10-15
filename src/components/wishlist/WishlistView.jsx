@@ -79,8 +79,49 @@ export function WishlistView() {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-white rounded-3xl p-10 sm:p-14 text-center border border-slate-200/80 shadow-md max-w-xl mx-auto"
           >
-            <div className="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-4 border border-rose-100 shadow-sm">
-              <Heart className="w-8 h-8 fill-rose-500/20" />
+            {/* Animated Heartbeat Container with radiating ripple aura */}
+            <div className="relative inline-flex items-center justify-center mx-auto mb-5">
+              {/* Outer pulsing glow ring */}
+              <motion.div
+                animate={{ scale: [1, 1.45, 1.7], opacity: [0.6, 0.25, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, ease: 'easeOut' }}
+                className="absolute inset-0 rounded-3xl bg-rose-400/25 pointer-events-none"
+              />
+              {/* Secondary ripple ring */}
+              <motion.div
+                animate={{ scale: [1, 1.25, 1.45], opacity: [0.5, 0.18, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, delay: 0.45, ease: 'easeOut' }}
+                className="absolute inset-0 rounded-3xl bg-rose-300/35 pointer-events-none"
+              />
+
+              {/* Main Animated Heart Box */}
+              <motion.div 
+                animate={{ 
+                  scale: [1, 1.12, 1.04, 1.18, 1],
+                  y: [0, -4, 0, -2, 0],
+                  rotate: [0, -2, 2, 0]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 2.2, 
+                  ease: 'easeInOut' 
+                }}
+                whileHover={{ scale: 1.2, rotate: [0, -8, 8, 0] }}
+                className="relative w-18 h-18 rounded-3xl bg-gradient-to-tr from-rose-100 via-rose-50 to-pink-50 text-rose-500 flex items-center justify-center border border-rose-200/90 shadow-lg shadow-rose-200/60 cursor-pointer"
+              >
+                <motion.div
+                  animate={{
+                    scale: [1, 1.16, 1.05, 1.22, 1]
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 2.2,
+                    ease: 'easeInOut'
+                  }}
+                >
+                  <Heart className="w-9 h-9 fill-rose-500/25 text-rose-500 filter drop-shadow-xs" />
+                </motion.div>
+              </motion.div>
             </div>
             <span className="text-[11px] font-extrabold uppercase tracking-wider text-brand-700 bg-brand-50 px-3 py-1 rounded-full mb-3 inline-block">
               Account Login Required
@@ -123,13 +164,50 @@ export function WishlistView() {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-white rounded-3xl p-16 text-center border border-slate-200/80 shadow-xs max-w-xl mx-auto"
           >
-            <motion.div 
-              animate={{ scale: [1, 1.1, 1], y: [0, -4, 0] }}
-              transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-              className="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-4 shadow-xs shadow-rose-100"
-            >
-              <Heart className="w-8 h-8 fill-rose-500/20" />
-            </motion.div>
+            {/* Animated Heartbeat Container with radiating ripple aura */}
+            <div className="relative inline-flex items-center justify-center mx-auto mb-5">
+              {/* Outer pulsing glow ring */}
+              <motion.div
+                animate={{ scale: [1, 1.45, 1.7], opacity: [0.6, 0.25, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, ease: 'easeOut' }}
+                className="absolute inset-0 rounded-3xl bg-rose-400/25 pointer-events-none"
+              />
+              {/* Secondary ripple ring */}
+              <motion.div
+                animate={{ scale: [1, 1.25, 1.45], opacity: [0.5, 0.18, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, delay: 0.45, ease: 'easeOut' }}
+                className="absolute inset-0 rounded-3xl bg-rose-300/35 pointer-events-none"
+              />
+
+              {/* Main Animated Heart Box */}
+              <motion.div 
+                animate={{ 
+                  scale: [1, 1.12, 1.04, 1.18, 1],
+                  y: [0, -4, 0, -2, 0],
+                  rotate: [0, -2, 2, 0]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 2.2, 
+                  ease: 'easeInOut' 
+                }}
+                whileHover={{ scale: 1.2, rotate: [0, -8, 8, 0] }}
+                className="relative w-18 h-18 rounded-3xl bg-gradient-to-tr from-rose-100 via-rose-50 to-pink-50 text-rose-500 flex items-center justify-center border border-rose-200/90 shadow-lg shadow-rose-200/60 cursor-pointer"
+              >
+                <motion.div
+                  animate={{
+                    scale: [1, 1.16, 1.05, 1.22, 1]
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 2.2,
+                    ease: 'easeInOut'
+                  }}
+                >
+                  <Heart className="w-9 h-9 fill-rose-500/25 text-rose-500 filter drop-shadow-xs" />
+                </motion.div>
+              </motion.div>
+            </div>
             <h3 className="text-2xl font-bold font-display text-slate-900 mb-2">
               Your Wishlist is Empty
             </h3>
