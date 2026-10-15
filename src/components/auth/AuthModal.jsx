@@ -126,13 +126,8 @@ export function AuthModal() {
           console.error(err);
         }
 
-        // Switch to Sign In mode
-        setAuthModalMode('login');
-        // Clear passwords so login page is clean and blank for login
-        setPassword('');
-        setConfirmPassword('');
-        setSignupSuccessMsg(`Account created for ${fullName.trim()}! Please enter your password to sign in.`);
-        showToast('🎉 Account created! Please sign in to continue.', 'success');
+        // Directly log the newly registered user in and resolve any pending action (e.g. Post Property)
+        loginUser(newUserData);
       }, 350);
       return;
     }
@@ -235,10 +230,14 @@ export function AuthModal() {
             </div>
             <div className="min-w-0 flex-1">
               <span className="text-[10px] font-extrabold text-amber-700 uppercase tracking-wider block">
-                Compulsory Login Required
+                {authModalMode === 'login' ? 'Compulsory Login Required' : 'Free Registration to Post'}
               </span>
               <p className="text-xs font-bold text-slate-900 truncate">Post Your Property on BharatNivas</p>
-              <p className="text-[11px] text-slate-500">Sign in to add details and publish with verified owner status 🏡</p>
+              <p className="text-[11px] text-slate-500">
+                {authModalMode === 'login' 
+                  ? 'Sign in to add details and publish with verified owner status 🏠' 
+                  : 'Create a free account to add property details and publish 🏡'}
+              </p>
             </div>
           </div>
         )}
@@ -253,10 +252,14 @@ export function AuthModal() {
             />
             <div className="min-w-0 flex-1">
               <span className="text-[10px] font-extrabold text-indigo-700 uppercase tracking-wider block">
-                Compulsory Login Required
+                {authModalMode === 'login' ? 'Compulsory Login Required' : 'Free Account Required'}
               </span>
               <p className="text-xs font-bold text-slate-900 truncate">{pendingViewProperty.title}</p>
-              <p className="text-[11px] text-slate-500">Sign in to unlock full details, floor plans, owner contacts & verified pricing 🏡</p>
+              <p className="text-[11px] text-slate-500">
+                {authModalMode === 'login' 
+                  ? 'Sign in to unlock full details, floor plans, owner contacts & verified pricing 🏡' 
+                  : 'Register free to unlock full details, floor plans, owner contacts & verified pricing 🏡'}
+              </p>
             </div>
           </div>
         )}
