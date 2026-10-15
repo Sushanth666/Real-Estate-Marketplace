@@ -6,7 +6,9 @@ import {
   Phone, 
   MapPin, 
   ArrowRight,
-  Heart
+  Heart,
+  PlusCircle,
+  ExternalLink
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { indianCities } from '../../data/citiesData';
@@ -15,44 +17,16 @@ export function Footer() {
   const { navigateTo, updateFilter, openPostProperty } = useMarketplace();
 
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-300 pt-12 pb-10 border-t border-slate-800/90">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Newsletter & Assistance Banner */}
-        <div className="bg-gradient-to-r from-brand-950/80 via-slate-900 to-amber-950/60 p-8 rounded-3xl border border-slate-800 mb-14 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
-          <div className="max-w-xl">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">
-              <ShieldCheck className="w-4 h-4 text-sky-400" />
-              Verified Market Intelligence
-            </span>
-            <h3 className="text-2xl font-bold font-display text-white mb-2">
-              Get Weekly Curated Indian Real Estate Insights
-            </h3>
-            <p className="text-slate-400 text-sm">
-              Pre-launch price alerts, RERA market trends, infrastructure corridor updates, and high-yield property picks directly to your inbox.
-            </p>
-          </div>
-
-          <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-3">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 px-4 py-3 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 w-full sm:w-80"
-            />
-            <button className="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm px-6 py-3 rounded-2xl transition-colors shrink-0 flex items-center justify-center gap-2 shadow-lg shadow-brand-600/30">
-              <span>Subscribe Free</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        {/* Main Useful Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-10 border-b border-slate-850">
           
-          {/* Brand Info */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-brand-600 flex items-center justify-center text-white shadow-md">
+          {/* Column 1: Brand & Direct Support */}
+          <div>
+            <div className="flex items-center gap-2.5 mb-3.5">
+              <div className="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-md">
                 <Building2 className="w-5 h-5" />
               </div>
               <span className="font-display font-extrabold text-2xl tracking-tight text-white">
@@ -60,175 +34,198 @@ export function Footer() {
               </span>
             </div>
 
-            <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              BharatNivas is India’s premier luxury real estate marketplace connecting buyers, owners, and developers with 100% RERA-verified apartments, villas, and sky penthouses across Mumbai, Bengaluru, Delhi NCR, and beyond.
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-5">
+              India's premier luxury real estate marketplace connecting buyers and owners with 100% verified, RERA-registered homes.
             </p>
 
-            <div className="space-y-2.5 text-xs text-slate-400">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>Level 14, Tower 3, One World Center, Lower Parel, Mumbai 400013</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>Toll Free: 1800-267-9000 (Mon - Sat, 9 AM - 8 PM IST)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-brand-400 shrink-0" />
+            <div className="space-y-2 text-xs text-slate-400">
+              <a 
+                href="tel:18002679000" 
+                className="flex items-center gap-2 hover:text-white transition-colors group"
+              >
+                <Phone className="w-4 h-4 text-amber-400 shrink-0 group-hover:scale-110 transition-transform" />
+                <span>1800-267-9000 (Toll Free • Mon - Sat)</span>
+              </a>
+              <a 
+                href="mailto:advisory@bharatnivas.in" 
+                className="flex items-center gap-2 hover:text-white transition-colors group"
+              >
+                <Mail className="w-4 h-4 text-cyan-400 shrink-0 group-hover:scale-110 transition-transform" />
                 <span>advisory@bharatnivas.in</span>
+              </a>
+              <div className="flex items-center gap-2 text-slate-500 pt-1">
+                <MapPin className="w-4 h-4 text-slate-500 shrink-0" />
+                <span>Mumbai • Bengaluru • Chennai • Delhi NCR</span>
               </div>
             </div>
           </div>
 
-          {/* Top Indian Cities */}
-          <div className="text-left">
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide text-left">
-              Top Indian Cities
+          {/* Column 2: Quick Navigation */}
+          <div>
+            <h4 className="text-white font-bold text-sm mb-3.5 tracking-wide">
+              Quick Navigation
             </h4>
-            <ul className="space-y-2.5 text-sm text-left">
-              {indianCities.slice(0, 6).map(city => (
-                <li key={city.id} className="text-left">
+            <ul className="space-y-2 text-xs sm:text-sm">
+              <li>
+                <button
+                  onClick={() => navigateTo('listings')}
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Explore All Properties
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateTo('cities')}
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Top Indian Cities (12 Metros)
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateTo('compare')}
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Property Comparison Matrix
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateTo('wishlist')}
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Saved Properties
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateTo('agents')}
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  RERA Certified Advisors
+                </button>
+              </li>
+              <li className="pt-1">
+                <button
+                  onClick={openPostProperty}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors cursor-pointer bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20"
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  <span>Post Property Free</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Top Indian Cities */}
+          <div>
+            <h4 className="text-white font-bold text-sm mb-3.5 tracking-wide">
+              Top Cities
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm">
+              {['Chennai', 'Coimbatore', 'Madurai', 'Mumbai', 'Bengaluru', 'Delhi NCR'].map(cityName => (
+                <li key={cityName}>
                   <button
                     onClick={() => {
-                      updateFilter('selectedCity', city.name);
+                      updateFilter('selectedCity', cityName);
                       navigateTo('listings');
                     }}
-                    className="text-left text-slate-400 hover:text-white transition-colors block w-full"
+                    className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
                   >
-                    Properties in {city.name}
+                    Properties in {cityName}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Property Collections */}
-          <div className="text-left">
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide text-left">
+          {/* Column 4: Property Types */}
+          <div>
+            <h4 className="text-white font-bold text-sm mb-3.5 tracking-wide">
               Property Categories
             </h4>
-            <ul className="space-y-2.5 text-sm text-left">
-              <li className="text-left">
+            <ul className="space-y-2 text-xs sm:text-sm">
+              <li>
+                <button
+                  onClick={() => {
+                    updateFilter('propertyType', 'Apartment');
+                    navigateTo('listings');
+                  }}
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Luxury Apartments
+                </button>
+              </li>
+              <li>
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Penthouse');
                     navigateTo('listings');
                   }}
-                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
                 >
                   Sea-Facing Penthouses
                 </button>
               </li>
-              <li className="text-left">
+              <li>
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Luxury Villa');
                     navigateTo('listings');
                   }}
-                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
                 >
                   Gated Golf Villas
                 </button>
               </li>
-              <li className="text-left">
+              <li>
                 <button
                   onClick={() => {
                     updateFilter('propertyType', 'Duplex');
                     navigateTo('listings');
                   }}
-                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Modern Sky Duplexes
+                  Sky Duplexes
                 </button>
               </li>
-              <li className="text-left">
-                <button
-                  onClick={() => {
-                    updateFilter('propertyType', 'Individual House');
-                    navigateTo('listings');
-                  }}
-                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
-                >
-                  Independent Individual Houses
-                </button>
-              </li>
-              <li className="text-left">
-                <button
-                  onClick={() => {
-                    updateFilter('propertyType', 'Builder Floor');
-                    navigateTo('listings');
-                  }}
-                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
-                >
-                  Independent Builder Floors
-                </button>
-              </li>
-              <li className="text-left">
+              <li>
                 <button
                   onClick={() => {
                     updateFilter('purpose', 'rent');
                     navigateTo('listings');
                   }}
-                  className="text-left text-slate-400 hover:text-white transition-colors block w-full"
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Luxury Expat Rentals
+                  Verified Rental Homes
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Real Estate Tools & RERA */}
-          <div className="text-left">
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wide text-left">
-              PropTech Tools
-            </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400 text-left">
-              <li className="text-left">
-                <button 
-                  onClick={openPostProperty}
-                  className="text-left text-amber-400 hover:text-amber-300 font-bold transition-colors block w-full cursor-pointer flex items-center gap-1.5"
-                >
-                  <span>+ Post Property FREE (Owner/Builder)</span>
-                </button>
-              </li>
-              <li className="text-left">
-                <button onClick={() => navigateTo('home')} className="text-left text-slate-400 hover:text-white transition-colors block w-full">
-                  EMI & Home Loan Calculator
-                </button>
-              </li>
-              <li className="text-left">
-                <button onClick={() => navigateTo('listings')} className="text-left text-slate-400 hover:text-white transition-colors block w-full">
-                  Property Comparison Matrix
-                </button>
-              </li>
-              <li className="text-left">
-                <button onClick={() => navigateTo('agents')} className="text-left text-slate-400 hover:text-white transition-colors block w-full">
-                  RERA Registered Advisors
-                </button>
-              </li>
-              <li className="text-left">
-                <span className="text-slate-500 block">MahaRERA & K-RERA Guide</span>
-              </li>
-              <li className="text-left">
-                <span className="text-slate-500 block">Stamp Duty Calculator (2025)</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        {/* Legal & RERA Compliance Disclaimer */}
-        <div className="border-t border-slate-900 pt-8 pb-6 text-xs text-slate-400 leading-relaxed">
-          <p className="mb-3">
-            <strong className="text-slate-300">Disclaimer & RERA Compliance:</strong> BharatNivas is an online marketplace connecting property seekers, property sellers, and certified real estate advisors. All projects and properties advertised on this website are subject to the Real Estate (Regulation and Development) Act, 2016 (RERA). We strongly recommend verifying the RERA registration details of each project on the official State RERA portal (e.g., MahaRERA, K-RERA, HRERA, TS-RERA, WB-RERA, TN-RERA) before executing any agreement.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-900">
-            <p>© {new Date().getFullYear()} BharatNivas Real Estate Technologies Private Limited. All Rights Reserved.</p>
+        {/* Clean, Useful Bottom Bar */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          
+          {/* Trust Seal */}
+          <div className="flex items-center gap-2 text-slate-400">
+            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>100% RERA Certified Marketplace • MahaRERA, TN-RERA, K-RERA Verified</span>
+          </div>
+
+          {/* Copyright & Country */}
+          <div className="flex items-center gap-3">
+            <span>© {new Date().getFullYear()} BharatNivas. All Rights Reserved.</span>
+            <span className="text-slate-600">•</span>
             <div className="flex items-center gap-1 text-slate-400">
-              <span>Crafted with</span>
+              <span>Made with</span>
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-              <span>for Homebuyers across India 🇮🇳</span>
+              <span>in India 🇮🇳</span>
             </div>
           </div>
+
         </div>
 
       </div>
