@@ -42,8 +42,8 @@ export function FeaturedProperties() {
             Handpicked luxury properties verified for clear title ownership, RERA approvals, and world-class architecture.
           </p>
 
-          {/* Filter Pills with animated sliding pill */}
-          <div className="mt-6 flex items-center gap-2.5 overflow-x-auto pb-2 no-scrollbar">
+          {/* Filter Pills with animated sliding pill - perfectly aligned & wrapped */}
+          <div className="mt-6 flex flex-wrap items-center gap-2 sm:gap-2.5">
             {[
               { id: 'all', label: 'All Featured' },
               { id: 'tamilnadu', label: '⭐ Tamil Nadu Signature' },
@@ -57,14 +57,16 @@ export function FeaturedProperties() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                    isActive ? 'text-white' : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
+                  className={`relative px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                    isActive 
+                      ? 'text-white shadow-sm' 
+                      : 'text-slate-600 hover:text-slate-900 bg-slate-100/90 hover:bg-slate-200/90 border border-slate-200/70'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="featuredCategoryPill"
-                      className="absolute inset-0 bg-slate-900 rounded-xl -z-10 shadow-md"
+                      className="absolute inset-0 bg-slate-900 rounded-xl -z-10 shadow-md shadow-slate-900/20"
                       transition={{ type: 'spring', stiffness: 380, damping: 28 }}
                     />
                   )}
