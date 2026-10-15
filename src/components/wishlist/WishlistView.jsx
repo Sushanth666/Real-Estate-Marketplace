@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, ArrowRight, Trash2, Scale, Sparkles, Building2 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { PropertyCard } from '../common/PropertyCard';
@@ -66,30 +67,50 @@ export function WishlistView() {
 
         {/* Content */}
         {savedProperties.length === 0 ? (
-          <div className="bg-white rounded-3xl p-16 text-center border border-slate-200/80 shadow-xs max-w-xl mx-auto">
-            <div className="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-4">
-              <Heart className="w-8 h-8" />
-            </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-3xl p-16 text-center border border-slate-200/80 shadow-xs max-w-xl mx-auto"
+          >
+            <motion.div 
+              animate={{ scale: [1, 1.1, 1], y: [0, -4, 0] }}
+              transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
+              className="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-4 shadow-xs shadow-rose-100"
+            >
+              <Heart className="w-8 h-8 fill-rose-500/20" />
+            </motion.div>
             <h3 className="text-2xl font-bold font-display text-slate-900 mb-2">
               Your Wishlist is Empty
             </h3>
             <p className="text-slate-500 text-sm mb-6 leading-relaxed">
               Explore our handpicked collection of verified luxury penthouses, villas, and apartments in Mumbai, Bengaluru, Delhi NCR, and Goa.
             </p>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => navigateTo('listings')}
-              className="bg-slate-900 hover:bg-brand-700 text-white font-bold px-7 py-3 rounded-2xl text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-2 shadow-md"
+              className="bg-slate-900 hover:bg-brand-700 text-white font-bold px-7 py-3 rounded-2xl text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-2 shadow-md cursor-pointer"
             >
               <span>Explore Properties</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {savedProperties.map(property => (
-              <PropertyCard key={property.id} property={property} layout="grid" />
-            ))}
-          </div>
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout">
+              {savedProperties.map(property => (
+                <motion.div
+                  key={property.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.25 } }}
+                >
+                  <PropertyCard property={property} layout="grid" />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         )}
 
       </div>

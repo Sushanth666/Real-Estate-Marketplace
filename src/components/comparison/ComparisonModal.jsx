@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
   Scale, 
@@ -24,8 +24,6 @@ export function ComparisonModal() {
     navigateTo
   } = useMarketplace();
 
-  if (!isCompareModalOpen) return null;
-
   const comparedProperties = properties.filter(p => compareList.includes(p.id));
 
   const allAmenitiesToCompare = [
@@ -41,23 +39,25 @@ export function ComparisonModal() {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      {/* Backdrop */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={() => setIsCompareModalOpen(false)}
-        className="fixed inset-0 bg-black/75 backdrop-blur-xs"
-      />
+    <AnimatePresence>
+      {isCompareModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsCompareModalOpen(false)}
+            className="fixed inset-0 bg-black/75 backdrop-blur-xs"
+          />
 
-      {/* Modal Container */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative bg-white rounded-3xl shadow-2xl border border-slate-200/90 w-full max-w-6xl max-h-[92vh] flex flex-col z-10 overflow-hidden"
-      >
+          {/* Modal Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 20, transition: { duration: 0.2 } }}
+            className="relative bg-white rounded-3xl shadow-2xl border border-slate-200/90 w-full max-w-6xl max-h-[92vh] flex flex-col z-10 overflow-hidden"
+          >
         
         {/* Modal Header */}
         <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
@@ -313,6 +313,8 @@ export function ComparisonModal() {
         </div>
 
       </motion.div>
-    </div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 }

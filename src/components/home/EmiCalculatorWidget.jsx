@@ -165,36 +165,42 @@ export function EmiCalculatorWidget() {
               </p>
               <motion.div 
                 key={monthlyEMI}
-                initial={{ scale: 0.96, opacity: 0.8 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.2 }}
-                className="text-3xl sm:text-4xl font-extrabold font-display text-sky-400 mb-6"
+                initial={{ scale: 0.95, y: -2 }}
+                animate={{ scale: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 450, damping: 20 }}
+                className="text-3xl sm:text-4xl font-extrabold font-display text-sky-400 mb-6 flex items-baseline"
               >
-                {formatIndianCurrency(monthlyEMI)}
+                <span>{formatIndianCurrency(monthlyEMI)}</span>
                 <span className="text-xs text-slate-400 font-normal ml-1">/ month</span>
               </motion.div>
 
-              {/* Progress Breakdown Bar */}
+              {/* Progress Breakdown Bar with fluid spring animation */}
               <div className="space-y-2 mb-6">
-                <div className="h-3 w-full bg-slate-700 rounded-full overflow-hidden flex">
-                  <div 
-                    style={{ width: `${principalRatio}%` }} 
-                    className="bg-brand-500 h-full transition-all duration-300"
+                <div className="h-3 w-full bg-slate-750 rounded-full overflow-hidden flex p-0.5 bg-slate-700/80">
+                  <motion.div 
+                    layout
+                    initial={{ width: 0 }}
+                    animate={{ width: `${principalRatio}%` }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className="bg-brand-500 h-full rounded-l-full shadow-sm"
                     title={`Principal: ${principalRatio}%`}
                   />
-                  <div 
-                    style={{ width: `${interestRatio}%` }} 
-                    className="bg-amber-500 h-full transition-all duration-300"
+                  <motion.div 
+                    layout
+                    initial={{ width: 0 }}
+                    animate={{ width: `${interestRatio}%` }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className="bg-amber-500 h-full rounded-r-full shadow-sm"
                     title={`Interest: ${interestRatio}%`}
                   />
                 </div>
                 <div className="flex items-center justify-between text-xs text-slate-300">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-brand-500" />
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <span className="w-2.5 h-2.5 rounded-full bg-brand-500 shadow-xs" />
                     Principal: {principalRatio}%
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-xs" />
                     Interest: {interestRatio}%
                   </span>
                 </div>

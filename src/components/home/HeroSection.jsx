@@ -251,23 +251,28 @@ export function HeroSection() {
           <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-slate-400 font-medium">Popular BHKs:</span>
-              {['all', '2', '3', '4', '5+'].map((item) => (
-                <motion.button
-                  key={item}
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setBhk(item);
-                  }}
-                  className={`px-2.5 py-1 rounded-lg font-semibold transition-all ${
-                    bhk === item
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  {item === 'all' ? 'All' : `${item} BHK`}
-                </motion.button>
-              ))}
+              {['all', '2', '3', '4', '5+'].map((item) => {
+                const isActive = bhk === item;
+                return (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() => setBhk(item)}
+                    className={`relative px-2.5 py-1 rounded-lg font-semibold transition-colors cursor-pointer ${
+                      isActive ? 'text-white' : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="heroBhkPill"
+                        className="absolute inset-0 bg-slate-900 rounded-lg -z-10 shadow-xs"
+                        transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item === 'all' ? 'All' : `${item} BHK`}</span>
+                  </button>
+                );
+              })}
             </div>
 
             <div className="flex items-center gap-3 text-slate-500 text-xs font-medium">

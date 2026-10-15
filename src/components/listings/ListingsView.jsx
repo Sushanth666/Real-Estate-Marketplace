@@ -122,55 +122,72 @@ export function ListingsView() {
               </select>
             </div>
 
-            {/* Layout Switch (Grid / List) */}
+            {/* Layout Switch (Grid / List) with animated layoutId pill */}
             <div className="hidden sm:flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/60">
               <button
                 onClick={() => setLayout('grid')}
-                className={`p-1.5 rounded-lg transition-all ${
-                  layout === 'grid'
-                    ? 'bg-white text-slate-900 shadow-xs'
-                    : 'text-slate-500 hover:text-slate-800'
+                className={`relative p-1.5 rounded-lg transition-colors cursor-pointer ${
+                  layout === 'grid' ? 'text-slate-900' : 'text-slate-500 hover:text-slate-800'
                 }`}
                 aria-label="Grid layout"
               >
-                <LayoutGrid className="w-4 h-4" />
+                {layout === 'grid' && (
+                  <motion.div
+                    layoutId="listingsLayoutPill"
+                    className="absolute inset-0 bg-white rounded-lg shadow-xs"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <LayoutGrid className="w-4 h-4 relative z-10" />
               </button>
               <button
                 onClick={() => setLayout('list')}
-                className={`p-1.5 rounded-lg transition-all ${
-                  layout === 'list'
-                    ? 'bg-white text-slate-900 shadow-xs'
-                    : 'text-slate-500 hover:text-slate-800'
+                className={`relative p-1.5 rounded-lg transition-colors cursor-pointer ${
+                  layout === 'list' ? 'text-slate-900' : 'text-slate-500 hover:text-slate-800'
                 }`}
                 aria-label="List layout"
               >
-                <List className="w-4 h-4" />
+                {layout === 'list' && (
+                  <motion.div
+                    layoutId="listingsLayoutPill"
+                    className="absolute inset-0 bg-white rounded-lg shadow-xs"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <List className="w-4 h-4 relative z-10" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Active Filter Tags */}
+        {/* Active Filter Tags with AnimatePresence */}
         {activeFiltersList.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap mb-6">
             <span className="text-xs text-slate-400 font-semibold">Active:</span>
-            {activeFiltersList.map((item, idx) => (
-              <span
-                key={idx}
-                className="inline-flex items-center gap-1.5 bg-brand-50 text-brand-800 border border-brand-200/80 px-3 py-1 rounded-full text-xs font-semibold"
-              >
-                <span>{item.label}</span>
-                <button
-                  onClick={() => updateFilter(item.key, item.val)}
-                  className="hover:text-brand-950"
+            <AnimatePresence>
+              {activeFiltersList.map((item) => (
+                <motion.span
+                  key={item.label}
+                  layout
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                  className="inline-flex items-center gap-1.5 bg-brand-50 text-brand-800 border border-brand-200/80 px-3 py-1 rounded-full text-xs font-semibold shadow-2xs"
                 >
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            ))}
+                  <span>{item.label}</span>
+                  <button
+                    onClick={() => updateFilter(item.key, item.val)}
+                    className="hover:text-brand-950 cursor-pointer"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </motion.span>
+              ))}
+            </AnimatePresence>
             <button
               onClick={resetFilters}
-              className="text-xs text-slate-500 hover:text-rose-600 font-semibold underline underline-offset-2 ml-1"
+              className="text-xs text-slate-500 hover:text-rose-600 font-semibold underline underline-offset-2 ml-1 cursor-pointer transition-colors"
             >
               Clear all
             </button>
@@ -217,15 +234,29 @@ export function ListingsView() {
                 </button>
               </div>
             ) : (
-              <div className={`grid gap-6 ${
-                layout === 'grid' 
-                  ? 'grid-cols-1 md:grid-cols-2' 
-                  : 'grid-cols-1'
-              }`}>
-                {paginatedProperties.map(property => (
-                  <PropertyCard key={property.id} property={property} layout={layout} />
-                ))}
-              </div>
+              <motion.div 
+                layout 
+                className={`grid gap-6 ${
+                  layout === 'grid' 
+                    ? 'grid-cols-1 md:grid-cols-2' 
+                    : 'grid-cols-1'
+                }`}
+              >
+                <AnimatePresence mode="popLayout">
+                  {paginatedProperties.map(property => (
+                    <motion.div
+                      key={property.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <PropertyCard property={property} layout={layout} />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
             )}
 
             {/* Pagination Controls */}

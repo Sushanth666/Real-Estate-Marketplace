@@ -265,85 +265,85 @@ export function PropertyDetailView() {
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center shrink-0 shadow-xs">
                     <BedDouble className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Bedrooms</span>
                     <span className="text-sm font-bold text-slate-900">{currentProperty.bhk} BHK</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 shadow-xs">
                     <Bath className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Bathrooms</span>
                     <span className="text-sm font-bold text-slate-900">{currentProperty.bathrooms} Luxury Baths</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 shadow-xs">
                     <Maximize2 className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Super Built-up</span>
                     <span className="text-sm font-bold text-slate-900">{formatIndianNumber(currentProperty.builtUpArea)} sq.ft</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center shrink-0 shadow-xs">
                     <Layers className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Carpet Area</span>
                     <span className="text-sm font-bold text-slate-900">{formatIndianNumber(currentProperty.carpetArea)} sq.ft</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center shrink-0 shadow-xs">
                     <Compass className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Facing Direction</span>
                     <span className="text-sm font-bold text-slate-900">{currentProperty.facing || 'East Facing'}</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 shadow-xs">
                     <Layers className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Floor Level</span>
                     <span className="text-sm font-bold text-slate-900">{currentProperty.floor || 'Higher Floor'}</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center shrink-0 shadow-xs">
                     <Calendar className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Age of Property</span>
                     <span className="text-sm font-bold text-slate-900">{currentProperty.ageOfProperty || 'Under 2 Years'}</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
+                <motion.div whileHover={{ y: -3, scale: 1.02 }} className="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0 shadow-xs">
                     <Sparkles className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Furnishing</span>
                     <span className="text-sm font-bold text-slate-900">{currentProperty.furnishing || 'Semi-Furnished'}</span>
                   </div>
-                </div>
+                </motion.div>
 
               </div>
             </div>
@@ -406,63 +406,82 @@ export function PropertyDetailView() {
                 </div>
 
                 <div className="flex gap-2">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={() => setActiveFloorPlan('3bhk')}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                       activeFloorPlan === '3bhk'
-                        ? 'bg-slate-900 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        ? 'text-white'
+                        : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
                     }`}
                   >
-                    {currentProperty.bhk} BHK Layout
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    {activeFloorPlan === '3bhk' && (
+                      <motion.div
+                        layoutId="activeFloorPlanPill"
+                        className="absolute inset-0 bg-slate-900 rounded-xl -z-10 shadow-xs"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{currentProperty.bhk} BHK Layout</span>
+                  </button>
+                  <button
                     onClick={() => setActiveFloorPlan('penthouse')}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                       activeFloorPlan === 'penthouse'
-                        ? 'bg-slate-900 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        ? 'text-white'
+                        : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
                     }`}
                   >
-                    Duplex / Terrace Level
-                  </motion.button>
+                    {activeFloorPlan === 'penthouse' && (
+                      <motion.div
+                        layoutId="activeFloorPlanPill"
+                        className="absolute inset-0 bg-slate-900 rounded-xl -z-10 shadow-xs"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">Duplex / Terrace Level</span>
+                  </button>
                 </div>
               </div>
 
-              {/* Floor Plan Diagram Canvas */}
+              {/* Floor Plan Diagram Canvas with Animated Blueprint Cross-Fade */}
               <div className="bg-slate-900 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden flex flex-col items-center justify-center min-h-[320px] border border-slate-800">
-                <div className="w-full max-w-md border-2 border-dashed border-brand-500/40 rounded-xl p-6 bg-slate-950/60 backdrop-blur-md">
-                  <div className="flex justify-between items-center border-b border-slate-800 pb-3 mb-4 text-xs font-bold text-sky-400">
-                    <span>TYPE: {activeFloorPlan === '3bhk' ? `${currentProperty.bhk} BHK SIGNATURE` : 'UPPER SKY LEVEL'}</span>
-                    <span>CARPET: {formatIndianNumber(currentProperty.carpetArea)} SQ.FT</span>
-                  </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeFloorPlan}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.25 }}
+                    className="w-full max-w-md border-2 border-dashed border-brand-500/40 rounded-xl p-6 bg-slate-950/60 backdrop-blur-md"
+                  >
+                    <div className="flex justify-between items-center border-b border-slate-800 pb-3 mb-4 text-xs font-bold text-sky-400">
+                      <span>TYPE: {activeFloorPlan === '3bhk' ? `${currentProperty.bhk} BHK SIGNATURE` : 'UPPER SKY LEVEL'}</span>
+                      <span>CARPET: {formatIndianNumber(activeFloorPlan === '3bhk' ? currentProperty.carpetArea : Math.round(currentProperty.carpetArea * 1.35))} SQ.FT</span>
+                    </div>
 
-                  {/* Architectural Blueprint representation */}
-                  <div className="grid grid-cols-3 gap-2 text-center text-[10px] text-slate-400 font-mono">
-                    <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
-                      MASTER SUITE<br /><span className="text-white">16' x 14'</span>
+                    {/* Architectural Blueprint representation */}
+                    <div className="grid grid-cols-3 gap-2 text-center text-[10px] text-slate-400 font-mono">
+                      <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
+                        {activeFloorPlan === '3bhk' ? 'MASTER SUITE' : 'PENTHOUSE SUITE'}<br /><span className="text-white">{activeFloorPlan === '3bhk' ? "16' x 14'" : "20' x 16'"}</span>
+                      </div>
+                      <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
+                        {activeFloorPlan === '3bhk' ? 'LIVING / DINING' : 'OPEN SKY LOUNGE'}<br /><span className="text-white">{activeFloorPlan === '3bhk' ? "24' x 18'" : "28' x 20'"}</span>
+                      </div>
+                      <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
+                        {activeFloorPlan === '3bhk' ? 'BALCONY DECK' : 'INFINITY JACUZZI'}<br /><span className="text-sky-400">{activeFloorPlan === '3bhk' ? "18' x 8'" : "22' x 10'"}</span>
+                      </div>
+                      <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
+                        {activeFloorPlan === '3bhk' ? 'BEDROOM 2' : 'SKY GAZEBO'}<br /><span className="text-white">{activeFloorPlan === '3bhk' ? "14' x 12'" : "16' x 14'"}</span>
+                      </div>
+                      <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
+                        {activeFloorPlan === '3bhk' ? 'MODULAR KITCHEN' : 'BAR / PANTRY'}<br /><span className="text-white">{activeFloorPlan === '3bhk' ? "12' x 10'" : "14' x 10'"}</span>
+                      </div>
+                      <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
+                        {activeFloorPlan === '3bhk' ? 'POOJA / UTILITY' : 'TERRACE DECK'}<br /><span className="text-amber-400">{activeFloorPlan === '3bhk' ? "8' x 6'" : "24' x 12'"}</span>
+                      </div>
                     </div>
-                    <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
-                      LIVING / DINING<br /><span className="text-white">24' x 18'</span>
-                    </div>
-                    <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
-                      BALCONY DECK<br /><span className="text-sky-400">18' x 8'</span>
-                    </div>
-                    <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
-                      BEDROOM 2<br /><span className="text-white">14' x 12'</span>
-                    </div>
-                    <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
-                      MODULAR KITCHEN<br /><span className="text-white">12' x 10'</span>
-                    </div>
-                    <div className="border border-slate-800 p-3 rounded-lg bg-slate-900">
-                      POOJA / UTILITY<br /><span className="text-amber-400">8' x 6'</span>
-                    </div>
-                  </div>
-                </div>
+                  </motion.div>
+                </AnimatePresence>
 
                 <div className="mt-6 flex items-center gap-3">
                   <button
