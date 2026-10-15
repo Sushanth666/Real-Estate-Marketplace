@@ -26,6 +26,7 @@ import { ComparisonBar } from './components/comparison/ComparisonBar';
 import { AuthModal } from './components/auth/AuthModal';
 import { PostPropertyModal } from './components/post-property/PostPropertyModal';
 import { ScheduleVisitModal } from './components/detail/ScheduleVisitModal';
+import { PropertyTransactionModal } from './components/transaction/PropertyTransactionModal';
 
 function MainContent() {
   const marketplace = useMarketplace();
@@ -83,6 +84,7 @@ function MainContent() {
       <PostPropertyModal />
       <ComparisonModal />
       <ScheduleVisitModal />
+      <PropertyTransactionModal />
       <ComparisonBar />
       <Toast />
     </div>

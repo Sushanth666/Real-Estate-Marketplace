@@ -20,7 +20,10 @@ import {
   Download, 
   Sparkles,
   ChevronRight,
-  Trash2
+  Trash2,
+  Key,
+  CreditCard,
+  Building2
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';
@@ -37,6 +40,7 @@ export function PropertyDetailView() {
     isInCompare, 
     toggleCompare,
     setScheduleModalProp,
+    openTransactionModal,
     deleteProperty,
     showToast
   } = useMarketplace();
@@ -572,6 +576,53 @@ export function PropertyDetailView() {
 
                 {/* Direct Actions */}
                 <div className="space-y-3 mb-6">
+                  {/* Primary CTA: Proceed to Buy or Proceed to Rent */}
+                  {currentProperty.purpose === 'rent' ? (
+                    <div className="space-y-2">
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => openTransactionModal(currentProperty, 'rent')}
+                        className="w-full bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-600 text-white font-extrabold py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-700/25 cursor-pointer"
+                      >
+                        <Key className="w-4 h-4" />
+                        <span>Proceed to Rent Property</span>
+                      </motion.button>
+
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => openTransactionModal(currentProperty, 'buy')}
+                        className="w-full bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 text-slate-700 hover:text-brand-700 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                      >
+                        <Building2 className="w-3.5 h-3.5 text-brand-600" />
+                        <span>Proceed to Buy / Purchase Inquiry</span>
+                      </motion.button>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => openTransactionModal(currentProperty, 'buy')}
+                        className="w-full bg-gradient-to-r from-brand-600 via-brand-700 to-indigo-700 hover:from-brand-500 hover:to-indigo-600 text-white font-extrabold py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-brand-700/25 cursor-pointer"
+                      >
+                        <Building2 className="w-4 h-4" />
+                        <span>Proceed to Buy Property</span>
+                      </motion.button>
+
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => openTransactionModal(currentProperty, 'rent')}
+                        className="w-full bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                      >
+                        <Key className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Proceed to Rent / Lease Inquiry</span>
+                      </motion.button>
+                    </div>
+                  )}
+
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}

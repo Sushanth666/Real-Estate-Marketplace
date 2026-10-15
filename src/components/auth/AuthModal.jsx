@@ -22,8 +22,14 @@ export function AuthModal() {
     loginUser, 
     authModalMode, 
     setAuthModalMode,
+    pendingSavePropertyId,
+    properties,
     showToast 
   } = useMarketplace();
+
+  const pendingSaveProperty = pendingSavePropertyId 
+    ? properties.find(p => p.id === pendingSavePropertyId) 
+    : null;
 
   // Local storage of registered users so created accounts persist
   const [registeredAccounts, setRegisteredAccounts] = useState(() => {
@@ -196,6 +202,24 @@ export function AuthModal() {
               : 'Join verified home buyers, owners, and top RERA builders across India.'}
           </p>
         </div>
+
+        {/* Pending Save Property Alert Card */}
+        {pendingSaveProperty && (
+          <div className="mb-5 p-3 rounded-2xl bg-rose-50/90 border border-rose-200/90 flex items-center gap-3 text-left shadow-xs">
+            <img 
+              src={pendingSaveProperty.image || pendingSaveProperty.images?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=80'} 
+              alt={pendingSaveProperty.title} 
+              className="w-12 h-12 rounded-xl object-cover shrink-0 border border-rose-300"
+            />
+            <div className="min-w-0 flex-1">
+              <span className="text-[10px] font-extrabold text-rose-700 uppercase tracking-wider block">
+                Sign In to Save Property
+              </span>
+              <p className="text-xs font-bold text-slate-900 truncate">{pendingSaveProperty.title}</p>
+              <p className="text-[11px] text-slate-500">Sign in to automatically save this to your account favorites ❤️</p>
+            </div>
+          </div>
+        )}
 
         {/* Segmented Mode Switcher (Sign In vs Create Account) with smooth layout sliding pill */}
         <div className="flex bg-slate-100 p-1 rounded-xl mb-5 text-xs font-bold text-center relative">

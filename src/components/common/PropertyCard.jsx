@@ -91,7 +91,8 @@ export function PropertyCard({ property, layout = 'grid' }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
-      className={`group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-brand-300 transition-all duration-300 overflow-hidden flex glow-card ${
+      onClick={() => viewPropertyDetail(property.id)}
+      className={`group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-brand-300 transition-all duration-300 overflow-hidden flex glow-card cursor-pointer ${
         layout === 'list' ? 'flex-col md:flex-row' : 'flex-col'
       }`}
     >

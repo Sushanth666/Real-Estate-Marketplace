@@ -31,19 +31,6 @@ export function MarketplaceProvider({ children }) {
     return initialProperties;
   });
 
-  // Wishlist state (persisted)
-  const [wishlist, setWishlist] = useState(() => {
-    try {
-      const saved = localStorage.getItem(WISHLIST_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
-    } catch (e) {
-      return [];
-    }
-  });
-
-  // Compare state (up to 4 items) - starts empty so floating bar is hidden on initial load
-  const [compareList, setCompareList] = useState([]);
-
   // Authentication State
   const [currentUser, setCurrentUser] = useState(() => {
     try {
@@ -53,6 +40,29 @@ export function MarketplaceProvider({ children }) {
       return null;
     }
   });
+
+  // Wishlist state (strictly tied to authenticated user profile)
+  const [wishlist, setWishlist] = useState(() => {
+    try {
+      const savedUserStr = localStorage.getItem(USER_STORAGE_KEY);
+      if (savedUserStr) {
+        const user = JSON.parse(savedUserStr);
+        if (user?.email) {
+          const userSavedWishlist = localStorage.getItem(`bharatnivas_wishlist_${user.email}`);
+          return userSavedWishlist ? JSON.parse(userSavedWishlist) : [];
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    return [];
+  });
+
+  // Pending property that user attempted to save before being prompted to log in
+  const [pendingSavePropertyId, setPendingSavePropertyId] = useState(null);
+
+  // Compare state (up to 4 items) - starts empty so floating bar is hidden on initial load
+  const [compareList, setCompareList] = useState([]);
 
   // Navigation & View state
   // views: 'home' | 'listings' | 'detail' | 'agents' | 'wishlist' | 'compare'
@@ -67,6 +77,22 @@ export function MarketplaceProvider({ children }) {
   const [scheduleModalProp, setScheduleModalProp] = useState(null);
   const [selectedAgentModal, setSelectedAgentModal] = useState(null);
 
+  // Transaction Modal state (for "Proceed to Buy" and "Proceed to Rent")
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [transactionModalProp, setTransactionModalProp] = useState(null);
+  const [transactionType, setTransactionType] = useState('buy'); // 'buy' | 'rent'
+
+  const openTransactionModal = (property, type) => {
+    setTransactionModalProp(property);
+    setTransactionType(type || property?.purpose || 'buy');
+    setIsTransactionModalOpen(true);
+  };
+
+  const closeTransactionModal = () => {
+    setIsTransactionModalOpen(false);
+    setTransactionModalProp(null);
+  };
+
   // Notification Toast state
   const [toastMessage, setToastMessage] = useState(null);
 
@@ -77,14 +103,16 @@ export function MarketplaceProvider({ children }) {
     }, 3800);
   };
 
-  // Sync Wishlist to LocalStorage
+  // Sync Wishlist to user-specific LocalStorage whenever logged in
   useEffect(() => {
     try {
-      localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+      if (currentUser?.email) {
+        localStorage.setItem(`bharatnivas_wishlist_${currentUser.email}`, JSON.stringify(wishlist));
+      }
     } catch (e) {
       console.error(e);
     }
-  }, [wishlist]);
+  }, [wishlist, currentUser]);
 
   // Sync User to LocalStorage
   useEffect(() => {
@@ -125,15 +153,23 @@ export function MarketplaceProvider({ children }) {
     setFilters(prev => ({ ...prev, [key]: value }));
   };
 
-  // Wishlist Actions
+  // Wishlist Actions (Enforces Login Requirement)
   const toggleWishlist = (propertyId) => {
+    if (!currentUser) {
+      setPendingSavePropertyId(propertyId);
+      setAuthModalMode('login');
+      setIsAuthModalOpen(true);
+      showToast('Please sign in or create an account to save properties ❤️', 'info');
+      return;
+    }
+
     setWishlist(prev => {
       const exists = prev.includes(propertyId);
       if (exists) {
-        showToast('Property removed from your Wishlist', 'info');
+        showToast('Property removed from your Saved List', 'info');
         return prev.filter(id => id !== propertyId);
       } else {
-        showToast('Added to your Wishlist ❤️', 'success');
+        showToast('Saved to your BharatNivas account ❤️', 'success');
         return [...prev, propertyId];
       }
     });
@@ -252,16 +288,52 @@ export function MarketplaceProvider({ children }) {
     showToast('All custom posted properties cleared 🗑️', 'info');
   };
 
-  // User Auth
+  // User Auth with Account-Specific Wishlist Sync
   const loginUser = (user) => {
     setCurrentUser(user);
     setIsAuthModalOpen(false);
-    showToast(`Welcome back, ${user.name}! 🇮🇳`, 'success');
+
+    // Load account-specific wishlist
+    let userSavedList = [];
+    try {
+      const saved = localStorage.getItem(`bharatnivas_wishlist_${user.email}`);
+      userSavedList = saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      userSavedList = [];
+    }
+
+    // Resolve any pending property user wanted to save
+    if (pendingSavePropertyId) {
+      if (!userSavedList.includes(pendingSavePropertyId)) {
+        userSavedList = [...userSavedList, pendingSavePropertyId];
+      }
+      const savedProp = properties.find(p => p.id === pendingSavePropertyId);
+      setPendingSavePropertyId(null);
+      showToast(`Welcome ${user.name}! "${savedProp?.title || 'Property'}" saved to your account ❤️`, 'success');
+    } else {
+      showToast(`Welcome back, ${user.name}! 🇮🇳`, 'success');
+    }
+
+    setWishlist(userSavedList);
+    try {
+      localStorage.setItem(`bharatnivas_wishlist_${user.email}`, JSON.stringify(userSavedList));
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const logoutUser = () => {
+    if (currentUser?.email) {
+      try {
+        localStorage.setItem(`bharatnivas_wishlist_${currentUser.email}`, JSON.stringify(wishlist));
+      } catch (e) {
+        console.error(e);
+      }
+    }
     setCurrentUser(null);
-    showToast('Logged out successfully', 'info');
+    setWishlist([]);
+    setPendingSavePropertyId(null);
+    showToast('Logged out safely. Sign in anytime to view your saved properties.', 'info');
   };
 
   // Filtered Properties Computation
@@ -360,6 +432,10 @@ export function MarketplaceProvider({ children }) {
       isCompareModalOpen,
       scheduleModalProp,
       selectedAgentModal,
+      pendingSavePropertyId,
+      isTransactionModalOpen,
+      transactionModalProp,
+      transactionType,
       // setters and actions
       updateFilter,
       resetFilters,
@@ -382,6 +458,9 @@ export function MarketplaceProvider({ children }) {
       setIsCompareModalOpen,
       setScheduleModalProp,
       setSelectedAgentModal,
+      openTransactionModal,
+      closeTransactionModal,
+      setPendingSavePropertyId,
       showToast
     }}>
       {children}

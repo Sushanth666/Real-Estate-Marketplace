@@ -9,8 +9,11 @@ export function WishlistView() {
   const { 
     properties, 
     wishlist, 
+    currentUser,
     navigateTo, 
     setIsCompareModalOpen, 
+    setIsAuthModalOpen,
+    setAuthModalMode,
     toggleWishlist,
     showToast
   } = useMarketplace();
@@ -33,17 +36,21 @@ export function WishlistView() {
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight flex items-center gap-3">
               <span>Saved Properties</span>
-              <span className="text-sm bg-rose-100 text-rose-700 font-bold px-3 py-1 rounded-full border border-rose-200">
-                {savedProperties.length} Homes
-              </span>
+              {currentUser && (
+                <span className="text-sm bg-rose-100 text-rose-700 font-bold px-3 py-1 rounded-full border border-rose-200">
+                  {savedProperties.length} Homes
+                </span>
+              )}
             </h1>
             <p className="text-sm text-slate-500 mt-1">
-              Your shortlisted luxury residences across India, saved for your review.
+              {currentUser 
+                ? `Personal shortlist saved for ${currentUser.name} (${currentUser.email})` 
+                : 'Saving luxury residences across India is secured with your verified account.'}
             </p>
           </div>
 
           {/* Quick Portfolio Stats */}
-          {savedProperties.length > 0 && (
+          {currentUser && savedProperties.length > 0 && (
             <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs flex items-center gap-6">
               <div>
                 <span className="text-[11px] uppercase tracking-wider text-slate-400 font-bold block">
@@ -65,8 +72,52 @@ export function WishlistView() {
           )}
         </div>
 
-        {/* Content */}
-        {savedProperties.length === 0 ? (
+        {/* Auth Gate Guard: When User Is Not Logged In */}
+        {!currentUser ? (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-3xl p-10 sm:p-14 text-center border border-slate-200/80 shadow-md max-w-xl mx-auto"
+          >
+            <div className="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-4 border border-rose-100 shadow-sm">
+              <Heart className="w-8 h-8 fill-rose-500/20" />
+            </div>
+            <span className="text-[11px] font-extrabold uppercase tracking-wider text-brand-700 bg-brand-50 px-3 py-1 rounded-full mb-3 inline-block">
+              Account Login Required
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-900 mb-2">
+              Sign in to Access Your Saved Homes
+            </h2>
+            <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+              In BharatNivas, saving residences is protected with your verified user profile so your shortlist, price alerts, and site visit schedules stay safely synced across devices.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={() => {
+                  setAuthModalMode('login');
+                  setIsAuthModalOpen(true);
+                }}
+                className="bg-slate-900 hover:bg-brand-700 text-white font-bold px-7 py-3 rounded-2xl text-xs uppercase tracking-wider transition-colors inline-flex items-center justify-center gap-2 shadow-md cursor-pointer"
+              >
+                <span>Sign In to Your Account</span>
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={() => {
+                  setAuthModalMode('register');
+                  setIsAuthModalOpen(true);
+                }}
+                className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-7 py-3 rounded-2xl text-xs uppercase tracking-wider transition-colors cursor-pointer"
+              >
+                <span>Create Free Account</span>
+              </motion.button>
+            </div>
+          </motion.div>
+        ) : savedProperties.length === 0 ? (
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -83,7 +134,7 @@ export function WishlistView() {
               Your Wishlist is Empty
             </h3>
             <p className="text-slate-500 text-sm mb-6 leading-relaxed">
-              Explore our handpicked collection of verified luxury penthouses, villas, and apartments in Mumbai, Bengaluru, Delhi NCR, and Goa.
+              Browse our verified luxury collection of penthouses, villas, and apartments in Mumbai, Bengaluru, Delhi NCR, and Chennai, and click the heart icon to save.
             </p>
             <motion.button
               whileHover={{ scale: 1.04 }}
