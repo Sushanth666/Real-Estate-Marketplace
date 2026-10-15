@@ -64,6 +64,9 @@ export function MarketplaceProvider({ children }) {
   // Pending post property intent (when unauthenticated user attempts to list property)
   const [pendingOpenPostProperty, setPendingOpenPostProperty] = useState(false);
 
+  // Pending view property detail intent (when unauthenticated user attempts to view full property details)
+  const [pendingViewPropertyId, setPendingViewPropertyId] = useState(null);
+
   // Compare state (up to 4 items) - starts empty so floating bar is hidden on initial load
   const [compareList, setCompareList] = useState([]);
 
@@ -229,6 +232,13 @@ export function MarketplaceProvider({ children }) {
   };
 
   const viewPropertyDetail = (propertyId) => {
+    if (!currentUser) {
+      setPendingViewPropertyId(propertyId);
+      setAuthModalMode('login');
+      setIsAuthModalOpen(true);
+      showToast('🔒 Compulsory Login: Please sign in to access full property details, floor plans & contacts', 'info');
+      return;
+    }
     setSelectedPropertyId(propertyId);
     setCurrentView('detail');
     scrollToTop();
@@ -317,8 +327,16 @@ export function MarketplaceProvider({ children }) {
       userSavedList = [];
     }
 
-    // Resolve any pending property user wanted to save
-    if (pendingSavePropertyId) {
+    // Resolve any pending property user wanted to view
+    if (pendingViewPropertyId) {
+      const propIdToView = pendingViewPropertyId;
+      setPendingViewPropertyId(null);
+      setSelectedPropertyId(propIdToView);
+      setCurrentView('detail');
+      scrollToTop();
+      const targetProp = properties.find(p => p.id === propIdToView);
+      showToast(`Welcome ${user.name}! Accessing full details for "${targetProp?.title || 'Property'}" 🏡`, 'success');
+    } else if (pendingSavePropertyId) {
       if (!userSavedList.includes(pendingSavePropertyId)) {
         userSavedList = [...userSavedList, pendingSavePropertyId];
       }
@@ -353,8 +371,12 @@ export function MarketplaceProvider({ children }) {
     setWishlist([]);
     setPendingSavePropertyId(null);
     setPendingOpenPostProperty(false);
+    setPendingViewPropertyId(null);
     setIsPostPropertyOpen(false);
-    showToast('Logged out safely. Sign in anytime to view your saved properties.', 'info');
+    if (currentView === 'detail') {
+      setCurrentView('listings');
+    }
+    showToast('Logged out safely. Sign in anytime to view full property details & saved homes.', 'info');
   };
 
   // Filtered Properties Computation
@@ -483,8 +505,12 @@ export function MarketplaceProvider({ children }) {
       setSelectedAgentModal,
       openTransactionModal,
       closeTransactionModal,
+      pendingSavePropertyId,
+      pendingOpenPostProperty,
+      pendingViewPropertyId,
       setPendingSavePropertyId,
       setPendingOpenPostProperty,
+      setPendingViewPropertyId,
       showToast
     }}>
       {children}

@@ -24,12 +24,17 @@ export function AuthModal() {
     setAuthModalMode,
     pendingSavePropertyId,
     pendingOpenPostProperty,
+    pendingViewPropertyId,
     properties,
     showToast 
   } = useMarketplace();
 
   const pendingSaveProperty = pendingSavePropertyId 
     ? properties.find(p => p.id === pendingSavePropertyId) 
+    : null;
+
+  const pendingViewProperty = pendingViewPropertyId
+    ? properties.find(p => p.id === pendingViewPropertyId)
     : null;
 
   // Local storage of registered users so created accounts persist
@@ -234,6 +239,24 @@ export function AuthModal() {
               </span>
               <p className="text-xs font-bold text-slate-900 truncate">Post Your Property on BharatNivas</p>
               <p className="text-[11px] text-slate-500">Sign in to add details and publish with verified owner status 🏡</p>
+            </div>
+          </div>
+        )}
+
+        {/* Pending View Full Property Details Alert Card */}
+        {pendingViewProperty && !pendingSaveProperty && !pendingOpenPostProperty && (
+          <div className="mb-5 p-3 rounded-2xl bg-indigo-50/90 border border-indigo-200/90 flex items-center gap-3 text-left shadow-xs">
+            <img 
+              src={pendingViewProperty.image || pendingViewProperty.images?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=80'} 
+              alt={pendingViewProperty.title} 
+              className="w-12 h-12 rounded-xl object-cover shrink-0 border border-indigo-300"
+            />
+            <div className="min-w-0 flex-1">
+              <span className="text-[10px] font-extrabold text-indigo-700 uppercase tracking-wider block">
+                Compulsory Login Required
+              </span>
+              <p className="text-xs font-bold text-slate-900 truncate">{pendingViewProperty.title}</p>
+              <p className="text-[11px] text-slate-500">Sign in to unlock full details, floor plans, owner contacts & verified pricing 🏡</p>
             </div>
           </div>
         )}

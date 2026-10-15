@@ -23,7 +23,8 @@ import {
   Trash2,
   Key,
   CreditCard,
-  Building2
+  Building2,
+  Lock
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';
@@ -42,6 +43,10 @@ export function PropertyDetailView() {
     setScheduleModalProp,
     openTransactionModal,
     deleteProperty,
+    currentUser,
+    setIsAuthModalOpen,
+    setAuthModalMode,
+    setPendingViewPropertyId,
     showToast
   } = useMarketplace();
 
@@ -63,6 +68,157 @@ export function PropertyDetailView() {
   }, [currentProperty?.id]);
 
   if (!currentProperty) return null;
+
+  // COMPULSORY LOGIN GUARD: Only logged-in members can access full property details
+  if (!currentUser) {
+    const previewImage = currentProperty.image || currentProperty.images?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+    return (
+      <div className="bg-slate-50 min-h-screen pb-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-8">
+          {/* Back button */}
+          <div className="mb-6">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => navigateTo('listings')}
+              className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-700 transition-colors cursor-pointer group"
+            >
+              <div className="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center group-hover:border-brand-300 group-hover:bg-brand-50 transition-colors shadow-xs">
+                <ArrowLeft className="w-4 h-4 text-slate-600 group-hover:text-brand-600" />
+              </div>
+              <span>Back to Listings</span>
+            </motion.button>
+          </div>
+
+          {/* Locked Property Preview Card */}
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden">
+            {/* Blurred Image Header Preview */}
+            <div className="relative h-64 sm:h-72 w-full overflow-hidden">
+              <img
+                src={previewImage}
+                alt={currentProperty.title}
+                className="w-full h-full object-cover filter blur-xs scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/60 to-slate-950/40 backdrop-blur-xs flex flex-col justify-end p-6 sm:p-8 text-white">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider bg-amber-500 text-white px-2.5 py-1 rounded-md">
+                    {currentProperty.purpose === 'rent' ? 'For Rent' : 'For Sale'}
+                  </span>
+                  <span className="text-xs text-slate-300 font-medium">
+                    {currentProperty.propertyType} • {currentProperty.city}
+                  </span>
+                </div>
+                <h1 className="text-xl sm:text-2xl font-bold font-display line-clamp-1">
+                  {currentProperty.title}
+                </h1>
+                <p className="text-xs sm:text-sm text-slate-300 flex items-center gap-1.5 mt-1">
+                  <MapPin className="w-4 h-4 text-brand-400 shrink-0" />
+                  {currentProperty.locality}, {currentProperty.city}
+                </p>
+              </div>
+            </div>
+
+            {/* Lock Authentication Content */}
+            <div className="p-6 sm:p-10 text-center flex flex-col items-center">
+              <div className="w-18 h-18 rounded-3xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-600 shadow-inner mb-4">
+                <Lock className="w-9 h-9" />
+              </div>
+
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-3 py-1 rounded-full mb-2">
+                Compulsory Login Required
+              </span>
+
+              <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 mb-2">
+                Sign In to Access Full Property Details
+              </h2>
+
+              <p className="text-sm text-slate-600 max-w-lg leading-relaxed mb-6">
+                To protect direct owner & builder privacy and provide verified buyer access, the complete details including comprehensive pricing, floor plans, verified contact numbers, and site visits require login.
+              </p>
+
+              {/* Locked Feature Pills */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg mb-8 text-left">
+                <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-2xl flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-800">Architectural Floor Plans</p>
+                    <p className="text-[11px] text-slate-500">2D/3D layouts & carpet breakdown</p>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-2xl flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-800">Verified Owner & Agent Contacts</p>
+                    <p className="text-[11px] text-slate-500">Direct phone & WhatsApp numbers</p>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-2xl flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
+                    <CreditCard className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-800">Complete Price & EMI Breakdown</p>
+                    <p className="text-[11px] text-slate-500">Stamp duty, maintenance & GST</p>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-2xl flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                    <Calendar className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-800">Direct Booking & Site Visits</p>
+                    <p className="text-[11px] text-slate-500">Proceed to Buy & Rent online</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Login Action Buttons */}
+              <div className="w-full max-w-md space-y-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPendingViewPropertyId(currentProperty.id);
+                    setAuthModalMode('login');
+                    setIsAuthModalOpen(true);
+                  }}
+                  className="w-full py-3.5 bg-gradient-to-r from-brand-600 to-amber-600 hover:from-brand-700 hover:to-amber-700 text-white font-bold rounded-2xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer text-sm"
+                >
+                  <Lock className="w-4 h-4" /> Sign In to Access Full Details
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPendingViewPropertyId(currentProperty.id);
+                    setAuthModalMode('register');
+                    setIsAuthModalOpen(true);
+                  }}
+                  className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-2xl transition-all cursor-pointer text-xs"
+                >
+                  New to BharatNivas? Create Free Account
+                </button>
+              </div>
+
+              <div className="mt-6 pt-5 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-400">
+                <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-500" /> 100% Verified Listings</span>
+                <span>•</span>
+                <span>Zero Spam</span>
+                <span>•</span>
+                <span>Direct Ownership</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const isWishlisted = isInWishlist(currentProperty.id);
   const isCompared = isInCompare(currentProperty.id);

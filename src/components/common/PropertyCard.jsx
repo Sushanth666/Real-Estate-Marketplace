@@ -12,7 +12,8 @@ import {
   Calendar,
   Sparkles,
   ArrowRight,
-  Trash2
+  Trash2,
+  Lock
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';
@@ -25,7 +26,8 @@ export function PropertyCard({ property, layout = 'grid' }) {
     toggleCompare, 
     viewPropertyDetail,
     setScheduleModalProp,
-    deleteProperty
+    deleteProperty,
+    currentUser
   } = useMarketplace();
 
   const isCustomProperty = property.isCustom || property.agentName?.includes('Owner') || property.id?.startsWith('custom-prop-') || property.id?.startsWith('prop-17');
@@ -322,10 +324,15 @@ export function PropertyCard({ property, layout = 'grid' }) {
               whileHover={{ scale: 1.05, x: 2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => viewPropertyDetail(property.id)}
-              className="text-xs font-semibold text-white bg-slate-900 hover:bg-brand-700 px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm hover:shadow-brand-600/30 cursor-pointer"
+              className={`text-xs font-semibold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm cursor-pointer ${
+                !currentUser 
+                  ? 'bg-amber-600 hover:bg-amber-700 text-white shadow-amber-600/30' 
+                  : 'text-white bg-slate-900 hover:bg-brand-700 hover:shadow-brand-600/30'
+              }`}
             >
-              <span>Explore</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              {!currentUser && <Lock className="w-3.5 h-3.5 text-amber-200" />}
+              <span>{!currentUser ? 'Login to View' : 'Explore'}</span>
+              {currentUser && <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />}
             </motion.button>
           </div>
         </div>
