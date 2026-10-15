@@ -99,28 +99,34 @@ async function run() {
     await step3Heading.waitFor({ timeout: 5000 });
     console.log('   ✓ Step 3 reached successfully');
 
-    // UPLOAD HOUSE PHOTOS
-    console.log('   Uploading 2 custom house photo files...');
-    const fileInput = modal.locator('#property-photo-upload');
-    await fileInput.setInputFiles([img1Path, img2Path]);
-    await page.waitForTimeout(800);
+    // 1. TEST COVER PHOTO UPLOAD SEPARATELY
+    console.log('   Uploading Main Cover Photo separately via #cover-photo-upload...');
+    const coverInput = modal.locator('#cover-photo-upload');
+    await coverInput.setInputFiles(img1Path);
+    await page.waitForTimeout(600);
 
-    // Verify uploaded photos in grid
-    const photoThumbnails = modal.locator('img[alt*="House photo"]');
-    const photoCount = await photoThumbnails.count();
-    console.log(`   ✓ Uploaded photo thumbnails rendered in grid (total: ${photoCount})`);
-
-    // Verify Cover Photo Badge
-    const coverBadge = modal.getByText('Cover Photo').first();
+    // Verify Main Cover Photo badge & preview
+    const coverBadge = modal.getByText('Main Cover Photo').first();
     await coverBadge.waitFor({ timeout: 5000 });
-    console.log('   ✓ Main Cover Photo badge verified');
+    console.log('   ✓ Main Cover Photo uploaded and verified with "Main Cover Photo" badge');
 
-    // Test Setting another photo as cover
-    const setCoverBtn = modal.getByRole('button', { name: 'Set as Cover' }).first();
-    if (await setCoverBtn.isVisible()) {
-      await setCoverBtn.click();
+    // 2. TEST EXTRA PHOTOS UPLOAD SEPARATELY
+    console.log('   Uploading Additional / Extra Photos separately via #extra-photos-upload...');
+    const extraInput = modal.locator('#extra-photos-upload');
+    await extraInput.setInputFiles([img2Path]);
+    await page.waitForTimeout(600);
+
+    // Verify Extra Photos in grid
+    const extraThumbnails = modal.locator('img[alt*="Extra photo"]');
+    await extraThumbnails.first().waitFor({ timeout: 5000 });
+    console.log('   ✓ Additional / Extra photo uploaded and rendered in Gallery grid');
+
+    // Test Make Cover promotion button
+    const makeCoverBtn = modal.getByRole('button', { name: /Make Cover/i }).first();
+    if (await makeCoverBtn.isVisible()) {
+      await makeCoverBtn.click();
       await page.waitForTimeout(400);
-      console.log('   ✓ Set as Cover button tested and verified');
+      console.log('   ✓ "Make Cover" promotion button tested and verified');
     }
 
     // ADD CUSTOM FEATURES

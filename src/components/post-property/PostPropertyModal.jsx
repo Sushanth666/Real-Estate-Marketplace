@@ -61,11 +61,8 @@ export function PostPropertyModal() {
     reraId: '',
     description: '',
     amenities: ['Swimming Pool', 'Clubhouse', '24/7 Security', 'Gymnasium', 'EV Charging', 'Power Backup'],
-    images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80'
-    ]
+    coverImage: '',
+    extraImages: []
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -96,8 +93,37 @@ export function PostPropertyModal() {
 
   const [customFeatureInput, setCustomFeatureInput] = useState('');
 
-  // Handle House Photo Upload via File Input
-  const handlePhotoUpload = (e) => {
+  // 1. Handle Main Cover Photo Upload (Single File)
+  const handleCoverPhotoUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (uploadEvent) => {
+      const base64Url = uploadEvent.target?.result;
+      if (base64Url) {
+        setFormData(prev => ({
+          ...prev,
+          coverImage: base64Url
+        }));
+        showToast('Cover photo uploaded successfully! ⭐', 'success');
+      }
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+  // Remove Cover Photo
+  const handleRemoveCoverPhoto = () => {
+    setFormData(prev => ({
+      ...prev,
+      coverImage: ''
+    }));
+    showToast('Cover photo removed', 'info');
+  };
+
+  // 2. Handle Additional / Extra Photos Upload (Multiple Files)
+  const handleExtraPhotosUpload = (e) => {
     const files = Array.from(e.target.files || []);
     if (files.length === 0) return;
 
@@ -108,7 +134,7 @@ export function PostPropertyModal() {
         if (base64Url) {
           setFormData(prev => ({
             ...prev,
-            images: [base64Url, ...prev.images]
+            extraImages: [...prev.extraImages, base64Url]
           }));
         }
       };
@@ -116,30 +142,31 @@ export function PostPropertyModal() {
     });
 
     e.target.value = '';
-    showToast(`Uploaded ${files.length} house photo${files.length > 1 ? 's' : ''}! 📸`, 'success');
+    showToast(`Uploaded ${files.length} extra photo${files.length > 1 ? 's' : ''}! 📸`, 'success');
   };
 
-  // Remove Photo
-  const handleRemovePhoto = (indexToRemove) => {
+  // Remove Extra Photo
+  const handleRemoveExtraPhoto = (indexToRemove) => {
     setFormData(prev => ({
       ...prev,
-      images: prev.images.filter((_, idx) => idx !== indexToRemove)
+      extraImages: prev.extraImages.filter((_, idx) => idx !== indexToRemove)
     }));
-    showToast('Photo removed 🗑️', 'info');
+    showToast('Extra photo removed 🗑️', 'info');
   };
 
-  // Set as Cover Photo
-  const handleSetCoverPhoto = (indexToCover) => {
+  // Promote Extra Photo to Cover Photo
+  const handlePromoteToCover = (indexToPromote) => {
     setFormData(prev => {
-      if (indexToCover === 0) return prev;
-      const target = prev.images[indexToCover];
-      const others = prev.images.filter((_, idx) => idx !== indexToCover);
+      const selected = prev.extraImages[indexToPromote];
+      const remainingExtra = prev.extraImages.filter((_, idx) => idx !== indexToPromote);
+      const updatedExtra = prev.coverImage ? [prev.coverImage, ...remainingExtra] : remainingExtra;
       return {
         ...prev,
-        images: [target, ...others]
+        coverImage: selected,
+        extraImages: updatedExtra
       };
     });
-    showToast('Main Cover Photo updated! ⭐', 'success');
+    showToast('Promoted photo to main cover photo! ⭐', 'success');
   };
 
   // Add Custom Feature
@@ -223,12 +250,17 @@ export function PostPropertyModal() {
     const finalBuiltUp = Number(formData.builtUpArea) || 1500;
     const finalCarpet = Number(formData.carpetArea) || Math.round(finalBuiltUp * 0.8);
 
-    const finalImages = formData.images && formData.images.length > 0
-      ? formData.images
-      : [
-          'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'
-        ];
+    // Combine coverImage and extraImages
+    const allImages = [];
+    if (formData.coverImage) {
+      allImages.push(formData.coverImage);
+    }
+    if (formData.extraImages && formData.extraImages.length > 0) {
+      allImages.push(...formData.extraImages);
+    }
+    const finalImages = allImages.length > 0 
+      ? allImages 
+      : ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'];
 
     addNewProperty({
       ...formData,
@@ -594,7 +626,102 @@ export function PostPropertyModal() {
           {step === 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
               
-              {/* 1. House Photos Upload Manager */}
+              {/* 1. SEPARATE COVER PHOTO UPLOAD SECTION */}
+              <div className="bg-slate-50 border border-amber-200/90 rounded-2xl p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow-xs">
+                      <Star className="w-4 h-4 fill-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <span>1. Main Cover Image</span>
+                        <span className="text-[10px] text-amber-700 bg-amber-100 font-extrabold px-1.5 py-0.5 rounded">
+                          Featured Photo
+                        </span>
+                      </h3>
+                      <p className="text-[11px] text-slate-500">
+                        The primary exterior or front facade photo shown on marketplace search cards
+                      </p>
+                    </div>
+                  </div>
+                  {formData.coverImage ? (
+                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                      <Check className="w-3 h-3 text-emerald-600" />
+                      Cover Uploaded
+                    </span>
+                  ) : (
+                    <span className="text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
+                      Cover Required
+                    </span>
+                  )}
+                </div>
+
+                <input
+                  type="file"
+                  id="cover-photo-upload"
+                  accept="image/*"
+                  onChange={handleCoverPhotoUpload}
+                  className="hidden"
+                />
+
+                {!formData.coverImage ? (
+                  <label
+                    htmlFor="cover-photo-upload"
+                    className="border-2 border-dashed border-amber-300 hover:border-amber-500 hover:bg-amber-50/20 rounded-xl p-5 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-2 group"
+                  >
+                    <div className="w-11 h-11 rounded-full bg-amber-100 text-amber-700 group-hover:scale-110 flex items-center justify-center transition-transform">
+                      <ImagePlus className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-800 group-hover:text-amber-700 block">
+                        Click or Drag & Drop Main Cover Photo
+                      </span>
+                      <span className="text-[11px] text-slate-400 mt-0.5 block">
+                        Exterior front view • JPG, PNG, WEBP • 16:9 landscape recommended
+                      </span>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-4 py-1.5 rounded-xl shadow-xs transition-colors mt-1">
+                      <Plus className="w-3.5 h-3.5" />
+                      Upload Cover Image
+                    </span>
+                  </label>
+                ) : (
+                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-48 bg-slate-900 group">
+                    <img
+                      src={formData.coverImage}
+                      alt="Cover Photo"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30" />
+                    
+                    <span className="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg shadow-md flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-white" />
+                      Main Cover Photo
+                    </span>
+
+                    <div className="absolute bottom-3 right-3 flex items-center gap-2">
+                      <label
+                        htmlFor="cover-photo-upload"
+                        className="bg-white/95 hover:bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl shadow-md cursor-pointer transition-colors flex items-center gap-1"
+                      >
+                        <ImagePlus className="w-3.5 h-3.5" />
+                        <span>Replace Cover</span>
+                      </label>
+                      <button
+                        type="button"
+                        onClick={handleRemoveCoverPhoto}
+                        className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-md cursor-pointer transition-colors flex items-center gap-1"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Remove</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* 2. SEPARATE ADDITIONAL / EXTRA PHOTOS UPLOAD SECTION */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
@@ -603,79 +730,74 @@ export function PostPropertyModal() {
                     </div>
                     <div>
                       <h3 className="text-xs font-bold text-slate-800">
-                        Upload House Photos
+                        2. Additional House Photos (Extra Images)
                       </h3>
                       <p className="text-[11px] text-slate-500">
-                        First photo will be your Main Cover Photo on marketplace cards
+                        Living room, Bedrooms, Modular kitchen, Balconies, Bathroom, and Amenities
                       </p>
                     </div>
                   </div>
                   <span className="text-[11px] font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
-                    {formData.images.length} Photo{formData.images.length !== 1 ? 's' : ''} Added
+                    {formData.extraImages.length} Extra Photo{formData.extraImages.length !== 1 ? 's' : ''}
                   </span>
                 </div>
 
-                {/* Upload Dropzone */}
                 <input
                   type="file"
-                  id="property-photo-upload"
+                  id="extra-photos-upload"
                   accept="image/*"
                   multiple
-                  onChange={handlePhotoUpload}
+                  onChange={handleExtraPhotosUpload}
                   className="hidden"
                 />
+
                 <label
-                  htmlFor="property-photo-upload"
+                  htmlFor="extra-photos-upload"
                   className="border-2 border-dashed border-brand-300 hover:border-brand-500 hover:bg-white rounded-xl p-4 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-1.5 group"
                 >
-                  <div className="w-10 h-10 rounded-full bg-brand-50 text-brand-600 group-hover:scale-110 flex items-center justify-center transition-transform">
-                    <UploadCloud className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-full bg-brand-50 text-brand-600 group-hover:scale-110 flex items-center justify-center transition-transform">
+                    <UploadCloud className="w-4 h-4" />
                   </div>
                   <span className="text-xs font-bold text-slate-800 group-hover:text-brand-600">
-                    Click to Upload House Photos from Device
+                    Click to Upload Extra House Photos (Select Multiple)
                   </span>
                   <span className="text-[11px] text-slate-400">
-                    Supports JPG, PNG, WEBP • Living room, Bedrooms, Balcony, Exterior
+                    Select 1 or more extra photos • Living, Bedrooms, Kitchen, Amenities
                   </span>
                 </label>
 
-                {/* Uploaded Photos Grid */}
-                {formData.images.length > 0 && (
-                  <div className="mt-4">
+                {/* Uploaded Extra Photos Grid */}
+                {formData.extraImages.length > 0 && (
+                  <div className="mt-3.5">
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                      {formData.images.map((img, idx) => (
+                      {formData.extraImages.map((img, idx) => (
                         <div
                           key={idx}
                           className="relative rounded-xl overflow-hidden aspect-video sm:aspect-square bg-slate-900 border border-slate-200 group"
                         >
                           <img
                             src={img}
-                            alt={`House photo ${idx + 1}`}
+                            alt={`Extra photo ${idx + 1}`}
                             className="w-full h-full object-cover"
                           />
                           
-                          {/* Cover Photo Badge or Button */}
-                          {idx === 0 ? (
-                            <span className="absolute top-1.5 left-1.5 bg-amber-500 text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded shadow-sm flex items-center gap-1">
-                              <Star className="w-2.5 h-2.5 fill-white" />
-                              Cover Photo
-                            </span>
-                          ) : (
-                            <button
-                              type="button"
-                              onClick={() => handleSetCoverPhoto(idx)}
-                              className="absolute top-1.5 left-1.5 bg-black/75 hover:bg-brand-600 text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                            >
-                              Set as Cover
-                            </button>
-                          )}
+                          {/* Make Cover Button */}
+                          <button
+                            type="button"
+                            onClick={() => handlePromoteToCover(idx)}
+                            className="absolute top-1.5 left-1.5 bg-black/80 hover:bg-amber-600 text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer flex items-center gap-1"
+                            title="Make this photo the main cover"
+                          >
+                            <Star className="w-2.5 h-2.5" />
+                            <span>Make Cover</span>
+                          </button>
 
                           {/* Delete Photo Button */}
                           <button
                             type="button"
-                            onClick={() => handleRemovePhoto(idx)}
+                            onClick={() => handleRemoveExtraPhoto(idx)}
                             className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity shadow-sm cursor-pointer"
-                            title="Remove Photo"
+                            title="Remove Extra Photo"
                           >
                             <Trash2 className="w-3 h-3" />
                           </button>
@@ -815,15 +937,24 @@ export function PostPropertyModal() {
                 </div>
 
                 <div className="flex gap-4 items-center">
-                  <div className="relative w-24 h-20 rounded-xl overflow-hidden shrink-0 border border-slate-700">
-                    <img
-                      src={formData.images[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'}
-                      alt="Preview Cover"
-                      className="w-full h-full object-cover"
-                    />
-                    <span className="absolute bottom-1 left-1 bg-black/70 text-[8px] text-white font-bold px-1 rounded">
-                      Cover
-                    </span>
+                  <div className="relative w-24 h-20 rounded-xl overflow-hidden shrink-0 border border-slate-700 bg-slate-800 flex items-center justify-center">
+                    {formData.coverImage || formData.extraImages?.[0] ? (
+                      <>
+                        <img
+                          src={formData.coverImage || formData.extraImages[0]}
+                          alt="Preview Cover"
+                          className="w-full h-full object-cover"
+                        />
+                        <span className="absolute bottom-1 left-1 bg-black/70 text-[8px] text-white font-bold px-1 rounded">
+                          Cover
+                        </span>
+                      </>
+                    ) : (
+                      <div className="text-center p-1 text-slate-500">
+                        <Camera className="w-5 h-5 mx-auto mb-0.5 opacity-60" />
+                        <span className="text-[8px] block">No Photo</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -856,15 +987,19 @@ export function PostPropertyModal() {
                 </div>
 
                 {/* Thumbnail Strip of All Uploaded Photos */}
-                {formData.images.length > 1 && (
+                {(formData.coverImage || formData.extraImages?.length > 0) && (
                   <div className="mt-3 pt-2.5 border-t border-slate-800 flex items-center gap-2 overflow-x-auto">
                     <span className="text-[10px] text-slate-400 whitespace-nowrap font-medium">Gallery Strip:</span>
-                    {formData.images.map((img, i) => (
+                    {formData.coverImage && (
+                      <div className="w-10 h-8 rounded-lg overflow-hidden shrink-0 border border-amber-400 ring-1 ring-amber-400 relative">
+                        <img src={formData.coverImage} alt="Cover" className="w-full h-full object-cover" />
+                        <span className="absolute bottom-0 right-0 bg-amber-500 text-[6px] text-white px-0.5 font-bold">★</span>
+                      </div>
+                    )}
+                    {formData.extraImages?.map((img, i) => (
                       <div
                         key={i}
-                        className={`w-10 h-8 rounded-lg overflow-hidden shrink-0 border ${
-                          i === 0 ? 'border-sky-400 ring-1 ring-sky-400' : 'border-slate-700 opacity-70'
-                        }`}
+                        className="w-10 h-8 rounded-lg overflow-hidden shrink-0 border border-slate-700 opacity-80"
                       >
                         <img src={img} alt="" className="w-full h-full object-cover" />
                       </div>
