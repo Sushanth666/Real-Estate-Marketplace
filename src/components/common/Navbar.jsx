@@ -26,6 +26,7 @@ export function Navbar() {
     logoutUser,
     setIsAuthModalOpen,
     setIsPostPropertyOpen,
+    openPostProperty,
     setIsCompareModalOpen,
     updateFilter
   } = useMarketplace();
@@ -178,7 +179,7 @@ export function Navbar() {
             <motion.button
               whileHover={{ scale: 1.05, y: -1 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsPostPropertyOpen(true)}
+              onClick={openPostProperty}
               className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold tracking-wide uppercase shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/40 flex items-center gap-2 outline-none cursor-pointer shimmer-wrapper transition-all"
             >
               <PlusCircle className="w-4 h-4 animate-spin-slow" />
@@ -365,7 +366,7 @@ export function Navbar() {
             <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
               <button
                 onClick={() => {
-                  setIsPostPropertyOpen(true);
+                  openPostProperty();
                   setMobileMenuOpen(false);
                 }}
                 className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-bold flex items-center justify-center gap-2"

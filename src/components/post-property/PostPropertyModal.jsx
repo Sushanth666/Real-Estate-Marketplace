@@ -20,7 +20,10 @@ import {
   Star,
   Plus,
   Tag,
-  ImagePlus
+  ImagePlus,
+  Lock,
+  User,
+  Building2
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { indianCities } from '../../data/citiesData';
@@ -32,6 +35,9 @@ export function PostPropertyModal() {
     setIsPostPropertyOpen, 
     addNewProperty, 
     currentUser,
+    setIsAuthModalOpen,
+    setAuthModalMode,
+    setPendingOpenPostProperty,
     showToast
   } = useMarketplace();
 
@@ -277,7 +283,12 @@ export function PostPropertyModal() {
       amenities: formData.amenities,
       highlights: (formData.highlights && formData.highlights.length > 0)
         ? formData.highlights
-        : formData.amenities.slice(0, 6)
+        : formData.amenities.slice(0, 6),
+      ownerId: currentUser?.email,
+      ownerName: currentUser?.name || 'Verified Direct Owner',
+      ownerEmail: currentUser?.email,
+      agentName: currentUser?.name || 'Verified Direct Owner',
+      agentPhone: currentUser?.phone || '+91 98200 11223'
     });
 
     showToast('🎉 Property published live on BharatNivas!', 'success');
@@ -330,17 +341,95 @@ export function PostPropertyModal() {
               </button>
             </div>
 
-        {/* Wizard Steps Form */}
-        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto flex-1 space-y-6">
-          
-          {/* STEP 1: Basic Information */}
-          {step === 1 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">
-                    Listing Purpose <span className="text-rose-500">*</span>
-                  </label>
+            {/* Compulsory Authentication Guard if user is not logged in */}
+            {!currentUser ? (
+              <div className="p-8 sm:p-12 text-center flex flex-col items-center justify-center space-y-6">
+                <div className="w-20 h-20 rounded-3xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 shadow-inner">
+                  <Lock className="w-10 h-10" />
+                </div>
+                <div className="max-w-md space-y-2">
+                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-3 py-1 rounded-full">
+                    Compulsory Login Required
+                  </span>
+                  <h3 className="text-2xl font-bold font-display text-slate-900">
+                    Sign In to Add Property Details
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    To maintain verified genuine ownership and protect buyers & tenants against spam, users must be compulsory logged in before adding or publishing property details.
+                  </p>
+                </div>
+
+                <div className="w-full max-w-sm space-y-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPendingOpenPostProperty(true);
+                      setAuthModalMode('login');
+                      setIsAuthModalOpen(true);
+                    }}
+                    className="w-full py-3.5 bg-gradient-to-r from-brand-600 to-amber-600 hover:from-brand-700 hover:to-amber-700 text-white font-bold rounded-2xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <User className="w-4 h-4" /> Sign In to Add Property Details
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPendingOpenPostProperty(true);
+                      setAuthModalMode('register');
+                      setIsAuthModalOpen(true);
+                    }}
+                    className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-2xl transition-all cursor-pointer text-xs"
+                  >
+                    Don't have an account? Create Free Account
+                  </button>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
+                  <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-500" /> 100% Verified Direct Owners</span>
+                  <span>•</span>
+                  <span>Direct Buyer Inquiries</span>
+                  <span>•</span>
+                  <span>Zero Brokerage</span>
+                </div>
+              </div>
+            ) : (
+              /* Wizard Steps Form */
+              <form onSubmit={handleSubmit} className="p-6 overflow-y-auto flex-1 space-y-6">
+                
+                {/* STEP 1: Basic Information */}
+                {step === 1 && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+                    {/* Logged-in Verified User Card */}
+                    <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-3.5 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-700 flex items-center justify-center font-bold">
+                          <User className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-slate-900">{currentUser.name}</span>
+                            <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full flex items-center gap-1">
+                              <ShieldCheck className="w-3 h-3 text-emerald-600" /> Verified Owner
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-500 font-medium">
+                            {currentUser.email} • {currentUser.phone || '+91 Active Member'}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right hidden sm:block">
+                        <span className="text-[11px] text-emerald-700 font-bold bg-emerald-100/60 px-2.5 py-1 rounded-lg">
+                          Logged In ✓
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="text-xs font-bold text-slate-700 block mb-1">
+                          Listing Purpose <span className="text-rose-500">*</span>
+                        </label>
                   <select
                     value={formData.purpose}
                     onChange={(e) => handleFieldChange('purpose', e.target.value)}
@@ -1046,6 +1135,7 @@ export function PostPropertyModal() {
           </div>
 
         </form>
+            )}
 
           </motion.div>
         </div>

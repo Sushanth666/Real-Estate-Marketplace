@@ -61,6 +61,9 @@ export function MarketplaceProvider({ children }) {
   // Pending property that user attempted to save before being prompted to log in
   const [pendingSavePropertyId, setPendingSavePropertyId] = useState(null);
 
+  // Pending post property intent (when unauthenticated user attempts to list property)
+  const [pendingOpenPostProperty, setPendingOpenPostProperty] = useState(false);
+
   // Compare state (up to 4 items) - starts empty so floating bar is hidden on initial load
   const [compareList, setCompareList] = useState([]);
 
@@ -76,6 +79,18 @@ export function MarketplaceProvider({ children }) {
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   const [scheduleModalProp, setScheduleModalProp] = useState(null);
   const [selectedAgentModal, setSelectedAgentModal] = useState(null);
+
+  // Open Post Property with mandatory user login verification
+  const openPostProperty = () => {
+    if (!currentUser) {
+      setPendingOpenPostProperty(true);
+      setAuthModalMode('login');
+      setIsAuthModalOpen(true);
+      showToast('Please sign in or register to post your property on BharatNivas 🏡', 'info');
+      return;
+    }
+    setIsPostPropertyOpen(true);
+  };
 
   // Transaction Modal state (for "Proceed to Buy" and "Proceed to Rent")
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
@@ -310,6 +325,10 @@ export function MarketplaceProvider({ children }) {
       const savedProp = properties.find(p => p.id === pendingSavePropertyId);
       setPendingSavePropertyId(null);
       showToast(`Welcome ${user.name}! "${savedProp?.title || 'Property'}" saved to your account ❤️`, 'success');
+    } else if (pendingOpenPostProperty) {
+      setPendingOpenPostProperty(false);
+      setIsPostPropertyOpen(true);
+      showToast(`Welcome ${user.name}! You can now list your property for free 🏡`, 'success');
     } else {
       showToast(`Welcome back, ${user.name}! 🇮🇳`, 'success');
     }
@@ -333,6 +352,8 @@ export function MarketplaceProvider({ children }) {
     setCurrentUser(null);
     setWishlist([]);
     setPendingSavePropertyId(null);
+    setPendingOpenPostProperty(false);
+    setIsPostPropertyOpen(false);
     showToast('Logged out safely. Sign in anytime to view your saved properties.', 'info');
   };
 
@@ -433,6 +454,7 @@ export function MarketplaceProvider({ children }) {
       scheduleModalProp,
       selectedAgentModal,
       pendingSavePropertyId,
+      pendingOpenPostProperty,
       isTransactionModalOpen,
       transactionModalProp,
       transactionType,
@@ -455,12 +477,14 @@ export function MarketplaceProvider({ children }) {
       setIsAuthModalOpen,
       setAuthModalMode,
       setIsPostPropertyOpen,
+      openPostProperty,
       setIsCompareModalOpen,
       setScheduleModalProp,
       setSelectedAgentModal,
       openTransactionModal,
       closeTransactionModal,
       setPendingSavePropertyId,
+      setPendingOpenPostProperty,
       showToast
     }}>
       {children}

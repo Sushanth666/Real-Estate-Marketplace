@@ -23,6 +23,7 @@ export function AuthModal() {
     authModalMode, 
     setAuthModalMode,
     pendingSavePropertyId,
+    pendingOpenPostProperty,
     properties,
     showToast 
   } = useMarketplace();
@@ -217,6 +218,22 @@ export function AuthModal() {
               </span>
               <p className="text-xs font-bold text-slate-900 truncate">{pendingSaveProperty.title}</p>
               <p className="text-[11px] text-slate-500">Sign in to automatically save this to your account favorites ❤️</p>
+            </div>
+          </div>
+        )}
+
+        {/* Pending Post Property Alert Card */}
+        {pendingOpenPostProperty && !pendingSaveProperty && (
+          <div className="mb-5 p-3 rounded-2xl bg-amber-50/90 border border-amber-200/90 flex items-center gap-3 text-left shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+              <Building2 className="w-6 h-6" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <span className="text-[10px] font-extrabold text-amber-700 uppercase tracking-wider block">
+                Compulsory Login Required
+              </span>
+              <p className="text-xs font-bold text-slate-900 truncate">Post Your Property on BharatNivas</p>
+              <p className="text-[11px] text-slate-500">Sign in to add details and publish with verified owner status 🏡</p>
             </div>
           </div>
         )}
