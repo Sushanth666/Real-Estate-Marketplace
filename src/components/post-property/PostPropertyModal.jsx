@@ -122,6 +122,7 @@ export function PostPropertyModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (step !== 3) return;
     const finalPrice = Number(formData.price) || 10000000;
     const finalBuiltUp = Number(formData.builtUpArea) || 1500;
     const finalCarpet = Number(formData.carpetArea) || Math.round(finalBuiltUp * 0.8);
@@ -577,6 +578,7 @@ export function PostPropertyModal() {
 
             {step < 3 ? (
               <button
+                key="wizard-continue-btn"
                 type="button"
                 onClick={handleNext}
                 className="bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-6 py-2.5 rounded-xl flex items-center gap-1.5 shadow-md shadow-brand-600/30 cursor-pointer"
@@ -586,6 +588,7 @@ export function PostPropertyModal() {
               </button>
             ) : (
               <button
+                key="wizard-publish-btn"
                 type="submit"
                 className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold px-7 py-3 rounded-xl flex items-center gap-2 shadow-lg cursor-pointer"
               >
