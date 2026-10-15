@@ -12,7 +12,7 @@ import { useMarketplace } from '../../context/MarketplaceContext';
 import { indianCities } from '../../data/citiesData';
 
 export function Footer() {
-  const { navigateTo, updateFilter } = useMarketplace();
+  const { navigateTo, updateFilter, setIsPostPropertyOpen } = useMarketplace();
 
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
@@ -183,6 +183,14 @@ export function Footer() {
               PropTech Tools
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-400 text-left">
+              <li className="text-left">
+                <button 
+                  onClick={() => setIsPostPropertyOpen(true)}
+                  className="text-left text-amber-400 hover:text-amber-300 font-bold transition-colors block w-full cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>+ Post Property FREE (Owner/Builder)</span>
+                </button>
+              </li>
               <li className="text-left">
                 <button onClick={() => navigateTo('home')} className="text-left text-slate-400 hover:text-white transition-colors block w-full">
                   EMI & Home Loan Calculator
