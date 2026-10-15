@@ -79,7 +79,14 @@ export function MarketplaceProvider({ children }) {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('login'); // 'login' | 'register'
   const [isPostPropertyOpen, setIsPostPropertyOpen] = useState(false);
-  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+  const [isCompareModalOpen, setIsCompareModalOpenState] = useState(false);
+  const setIsCompareModalOpen = (open) => {
+    if (open) {
+      navigateTo('compare');
+    } else {
+      setIsCompareModalOpenState(false);
+    }
+  };
   const [scheduleModalProp, setScheduleModalProp] = useState(null);
   const [selectedAgentModal, setSelectedAgentModal] = useState(null);
 

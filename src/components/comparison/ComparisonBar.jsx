@@ -9,10 +9,14 @@ export function ComparisonBar() {
     compareList, 
     removeFromCompare, 
     clearCompare, 
-    setIsCompareModalOpen 
+    currentView,
+    navigateTo 
   } = useMarketplace();
 
   const comparedProperties = properties.filter(p => compareList.includes(p.id));
+
+  // If user is already on the Compare page, hide the bottom floating bar
+  if (currentView === 'compare') return null;
 
   return (
     <AnimatePresence>
@@ -102,7 +106,7 @@ export function ComparisonBar() {
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                onClick={() => setIsCompareModalOpen(true)}
+                onClick={() => navigateTo('compare')}
                 className="bg-brand-500 hover:bg-brand-400 text-slate-950 font-extrabold px-4 py-2.5 rounded-2xl text-xs flex items-center gap-1.5 shadow-md shadow-brand-500/25 transition-all cursor-pointer"
               >
                 <span>Compare Now</span>

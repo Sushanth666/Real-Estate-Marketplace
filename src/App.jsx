@@ -19,9 +19,9 @@ import { CitiesView } from './components/cities/CitiesView';
 import { PropertyDetailView } from './components/detail/PropertyDetailView';
 import { WishlistView } from './components/wishlist/WishlistView';
 import { AgentsView } from './components/agents/AgentsView';
+import { CompareView } from './components/comparison/CompareView';
 
 // Modals & Floating Bars
-import { ComparisonModal } from './components/comparison/ComparisonModal';
 import { ComparisonBar } from './components/comparison/ComparisonBar';
 import { AuthModal } from './components/auth/AuthModal';
 import { PostPropertyModal } from './components/post-property/PostPropertyModal';
@@ -70,6 +70,7 @@ function MainContent() {
               {currentView === 'listings' && <ListingsView />}
               {currentView === 'detail' && <PropertyDetailView />}
               {currentView === 'wishlist' && <WishlistView />}
+              {currentView === 'compare' && <CompareView />}
               {currentView === 'agents' && <AgentsView />}
             </motion.div>
           </AnimatePresence>
@@ -82,7 +83,6 @@ function MainContent() {
       {/* Modals & Popups */}
       <AuthModal />
       <PostPropertyModal />
-      <ComparisonModal />
       <ScheduleVisitModal />
       <PropertyTransactionModal />
       <ComparisonBar />

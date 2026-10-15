@@ -62,8 +62,8 @@ export function WishlistView() {
               </div>
 
               <button
-                onClick={() => setIsCompareModalOpen(true)}
-                className="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5"
+                onClick={() => navigateTo('compare')}
+                className="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
               >
                 <Scale className="w-3.5 h-3.5" />
                 <span>Compare Matrix</span>

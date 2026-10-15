@@ -140,10 +140,14 @@ export function Navbar() {
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              onClick={() => setIsCompareModalOpen(true)}
-              className="whitespace-nowrap relative px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer"
+              onClick={() => navigateTo('compare')}
+              className={`whitespace-nowrap relative px-3.5 py-2 text-sm font-medium rounded-xl transition-colors flex items-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 cursor-pointer ${
+                currentView === 'compare'
+                  ? 'text-brand-700 bg-brand-50/80 font-semibold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
             >
-              <Scale className="w-4 h-4 text-slate-500" />
+              <Scale className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${compareList.length > 0 ? 'text-brand-600' : 'text-slate-500'}`} />
               <span>Compare</span>
               {compareList.length > 0 && (
                 <span className="bg-brand-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-pulse">
@@ -351,10 +355,12 @@ export function Navbar() {
               </button>
               <button
                 onClick={() => {
-                  setIsCompareModalOpen(true);
+                  navigateTo('compare');
                   setMobileMenuOpen(false);
                 }}
-                className="text-left px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-50 flex items-center justify-between"
+                className={`text-left px-3 py-2.5 rounded-xl text-sm font-medium flex items-center justify-between ${
+                  currentView === 'compare' ? 'bg-brand-50 text-brand-700 font-semibold' : 'text-slate-800 hover:bg-slate-50'
+                }`}
               >
                 <span>Compare Matrix</span>
                 <span className="bg-brand-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
