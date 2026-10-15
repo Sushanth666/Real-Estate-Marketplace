@@ -237,7 +237,7 @@ export function ListingsView() {
             ) : (
               <motion.div 
                 layout 
-                className={`grid gap-6 ${
+                className={`grid gap-6 items-stretch ${
                   layout === 'grid' 
                     ? 'grid-cols-1 md:grid-cols-2' 
                     : 'grid-cols-1'
@@ -252,6 +252,7 @@ export function ListingsView() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.25 }}
+                      className="h-full flex flex-col"
                     >
                       <PropertyCard property={property} layout={layout} />
                     </motion.div>

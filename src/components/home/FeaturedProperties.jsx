@@ -77,8 +77,8 @@ export function FeaturedProperties() {
           </div>
         </motion.div>
 
-        {/* Properties Grid with animated re-arrangement */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Properties Grid with animated re-arrangement - Uniform Heights */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           <AnimatePresence mode="popLayout">
             {filtered.map(property => (
               <motion.div
@@ -88,6 +88,7 @@ export function FeaturedProperties() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.3 }}
+                className="h-full flex flex-col"
               >
                 <PropertyCard property={property} layout="grid" />
               </motion.div>

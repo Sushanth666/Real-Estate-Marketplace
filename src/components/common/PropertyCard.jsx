@@ -94,12 +94,12 @@ export function PropertyCard({ property, layout = 'grid' }) {
       onMouseLeave={handleMouseLeave}
       style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
       onClick={() => viewPropertyDetail(property.id)}
-      className={`group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-brand-300 transition-all duration-300 overflow-hidden flex glow-card cursor-pointer ${
-        layout === 'list' ? 'flex-col md:flex-row' : 'flex-col'
+      className={`group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-brand-300 transition-all duration-300 overflow-hidden flex flex-col h-full glow-card cursor-pointer ${
+        layout === 'list' ? 'md:flex-row md:h-auto' : ''
       }`}
     >
       {/* Property Image Container */}
-      <div className={`relative overflow-hidden shimmer-wrapper ${
+      <div className={`relative overflow-hidden shimmer-wrapper shrink-0 ${
         layout === 'list' ? 'md:w-5/12 h-64 md:h-auto min-h-[260px]' : 'w-full h-64'
       }`}>
         <img
@@ -224,9 +224,9 @@ export function PropertyCard({ property, layout = 'grid' }) {
       <div className={`p-5 flex flex-col justify-between flex-1 ${
         layout === 'list' ? 'md:p-6' : ''
       }`}>
-        <div>
+        <div className="flex flex-col flex-1">
           {/* Price & EMI Section */}
-          <div className="flex items-baseline justify-between gap-2 mb-2">
+          <div className="flex items-baseline justify-between gap-2 mb-1.5">
             <div>
               <span className="text-2xl font-bold font-display text-slate-900 tracking-tight">
                 {formatIndianCurrency(property.price)}
@@ -242,25 +242,34 @@ export function PropertyCard({ property, layout = 'grid' }) {
             )}
           </div>
 
-          {/* Estimated EMI */}
-          {emiMonthly && (
-            <p className="text-xs text-brand-700 font-medium mb-3 flex items-center gap-1">
-              <span>EMI from {formatIndianCurrency(emiMonthly)}/mo</span>
-              <span className="text-slate-400 font-normal">• 8.5% p.a.</span>
-            </p>
-          )}
+          {/* Estimated EMI or Rental Benefit with fixed height for 100% uniform card sizing */}
+          <div className="min-h-[20px] mb-3 flex items-center">
+            {emiMonthly ? (
+              <p className="text-xs text-brand-700 font-medium flex items-center gap-1">
+                <span>EMI from {formatIndianCurrency(emiMonthly)}/mo</span>
+                <span className="text-slate-400 font-normal">• 8.5% p.a.</span>
+              </p>
+            ) : (
+              <p className="text-xs text-emerald-600 font-medium flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 inline-block"></span>
+                <span>Zero Brokerage</span>
+                <span className="text-slate-400 font-normal">• Verified Rental</span>
+              </p>
+            )}
+          </div>
 
-          {/* Title & Locality */}
+          {/* Title & Locality with exact single line clamps */}
           <h3 
             onClick={() => viewPropertyDetail(property.id)}
-            className="font-semibold text-slate-900 text-lg group-hover:text-brand-700 transition-colors cursor-pointer line-clamp-1 mb-1"
+            className="font-semibold text-slate-900 text-lg group-hover:text-brand-700 transition-colors cursor-pointer line-clamp-1 mb-1 leading-snug"
+            title={property.title}
           >
             {property.title}
           </h3>
 
-          <p className="text-sm text-slate-500 flex items-center gap-1.5 mb-4 line-clamp-1">
+          <p className="text-sm text-slate-500 flex items-center gap-1.5 mb-4 line-clamp-1 h-5">
             <MapPin className="w-4 h-4 text-brand-600 shrink-0" />
-            <span>{property.locality}, {property.city}</span>
+            <span className="truncate">{property.locality}, {property.city}</span>
           </p>
 
           {/* Specifications Grid */}
@@ -298,8 +307,8 @@ export function PropertyCard({ property, layout = 'grid' }) {
           )}
         </div>
 
-        {/* Card Footer: Builder & CTA */}
-        <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+        {/* Card Footer: Builder & CTA strictly pinned to the bottom */}
+        <div className="mt-auto pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
           <div className="min-w-0">
             <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider block">
               Developer

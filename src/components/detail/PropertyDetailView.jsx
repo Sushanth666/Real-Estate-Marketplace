@@ -864,9 +864,11 @@ export function PropertyDetailView() {
             <h2 className="text-2xl font-bold font-display text-slate-900 mb-8">
               Similar Verified Residences in {currentProperty.city}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {similarProperties.map(prop => (
-                <PropertyCard key={prop.id} property={prop} />
+                <div key={prop.id} className="h-full flex flex-col">
+                  <PropertyCard property={prop} />
+                </div>
               ))}
             </div>
           </div>

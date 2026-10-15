@@ -225,7 +225,7 @@ export function WishlistView() {
             </motion.button>
           </motion.div>
         ) : (
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             <AnimatePresence mode="popLayout">
               {savedProperties.map(property => (
                 <motion.div
@@ -234,6 +234,7 @@ export function WishlistView() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.25 } }}
+                  className="h-full flex flex-col"
                 >
                   <PropertyCard property={property} layout="grid" />
                 </motion.div>
