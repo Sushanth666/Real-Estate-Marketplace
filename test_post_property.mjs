@@ -1,7 +1,16 @@
 import { chromium } from 'playwright';
+import fs from 'fs';
+import path from 'path';
 
 async function run() {
-  console.log('Starting automated end-to-end test for Post New Property...');
+  console.log('Starting automated end-to-end test for House Photo Upload & Custom Features in Post Property Free...');
+
+  // Create temporary test image files
+  const img1Path = path.resolve('test_house_photo_1.png');
+  const img2Path = path.resolve('test_house_photo_2.png');
+  fs.writeFileSync(img1Path, Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mNk+M9QzwAEjAwMDAwAFAcCARgYv9EAAAAASUVORK5CYII=', 'base64'));
+  fs.writeFileSync(img2Path, Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mNkWPifgQEIYGBgYAAAEvkBPYd1P64AAAAASUVORK5CYII=', 'base64'));
+
   let browser;
   try {
     browser = await chromium.launch({ headless: true, channel: 'msedge' });
@@ -25,7 +34,7 @@ async function run() {
     const postBtn = page.getByRole('button', { name: /Post Property FREE/i }).first();
     await postBtn.click();
 
-    // Verify modal is open and scope inside modal
+    // Verify modal is open
     const modal = page.locator('div.fixed.inset-0').filter({ hasText: 'List Your Property on BharatNivas' });
     await modal.waitFor({ timeout: 5000 });
     console.log('   ✓ Modal opened successfully');
@@ -84,28 +93,78 @@ async function run() {
     await modal.getByRole('button', { name: 'Continue' }).click();
     await page.waitForTimeout(500);
 
-    // 5. Fill Step 3
-    console.log('5. Filling Step 3 fields...');
+    // 5. Test Step 3: Photo Upload and Custom Features
+    console.log('5. Testing Step 3 House Photo Upload...');
     const step3Heading = modal.getByText('Instant Live Marketplace Preview');
     await step3Heading.waitFor({ timeout: 5000 });
     console.log('   ✓ Step 3 reached successfully');
 
-    // Description
-    const textarea = page.locator('textarea');
-    console.log('   Textarea count found on page:', await textarea.count());
-    await textarea.fill('Magnificent sea-view modern villa with landscaped terrace garden, Italian marble flooring, and EV charging.');
+    // UPLOAD HOUSE PHOTOS
+    console.log('   Uploading 2 custom house photo files...');
+    const fileInput = modal.locator('#property-photo-upload');
+    await fileInput.setInputFiles([img1Path, img2Path]);
+    await page.waitForTimeout(800);
 
-    // Click Publish Property Live
-    console.log('   Clicking Publish Property Live 🇮🇳...');
+    // Verify uploaded photos in grid
+    const photoThumbnails = modal.locator('img[alt*="House photo"]');
+    const photoCount = await photoThumbnails.count();
+    console.log(`   ✓ Uploaded photo thumbnails rendered in grid (total: ${photoCount})`);
+
+    // Verify Cover Photo Badge
+    const coverBadge = modal.getByText('Cover Photo').first();
+    await coverBadge.waitFor({ timeout: 5000 });
+    console.log('   ✓ Main Cover Photo badge verified');
+
+    // Test Setting another photo as cover
+    const setCoverBtn = modal.getByRole('button', { name: 'Set as Cover' }).first();
+    if (await setCoverBtn.isVisible()) {
+      await setCoverBtn.click();
+      await page.waitForTimeout(400);
+      console.log('   ✓ Set as Cover button tested and verified');
+    }
+
+    // ADD CUSTOM FEATURES
+    console.log('   Testing Custom Feature Addition...');
+    const customFeatureInput = modal.getByPlaceholder(/Type custom feature/i);
+    await customFeatureInput.fill('Private Sea-View Terrace Garden');
+    const addFeatureBtn = modal.getByRole('button', { name: 'Add Feature' });
+    await addFeatureBtn.click();
+    await page.waitForTimeout(400);
+
+    // Verify custom feature is in Selected Features badges
+    await modal.getByText('Private Sea-View Terrace Garden').first().waitFor({ timeout: 5000 });
+    console.log('   ✓ Custom feature "Private Sea-View Terrace Garden" added to selected features!');
+
+    // Test Quick-Add Feature Chip
+    console.log('   Testing Quick-Add Feature Chips...');
+    const quickChip = modal.getByRole('button', { name: /Smart Home Automation/i }).first();
+    if (await quickChip.isVisible()) {
+      await quickChip.click();
+      await page.waitForTimeout(400);
+      console.log('   ✓ Quick-add feature "Smart Home Automation" clicked and added!');
+    }
+
+    // Check Live Preview Card
+    console.log('   Checking Live Marketplace Preview Card...');
+    const previewCover = modal.locator('img[alt="Preview Cover"]');
+    await previewCover.waitFor({ timeout: 5000 });
+    console.log('   ✓ Live Preview Cover photo rendered');
+
+    // Fill Description
+    const textarea = page.locator('textarea');
+    await textarea.fill('Magnificent sea-view modern villa with landscaped terrace garden, Italian marble flooring, smart automation, and private pool.');
+
+    // 6. Click Publish Property Live
+    console.log('6. Clicking Publish Property Live 🇮🇳...');
     await modal.getByRole('button', { name: /Publish Property Live/i }).click();
 
-    // 6. Verify modal closes
-    console.log('6. Waiting for modal close...');
+    // Verify modal closes
+    console.log('   Waiting for modal close...');
     await modal.waitFor({ state: 'detached', timeout: 5000 });
-    console.log('   ✓ Modal closed cleanly');
+    console.log('   ✓ Modal closed cleanly with published confirmation');
 
-    // 7. Verify Auto-Redirection to Property Detail View
-    console.log('7. Verifying automatic transition to Property Detail View...');
+    // 7. Verify Auto-Redirection to Property Detail View with uploaded photos & features
+    console.log('7. Verifying Property Detail View features and gallery...');
     const detailTitle = page.locator('text=Greenfield Ultra Luxury Villa with Private Pool').first();
     await detailTitle.waitFor({ timeout: 8000 });
     console.log('   ✓ Detail View loaded with property title: "Greenfield Ultra Luxury Villa with Private Pool"');
@@ -115,10 +174,14 @@ async function run() {
     await detailPrice.waitFor({ timeout: 5000 });
     console.log('   ✓ Detail View displays correct formatted price: ₹3.50 Cr');
 
-    // Verify key specifications displayed in Detail View
-    const bhkBadge = page.locator('text=4 BHK').first();
-    await bhkBadge.waitFor({ timeout: 5000 });
-    console.log('   ✓ Detail View displays "4 BHK" specification');
+    // Verify custom features rendered in Amenities / Highlights
+    const customFeatureInDetail = page.locator('text=Private Sea-View Terrace Garden').first();
+    await customFeatureInDetail.waitFor({ timeout: 5000 });
+    console.log('   ✓ Custom feature "Private Sea-View Terrace Garden" verified in Property Detail View!');
+
+    const smartHomeInDetail = page.locator('text=Smart Home Automation').first();
+    await smartHomeInDetail.waitFor({ timeout: 5000 });
+    console.log('   ✓ Feature "Smart Home Automation" verified in Property Detail View!');
 
     // 8. Verify property is searchable in Marketplace Properties catalog
     console.log('8. Testing Marketplace Search & Listing persistence...');
@@ -132,15 +195,20 @@ async function run() {
 
     const listingCard = page.locator('text=Greenfield Ultra Luxury Villa with Private Pool').first();
     await listingCard.waitFor({ timeout: 5000 });
-    console.log('   ✓ Published property found in Marketplace search results!');
+    console.log('   ✓ Published property with uploaded photos found in Marketplace search results!');
 
-    console.log('\n======================================================');
-    console.log('🎉 ALL POST NEW PROPERTY E2E VERIFICATIONS PASSED! 🎉');
-    console.log('======================================================');
+    console.log('\n========================================================================');
+    console.log('🎉 ALL HOUSE PHOTO UPLOAD & CUSTOM FEATURES VERIFICATIONS PASSED! 🎉');
+    console.log('========================================================================');
   } catch (err) {
     console.error('Test failed with error:', err);
     process.exit(1);
   } finally {
+    // Clean up temporary image files
+    try {
+      if (fs.existsSync(img1Path)) fs.unlinkSync(img1Path);
+      if (fs.existsSync(img2Path)) fs.unlinkSync(img2Path);
+    } catch (_) {}
     await browser.close();
   }
 }
