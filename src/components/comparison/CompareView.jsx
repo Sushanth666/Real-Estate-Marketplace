@@ -133,24 +133,12 @@ export function CompareView() {
               Evaluate up to 4 luxury residences side-by-side. Click the scale icon (<span className="text-brand-600 font-semibold">⚖️</span>) on any property card, or test the matrix with top residences right away.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => {
-                  if (properties[0]?.id && !compareList.includes(properties[0].id)) toggleCompare(properties[0].id);
-                  if (properties[1]?.id && !compareList.includes(properties[1].id)) toggleCompare(properties[1].id);
-                }}
-                className="bg-brand-600 hover:bg-brand-700 text-white font-bold px-7 py-3 rounded-2xl text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2 shadow-md shadow-brand-600/25 cursor-pointer"
-              >
-                <span>⚡ Quick Compare Top 2 Residences</span>
-              </motion.button>
-
+            <div className="flex justify-center">
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 onClick={() => navigateTo('listings')}
-                className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-7 py-3 rounded-2xl text-xs uppercase tracking-wider transition-colors inline-flex items-center justify-center gap-2 cursor-pointer"
+                className="bg-slate-900 hover:bg-brand-700 text-white font-bold px-8 py-3.5 rounded-2xl text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2 shadow-md shadow-slate-900/20 cursor-pointer"
               >
                 <span>Browse All Properties</span>
                 <ArrowRight className="w-4 h-4" />
