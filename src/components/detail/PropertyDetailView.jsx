@@ -589,14 +589,14 @@ export function PropertyDetailView() {
                     onClick={() => setActiveFloorPlan('3bhk')}
                     className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                       activeFloorPlan === '3bhk'
-                        ? 'text-white'
+                        ? 'bg-slate-900 text-white'
                         : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
                     }`}
                   >
                     {activeFloorPlan === '3bhk' && (
                       <motion.div
                         layoutId="activeFloorPlanPill"
-                        className="absolute inset-0 bg-slate-900 rounded-xl -z-10 shadow-xs"
+                        className="absolute inset-0 bg-slate-900 rounded-xl shadow-xs"
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}
@@ -606,14 +606,14 @@ export function PropertyDetailView() {
                     onClick={() => setActiveFloorPlan('penthouse')}
                     className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                       activeFloorPlan === 'penthouse'
-                        ? 'text-white'
+                        ? 'bg-slate-900 text-white'
                         : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
                     }`}
                   >
                     {activeFloorPlan === 'penthouse' && (
                       <motion.div
                         layoutId="activeFloorPlanPill"
-                        className="absolute inset-0 bg-slate-900 rounded-xl -z-10 shadow-xs"
+                        className="absolute inset-0 bg-slate-900 rounded-xl shadow-xs"
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}

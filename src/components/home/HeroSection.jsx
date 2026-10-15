@@ -259,13 +259,13 @@ export function HeroSection() {
                     type="button"
                     onClick={() => setBhk(item)}
                     className={`relative px-2.5 py-1 rounded-lg font-semibold transition-colors cursor-pointer ${
-                      isActive ? 'text-white' : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
+                      isActive ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="heroBhkPill"
-                        className="absolute inset-0 bg-slate-900 rounded-lg -z-10 shadow-xs"
+                        className="absolute inset-0 bg-slate-900 rounded-lg shadow-xs"
                         transition={{ type: 'spring', stiffness: 400, damping: 28 }}
                       />
                     )}
