@@ -11,7 +11,8 @@ import {
   Check, 
   Calendar,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Trash2
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';
@@ -23,8 +24,11 @@ export function PropertyCard({ property, layout = 'grid' }) {
     isInCompare, 
     toggleCompare, 
     viewPropertyDetail,
-    setScheduleModalProp
+    setScheduleModalProp,
+    deleteProperty
   } = useMarketplace();
+
+  const isCustomProperty = property.isCustom || property.agentName?.includes('Owner') || property.id?.startsWith('custom-prop-') || property.id?.startsWith('prop-17');
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [rotateX, setRotateX] = useState(0);
@@ -168,6 +172,22 @@ export function PropertyCard({ property, layout = 'grid' }) {
               <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
             </motion.div>
           </motion.button>
+
+          {/* Delete Button for User-Posted Listings */}
+          {isCustomProperty && (
+            <motion.button
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.8 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteProperty(property.id);
+              }}
+              title="Delete this listing"
+              className="p-2.5 rounded-full backdrop-blur-md transition-all shadow-md cursor-pointer bg-rose-600/85 hover:bg-rose-600 text-white ring-1 ring-white/20"
+            >
+              <Trash2 className="w-4 h-4" />
+            </motion.button>
+          )}
         </div>
 
         {/* Bottom Image Overlay Details */}

@@ -19,7 +19,8 @@ import {
   X, 
   Download, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Trash2
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';
@@ -36,8 +37,11 @@ export function PropertyDetailView() {
     isInCompare, 
     toggleCompare,
     setScheduleModalProp,
+    deleteProperty,
     showToast
   } = useMarketplace();
+
+  const isCustomProperty = currentProperty?.isCustom || currentProperty?.agentName?.includes('Owner') || currentProperty?.id?.startsWith('custom-prop-') || currentProperty?.id?.startsWith('prop-17');
 
   const [activePhotoModal, setActivePhotoModal] = useState(false);
   const [modalPhotoIndex, setModalPhotoIndex] = useState(0);
@@ -137,6 +141,21 @@ export function PropertyDetailView() {
               <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'text-white fill-white' : 'text-slate-500'}`} />
               <span>{isWishlisted ? 'Saved' : 'Save'}</span>
             </motion.button>
+
+            {isCustomProperty && (
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={() => {
+                  deleteProperty(currentProperty.id);
+                }}
+                className="px-3.5 py-2 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 hover:bg-rose-100 text-xs font-semibold flex items-center gap-2 transition-all shadow-xs cursor-pointer"
+                title="Delete this property listing"
+              >
+                <Trash2 className="w-3.5 h-3.5 text-rose-600" />
+                <span>Delete Listing</span>
+              </motion.button>
+            )}
           </div>
         </div>
 

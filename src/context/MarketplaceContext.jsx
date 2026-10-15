@@ -15,7 +15,15 @@ export function MarketplaceProvider({ children }) {
       const saved = localStorage.getItem(CUSTOM_PROPERTIES_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        return [...parsed, ...initialProperties];
+        // Delete the requested test image properties
+        const cleaned = parsed.filter(p => 
+          !p.title?.includes('Greenfield Ultra Luxury Villa') && 
+          !p.title?.includes('Seaside Luxury Villa ECR')
+        );
+        if (cleaned.length !== parsed.length) {
+          localStorage.setItem(CUSTOM_PROPERTIES_KEY, JSON.stringify(cleaned));
+        }
+        return [...cleaned, ...initialProperties];
       }
     } catch (e) {
       console.error(e);
@@ -216,6 +224,34 @@ export function MarketplaceProvider({ children }) {
     viewPropertyDetail(newProperty.id);
   };
 
+  const deleteProperty = (propertyId) => {
+    setProperties(prev => prev.filter(p => p.id !== propertyId));
+    try {
+      const existingSaved = JSON.parse(localStorage.getItem(CUSTOM_PROPERTIES_KEY) || '[]');
+      const updatedSaved = existingSaved.filter(p => p.id !== propertyId);
+      localStorage.setItem(CUSTOM_PROPERTIES_KEY, JSON.stringify(updatedSaved));
+    } catch (e) {
+      console.error(e);
+    }
+    setWishlist(prev => prev.filter(id => id !== propertyId));
+    setCompareList(prev => prev.filter(id => id !== propertyId));
+    showToast('Listing removed successfully 🗑️', 'info');
+    if (selectedPropertyId === propertyId) {
+      setCurrentView('listings');
+      setSelectedPropertyId(null);
+    }
+  };
+
+  const clearAllCustomProperties = () => {
+    setProperties(initialProperties);
+    try {
+      localStorage.removeItem(CUSTOM_PROPERTIES_KEY);
+    } catch (e) {
+      console.error(e);
+    }
+    showToast('All custom posted properties cleared 🗑️', 'info');
+  };
+
   // User Auth
   const loginUser = (user) => {
     setCurrentUser(user);
@@ -336,6 +372,8 @@ export function MarketplaceProvider({ children }) {
       viewPropertyDetail,
       navigateTo,
       addNewProperty,
+      deleteProperty,
+      clearAllCustomProperties,
       loginUser,
       logoutUser,
       setIsAuthModalOpen,
