@@ -6,7 +6,8 @@ import {
   Search, 
   Sparkles, 
   Building2,
-  ArrowLeft
+  ArrowLeft,
+  X
 } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { indianCities } from '../../data/citiesData';
@@ -81,36 +82,47 @@ export function CitiesView() {
           </div>
         </div>
 
-        {/* Search & State Filter Bar */}
-        <div className="bg-white rounded-3xl p-4 sm:p-5 border border-slate-200/90 shadow-xs mb-8 space-y-4">
+        {/* Search & State Filter Bar - Aligned & Balanced */}
+        <div className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 shadow-xs mb-8 space-y-3.5">
           <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
             {/* Search Input */}
-            <div className="relative w-full sm:w-96">
-              <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+            <div className="relative w-full sm:max-w-md xl:max-w-lg flex-1">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
-                placeholder="Search by city, state, or locality (e.g. Chennai, ECR, Bandra)..."
+                placeholder="Search by city, state, or locality..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium"
+                className="w-full h-11 pl-10 pr-10 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium transition-all"
               />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                  aria-label="Clear search"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
             </div>
 
-            <div className="text-xs text-slate-500 font-medium hidden sm:block">
-              Click any city card below to redirect directly to its properties
+            {/* Helper Tag */}
+            <div className="hidden sm:flex items-center gap-2 h-11 px-3.5 bg-slate-50 border border-slate-200/80 rounded-xl text-xs text-slate-500 font-medium shrink-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span>Click any city card to view properties</span>
             </div>
           </div>
 
-          {/* State Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar pt-2 border-t border-slate-100">
+          {/* State Filter Pills - Aligned with flex-wrap */}
+          <div className="flex items-center gap-2 flex-wrap pt-3 border-t border-slate-100">
             {allStates.map(st => (
               <button
                 key={st}
                 onClick={() => setSelectedState(st)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   selectedState === st
-                    ? 'bg-slate-900 text-white shadow-md'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-slate-900 text-white shadow-sm ring-1 ring-slate-900'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
                 }`}
               >
                 {st === 'all' 
