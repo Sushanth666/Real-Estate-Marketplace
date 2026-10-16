@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bharatnivas.vercel.app/sitemap.xml

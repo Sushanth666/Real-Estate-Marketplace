@@ -1,3 +1,4 @@
+<!-- BharatNivas Release -->
 <div align="center">
 
   <img src="public/favicon.svg" alt="BharatNivas Logo" width="84" height="84" />

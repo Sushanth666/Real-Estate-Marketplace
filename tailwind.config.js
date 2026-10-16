@@ -1,3 +1,4 @@
+// Tailwind CSS Configuration
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [

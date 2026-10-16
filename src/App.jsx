@@ -1,3 +1,4 @@
+// BharatNivas Application Root
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MarketplaceProvider, useMarketplace } from './context/MarketplaceContext';
