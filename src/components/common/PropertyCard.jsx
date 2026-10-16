@@ -195,24 +195,29 @@ export function PropertyCard({ property, layout = 'grid' }) {
 
         {/* Bottom Image Overlay Details */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white z-10">
-          <div className="text-xs font-medium bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
-            {property.propertyType} • {property.possession}
+          <div className="text-xs font-medium bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1.5">
+            <span>{property.propertyType}</span>
+            <span className="text-white/40">•</span>
+            <span className="text-amber-300 font-semibold">
+              {['Exterior', 'Living', 'Bedroom', 'Kitchen', 'Bath', 'Balcony'][activeImageIndex] || 'Photo'}
+            </span>
           </div>
 
-          {/* Multiple Image Dots */}
+          {/* Multiple Image Dots (All 6 Room Photos) */}
           {images.length > 1 && (
-            <div className="flex gap-1.5 bg-black/40 backdrop-blur-md px-2 py-1 rounded-full">
-              {images.slice(0, 4).map((_, idx) => (
+            <div className="flex gap-1.5 bg-black/50 backdrop-blur-md px-2 py-1 rounded-full border border-white/10">
+              {images.slice(0, 6).map((_, idx) => (
                 <button
                   key={idx}
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveImageIndex(idx);
                   }}
-                  className={`w-1.5 h-1.5 rounded-full transition-all ${
-                    activeImageIndex === idx ? 'bg-white w-3' : 'bg-white/50'
+                  className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                    activeImageIndex === idx ? 'bg-amber-400 w-3.5' : 'bg-white/50 w-1.5 hover:bg-white/80'
                   }`}
                   aria-label={`View photo ${idx + 1}`}
+                  title={['1. Exterior', '2. Living Room', '3. Bedroom', '4. Kitchen', '5. Bathroom', '6. Balcony'][idx] || `Photo ${idx + 1}`}
                 />
               ))}
             </div>

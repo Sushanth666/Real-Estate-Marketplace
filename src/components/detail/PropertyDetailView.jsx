@@ -20,6 +20,7 @@ import {
   Download, 
   Sparkles,
   ChevronRight,
+  ChevronLeft,
   Trash2,
   Key,
   CreditCard,
@@ -30,6 +31,15 @@ import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatIndianCurrency, formatIndianNumber, calculateEMI } from '../../utils/formatters';
 import { Badge } from '../common/Badge';
 import { PropertyCard } from '../common/PropertyCard';
+
+const ROOM_CATEGORIES = [
+  '1. Exterior / Front Elevation',
+  '2. Living Room',
+  '3. Master Bedroom',
+  '4. Modular Kitchen',
+  '5. Modern Bathroom',
+  '6. Balcony / Terrace / Dining'
+];
 
 export function PropertyDetailView() {
   const { 
@@ -366,10 +376,10 @@ export function PropertyDetailView() {
           </div>
         </div>
 
-        {/* Mosaic Image Gallery (1 large + 4 grid) */}
+        {/* Mosaic Image Gallery (1 large Exterior + 4 grid interiors) */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5 rounded-3xl overflow-hidden mb-12 shadow-sm">
           
-          {/* Main Large Photo */}
+          {/* Main Large Photo: Exterior */}
           <div 
             onClick={() => {
               setModalPhotoIndex(0);
@@ -379,7 +389,7 @@ export function PropertyDetailView() {
           >
             <img
               src={images[0]}
-              alt={currentProperty.title}
+              alt={`${currentProperty.title} - Main Exterior View`}
               referrerPolicy="no-referrer"
               onError={(e) => {
                 e.currentTarget.onerror = null;
@@ -387,45 +397,58 @@ export function PropertyDetailView() {
               }}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-            <span className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-xl">
-              Main Exterior View
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 group-hover:from-black/70 transition-colors" />
+            <div className="absolute top-4 left-4 bg-slate-900/85 backdrop-blur-md text-amber-300 text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-400/30 flex items-center gap-1.5 shadow-md">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>1. Main Exterior View</span>
+            </div>
+            <span className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-xl">
+              Front Elevation & Facade
             </span>
           </div>
 
-          {/* 4 Smaller Photos */}
+          {/* 4 Smaller Photos: Interiors (Living Room, Bedroom, Kitchen, Bathroom) */}
           <div className="md:col-span-2 grid grid-cols-2 gap-3.5 h-80 sm:h-[450px]">
-            {images.slice(1, 5).map((imgUrl, idx) => (
-              <div
-                key={idx}
-                onClick={() => {
-                  setModalPhotoIndex(idx + 1);
-                  setActivePhotoModal(true);
-                }}
-                className="relative cursor-pointer group overflow-hidden h-full"
-              >
-                <img
-                  src={imgUrl}
-                  alt={`Photo ${idx + 2}`}
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+            {images.slice(1, 5).map((imgUrl, idx) => {
+              const label = ROOM_CATEGORIES[idx + 1] || `Interior ${idx + 1}`;
+              return (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    setModalPhotoIndex(idx + 1);
+                    setActivePhotoModal(true);
                   }}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-                
-                {/* View All Overlay on the 4th photo */}
-                {idx === 3 && (
-                  <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-xs flex flex-col items-center justify-center text-white p-2 text-center">
-                    <Sparkles className="w-6 h-6 text-amber-400 mb-1" />
-                    <span className="text-xs sm:text-sm font-bold">View All Photos</span>
-                    <span className="text-[11px] text-slate-300">({images.length} High-Res)</span>
-                  </div>
-                )}
-              </div>
-            ))}
+                  className="relative cursor-pointer group overflow-hidden h-full"
+                >
+                  <img
+                    src={imgUrl}
+                    alt={`${currentProperty.title} - ${label}`}
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/75 transition-colors" />
+                  
+                  {/* Room Label */}
+                  <span className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
+                    {label}
+                  </span>
+
+                  {/* View All Overlay on the 4th photo */}
+                  {idx === 3 && (
+                    <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs flex flex-col items-center justify-center text-white p-2 text-center group-hover:bg-slate-950/80 transition-colors">
+                      <Sparkles className="w-6 h-6 text-amber-400 mb-1" />
+                      <span className="text-xs sm:text-sm font-bold">View All Photos</span>
+                      <span className="text-[11px] text-amber-300 font-medium">({images.length} High-Res)</span>
+                      <span className="text-[10px] text-slate-300 mt-0.5">Exterior + 5 Interiors</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
         </div>
@@ -883,55 +906,96 @@ export function PropertyDetailView() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-between p-4 sm:p-8 backdrop-blur-md"
+            className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-between p-4 sm:p-6 backdrop-blur-md"
           >
-            <div className="flex items-center justify-between text-white max-w-7xl mx-auto w-full">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between text-white max-w-7xl mx-auto w-full pb-3 border-b border-white/10">
               <div>
                 <h4 className="font-bold text-base sm:text-lg">{currentProperty.title}</h4>
-                <p className="text-xs text-slate-400">Photo {modalPhotoIndex + 1} of {images.length}</p>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="text-xs font-bold text-amber-400 bg-amber-400/15 px-2.5 py-0.5 rounded-full border border-amber-400/30">
+                    {ROOM_CATEGORIES[modalPhotoIndex] || `Photo ${modalPhotoIndex + 1}`}
+                  </span>
+                  <span className="text-xs text-slate-400">
+                    Photo {modalPhotoIndex + 1} of {images.length}
+                  </span>
+                </div>
               </div>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setActivePhotoModal(false)}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white cursor-pointer"
+                className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white cursor-pointer transition-colors"
+                aria-label="Close photo gallery"
               >
                 <X className="w-6 h-6" />
               </motion.button>
             </div>
 
-            <motion.div 
-              key={modalPhotoIndex}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2 }}
-              className="relative flex-1 flex items-center justify-center my-4 max-w-5xl mx-auto w-full"
-            >
-              <img
-                src={images[modalPhotoIndex]}
-                alt="Enlarged photo"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80';
-                }}
-                className="max-h-[75vh] max-w-full object-contain rounded-2xl shadow-2xl"
-              />
-            </motion.div>
+            {/* Central Photo View with Prev/Next controls */}
+            <div className="relative flex-1 flex items-center justify-center my-3 max-w-6xl mx-auto w-full">
+              {/* Prev Button */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setModalPhotoIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
+                className="absolute left-2 sm:left-4 z-10 p-3 rounded-full bg-black/65 hover:bg-black/90 text-white border border-white/20 backdrop-blur-md cursor-pointer transition-colors"
+                aria-label="Previous photo"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </motion.button>
 
-            {/* Thumbnail Strip */}
-            <div className="flex gap-2 justify-center overflow-x-auto py-2">
+              <motion.div 
+                key={modalPhotoIndex}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2 }}
+                className="w-full h-full flex items-center justify-center p-2"
+              >
+                <img
+                  src={images[modalPhotoIndex]}
+                  alt={`${currentProperty.title} - ${ROOM_CATEGORIES[modalPhotoIndex] || 'Photo'}`}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80';
+                  }}
+                  className="max-h-[72vh] max-w-full object-contain rounded-2xl shadow-2xl"
+                />
+              </motion.div>
+
+              {/* Next Button */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setModalPhotoIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
+                className="absolute right-2 sm:right-4 z-10 p-3 rounded-full bg-black/65 hover:bg-black/90 text-white border border-white/20 backdrop-blur-md cursor-pointer transition-colors"
+                aria-label="Next photo"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </motion.button>
+            </div>
+
+            {/* Thumbnail Strip with Category Tags */}
+            <div className="flex gap-2.5 justify-center overflow-x-auto py-2 max-w-7xl mx-auto w-full scrollbar-none">
               {images.map((img, i) => (
                 <motion.button
                   key={i}
-                  whileHover={{ scale: 1.08 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setModalPhotoIndex(i)}
-                  className={`w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
-                    modalPhotoIndex === i ? 'border-brand-500 scale-105 shadow-md' : 'border-transparent opacity-50 hover:opacity-80'
+                  className={`group relative rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer flex flex-col items-center ${
+                    modalPhotoIndex === i 
+                      ? 'border-amber-400 scale-105 shadow-lg shadow-amber-400/20' 
+                      : 'border-white/10 opacity-60 hover:opacity-100 hover:border-white/30'
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <div className="w-16 h-12 sm:w-20 sm:h-14 overflow-hidden">
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <span className="text-[10px] font-semibold text-slate-300 py-0.5 px-1 bg-black/85 w-full truncate text-center">
+                    {ROOM_CATEGORIES[i] ? ROOM_CATEGORIES[i].replace(/^\d+\.\s*/, '') : `Photo ${i + 1}`}
+                  </span>
                 </motion.button>
               ))}
             </div>
