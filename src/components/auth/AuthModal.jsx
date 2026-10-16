@@ -19,6 +19,7 @@ export function AuthModal() {
   const { 
     isAuthModalOpen, 
     setIsAuthModalOpen, 
+    closeAuthModal,
     loginUser, 
     authModalMode, 
     setAuthModalMode,
@@ -167,7 +168,7 @@ export function AuthModal() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => setIsAuthModalOpen(false)}
+        onClick={closeAuthModal}
         className="fixed inset-0 bg-black/70 backdrop-blur-xs"
       />
 
@@ -181,7 +182,7 @@ export function AuthModal() {
         {/* Close Button */}
         <div className="absolute top-5 right-5">
           <button
-            onClick={() => setIsAuthModalOpen(false)}
+            onClick={closeAuthModal}
             className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
             aria-label="Close modal"
           >

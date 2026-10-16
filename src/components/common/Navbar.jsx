@@ -25,6 +25,7 @@ export function Navbar() {
     currentUser,
     logoutUser,
     setIsAuthModalOpen,
+    openSignInModal,
     setIsPostPropertyOpen,
     openPostProperty,
     setIsCompareModalOpen,
@@ -267,7 +268,7 @@ export function Navbar() {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => setIsAuthModalOpen(true)}
+                onClick={() => openSignInModal('login')}
                 className="px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-sm cursor-pointer"
               >
                 <User className="w-4 h-4" />
@@ -395,7 +396,7 @@ export function Navbar() {
               ) : (
                 <button
                   onClick={() => {
-                    setIsAuthModalOpen(true);
+                    openSignInModal('login');
                     setMobileMenuOpen(false);
                   }}
                   className="w-full py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold flex items-center justify-center gap-2"

@@ -94,12 +94,34 @@ export function MarketplaceProvider({ children }) {
   const openPostProperty = () => {
     if (!currentUser) {
       setPendingOpenPostProperty(true);
+      setPendingSavePropertyId(null);
+      setPendingViewPropertyId(null);
       setAuthModalMode('login');
       setIsAuthModalOpen(true);
       showToast('Please sign in or register to post your property on BharatNivas 🏡', 'info');
       return;
     }
+    // User is already signed in: directly open property submission modal with no auth prompt
+    setPendingOpenPostProperty(false);
+    setIsAuthModalOpen(false);
     setIsPostPropertyOpen(true);
+  };
+
+  // Open clean Sign In modal without any specific action banners
+  const openSignInModal = (mode = 'login') => {
+    setPendingOpenPostProperty(false);
+    setPendingSavePropertyId(null);
+    setPendingViewPropertyId(null);
+    setAuthModalMode(mode);
+    setIsAuthModalOpen(true);
+  };
+
+  // Close Auth Modal and clean all pending action flags
+  const closeAuthModal = () => {
+    setIsAuthModalOpen(false);
+    setPendingOpenPostProperty(false);
+    setPendingSavePropertyId(null);
+    setPendingViewPropertyId(null);
   };
 
   // Transaction Modal state (for "Proceed to Buy" and "Proceed to Rent")
@@ -323,6 +345,11 @@ export function MarketplaceProvider({ children }) {
   // User Auth with Account-Specific Wishlist Sync
   const loginUser = (user) => {
     setCurrentUser(user);
+    try {
+      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+    } catch (e) {
+      console.error(e);
+    }
     setIsAuthModalOpen(false);
 
     // Load account-specific wishlist
@@ -375,6 +402,11 @@ export function MarketplaceProvider({ children }) {
       }
     }
     setCurrentUser(null);
+    try {
+      localStorage.removeItem(USER_STORAGE_KEY);
+    } catch (e) {
+      console.error(e);
+    }
     setWishlist([]);
     setPendingSavePropertyId(null);
     setPendingOpenPostProperty(false);
@@ -505,6 +537,8 @@ export function MarketplaceProvider({ children }) {
       logoutUser,
       setIsAuthModalOpen,
       setAuthModalMode,
+      openSignInModal,
+      closeAuthModal,
       setIsPostPropertyOpen,
       openPostProperty,
       setIsCompareModalOpen,
