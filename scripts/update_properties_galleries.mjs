@@ -10,32 +10,39 @@ const targetPath = path.resolve(__dirname, '../src/data/propertiesData.js');
 
 console.log(`Starting gallery update for ${initialProperties.length} properties...`);
 
-// Mapping of types to catalog keys
-const typeMap = {
-  "Apartment": "Apartment",
-  "Luxury Villa": "Luxury Villa",
-  "Individual House": "Individual House",
-  "Penthouse": "Penthouse",
-  "Duplex": "Duplex",
-  "Builder Floor": "Builder Floor"
+const typeList = [
+  "Apartment",
+  "Luxury Villa",
+  "Individual House",
+  "Penthouse",
+  "Duplex",
+  "Builder Floor"
+];
+
+// Track index per property type
+const typeCounters = {
+  "Apartment": 0,
+  "Luxury Villa": 0,
+  "Individual House": 0,
+  "Penthouse": 0,
+  "Duplex": 0,
+  "Builder Floor": 0
 };
 
 // Update each property
-const updatedProperties = initialProperties.map((p, idx) => {
-  const catType = typeMap[p.propertyType] || "Apartment";
-  const extList = verifiedCatalog.exteriors[catType] || verifiedCatalog.exteriors.Apartment;
-  
-  // Deterministic offset based on property ID number or idx
-  const numMatch = p.id.match(/\d+$/);
-  const num = numMatch ? parseInt(numMatch[0], 10) : idx;
-  const hash = (idx * 7 + num * 3) >>> 0;
+const updatedProperties = initialProperties.map((p) => {
+  const pType = p.propertyType || "Apartment";
+  const typeIdx = Math.max(0, typeList.indexOf(pType));
+  const count = typeCounters[pType]++;
 
-  const exterior = extList[hash % extList.length];
-  const living = verifiedCatalog.livingRooms[hash % verifiedCatalog.livingRooms.length];
-  const bedroom = verifiedCatalog.bedrooms[(hash + 1) % verifiedCatalog.bedrooms.length];
-  const kitchen = verifiedCatalog.kitchens[(hash + 2) % verifiedCatalog.kitchens.length];
-  const bathroom = verifiedCatalog.bathrooms[(hash + 3) % verifiedCatalog.bathrooms.length];
-  const balcony = verifiedCatalog.balconiesOrDining[(hash + 4) % verifiedCatalog.balconiesOrDining.length];
+  const extList = verifiedCatalog.exteriors[pType] || verifiedCatalog.exteriors.Apartment;
+
+  const exterior = extList[count % extList.length];
+  const living = verifiedCatalog.livingRooms[(Math.floor(count / 8) + typeIdx) % verifiedCatalog.livingRooms.length];
+  const bedroom = verifiedCatalog.bedrooms[(Math.floor(count / 64) + typeIdx * 2) % verifiedCatalog.bedrooms.length];
+  const kitchen = verifiedCatalog.kitchens[(count * 3 + typeIdx + 1) % verifiedCatalog.kitchens.length];
+  const bathroom = verifiedCatalog.bathrooms[(count * 5 + typeIdx * 3 + 2) % verifiedCatalog.bathrooms.length];
+  const balcony = verifiedCatalog.balconiesOrDining[(count * 7 + typeIdx * 5 + 3) % verifiedCatalog.balconiesOrDining.length];
 
   const images = [
     exterior,
@@ -52,10 +59,12 @@ const updatedProperties = initialProperties.map((p, idx) => {
   };
 });
 
-// Verify consistency
+// Verification:
 console.log('Verifying generated galleries:');
 let allCorrect = true;
-updatedProperties.forEach((p, i) => {
+const galleryCombinations = new Set();
+
+updatedProperties.forEach((p) => {
   if (!p.images || p.images.length !== 6) {
     console.error(`Property ${p.id} does not have 6 images!`);
     allCorrect = false;
@@ -63,8 +72,13 @@ updatedProperties.forEach((p, i) => {
   const unique = new Set(p.images);
   if (unique.size !== 6) {
     console.warn(`Property ${p.id} has duplicate images (${unique.size}/6)`);
+    allCorrect = false;
   }
+  galleryCombinations.add(p.images.join(' | '));
 });
+
+console.log(`Total properties: ${updatedProperties.length}`);
+console.log(`Unique 6-image gallery combinations: ${galleryCombinations.size}`);
 
 if (!allCorrect) {
   console.error('Validation failed! Aborting write.');
